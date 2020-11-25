@@ -1,0 +1,115 @@
+#' Explore the generated folds andvisualising the placement of folds and distribution of species data over folds.
+#'
+#' @param blocks An SpatialBlock, EnvironmentalBlock or BufferedBlock object.
+#' @param rasterLayer A raster object as background map for visualisation.
+#' @param speciesData A simple features (sf) or SpatialPoints object containing species data (response variable).
+#' @param num A number of fold to assign as data testset.
+#'
+#' @return A map showing folds and the species data, that can be used to explore folds.
+#' @export
+#'
+#' @import raster
+#'
+#' @import ggplot2
+#'
+#' @import sf
+#'
+#' @import stats
+#'
+#' @inheritParams blockCV::spatialBlock
+#'
+#' @seealso [blockCV::spatialBlock()], `browseVignettes("blockCV")`
+#'
+#' @description Blocks‐to‐folds is one of the key steps for species modelling because species data are rarely evenly dispersed over landscapes. When random selection of folds is chosen, constraints can be set to avoid folds with little or no presence or (where relevant) absence data. Techniques are also implemented for finding block‐to‐fold allocations that achieve most even spread of species data across folds (e.g., a similar number of presence and absence records in each fold). In systematic allocation, blocks are numbered and assigned to folds sequentially. The number of folds can be specified by the user in the systematic and random allocations and it can be equal or less than the number of blockWe note that in all the spatial blocking scenarios, all data in the test folds (including background points, if relevant) are excluded from the training datasetss.
+#'
+#' @examples
+sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
+  if (is.null(rasterLayer)) {
+    stop("A raster layer should be provided")
+  }
+  else if (is.null(speciesData)) {
+    stop("Species data should be provided")
+  }
+  else if (is.null(blocks)) {
+    stop("An object of SpatialBlock, EnvironmentalBlock or BufferedBlock is needed")
+  }
+  if (class(blocks) == "SpatialBlock") {
+    polyObj <- blocks$blocks
+  }
+  else {
+    polyObj <- NULL
+  }
+
+  if (num<0 || num>length(blocks$folds)){
+    stop("The num parameter is incorrect")
+  }
+  folds <- blocks$folds
+  kmax <- length(folds)
+  species <- blocks$species
+  speciesData <- sf::st_as_sf(speciesData)
+  samp <- raster::sampleRegular(rasterLayer[[1]], 5e+05, asRaster = TRUE)
+  map_df <- raster::as.data.frame(samp, xy = TRUE, centroids = TRUE,
+                                  na.rm = TRUE)
+  colnames(map_df) <- c("Easting", "Northing", "MAP")
+  mid <- stats::median(map_df$MAP)
+  basePlot <- ggplot2::ggplot() + ggplot2::geom_raster(data = map_df,
+                                                       ggplot2::aes_string(y = "Northing", x = "Easting", fill = "MAP")) +
+    ggplot2::scale_fill_gradient2(low = "darkred", mid = "yellow",
+                                  high = "darkgreen", midpoint = mid) + ggplot2::guides(fill = FALSE) +
+    ggplot2::theme_bw() + ggplot2::labs(x = "", y = "")
+  trainSet <- unlist(folds[[num]][1])
+  testSet <- unlist(folds[[num]][2])
+  training <- speciesData[trainSet, ]
+  testing <- speciesData[testSet, ]
+  plotPoly <- polyObj[polyObj$folds ==num,]
+  plotPoly <- sf::st_as_sf(plotPoly)
+  if (is.null(species)) {
+    if (class(blocks) == "SpatialBlock") {
+      ptr <- basePlot + ggplot2::geom_sf(data = plotPoly,
+                                         color = "red", fill = "orangered4", alpha = 0.04,
+                                         size = 0.2) + ggplot2::geom_sf(data = training,
+                                                                        alpha = 0.7, color = "blue", size = 2) +
+        ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+      pts <- basePlot + ggplot2::geom_sf(data = plotPoly,
+                                         color = "red", fill = "orangered4", alpha = 0.04,
+                                         size = 0.2) + ggplot2::geom_sf(data = testing,
+                                                                        alpha = 0.7, color = "blue", size = 2) +
+        ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+    }
+    else {
+      ptr <- basePlot + ggplot2::geom_sf(data = training,
+                                         alpha = 0.7, color = "blue", size = 2) +
+        ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+      pts <- basePlot + ggplot2::geom_sf(data = testing,
+                                         alpha = 0.7, color = "blue", size = 2) +
+        ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+    }
+  }
+  else {
+    if (class(blocks) == "SpatialBlock") {
+      ptr <- basePlot + ggplot2::geom_sf(data = plotPoly,
+                                         color = "red", fill = "orangered4", alpha = 0.04,
+                                         size = 0.2) + ggplot2::geom_sf(data = training,
+                                                                        ggplot2::aes(color = get(species)), show.legend = "point",
+                                                                        alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
+        ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+      pts <- basePlot + ggplot2::geom_sf(data = plotPoly,
+                                         color = "red", fill = "orangered4", alpha = 0.04,
+                                         size = 0.2) + ggplot2::geom_sf(data = testing,
+                                                                        ggplot2::aes(color = get(species)), show.legend = "point",
+                                                                        alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
+        ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+    }
+    else {
+      ptr <- basePlot + ggplot2::geom_sf(data = training,
+                                         ggplot2::aes(color = get(species)), show.legend = "point",
+                                         alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
+        ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+      pts <- basePlot + ggplot2::geom_sf(data = testing,
+                                         ggplot2::aes(color = get(species)), show.legend = "point",
+                                         alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
+        ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+    }
+  }
+  plot(ggpubr::ggarrange(ptr, pts,common.legend = TRUE))
+}

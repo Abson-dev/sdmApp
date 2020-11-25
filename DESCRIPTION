@@ -1,11 +1,42 @@
 Package: sdmApp
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: A user-friendly application for species distribution modelling
+Version: 0.0.1
+Authors: c(person("Aboubacar", "HEMA", email = "aboubacarhema94@gmail.com", c("aut", "cre")),
+    person("Babacar", "NDAO", email = "babacar.ndao@cse.sn", role = "aut"),
+    person("Louise", "LEROUX", email = "louise.leroux@cirad.fr", role = "aut"),
+    person("Abdoul Aziz", "DIOUF", email = "aziz.diouf@cse.sn", role = "aut"))
+Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
+Description: sdmApp is a R package containing a shiny application that allows
+              non-expert R users to easily model species distribution. It offers a reproducible 
+              worklow for species distribution modelling into a single and user friendly environment. sdmApp takes raster data (in format supported by the raster package) and species occurrence data (several format supported) as input argument. the sdmApp provides an interactive, graphical user interface (GUI).
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports:
+    shiny,
+    sf,
+    raster,
+    ggplot2,
+    biomod2,
+    rhandsontable,
+    haven,
+    DT,
+    shinyBS,
+    data.table,
+    readxl,
+    shinyFiles,
+    SSDM,
+    automap,
+    blockCV,
+    tidyverse,
+    ggpubr,
+    CENFA,
+    dismo,
+    randomForest,
+    kernlab
+RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
