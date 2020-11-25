@@ -1,4 +1,4 @@
-# sdmApp <img src="Logo_sdmApp.png" align="right" width="120" />
+# sdmApp <img src="/doc/Logo_sdmApp.png" align="right" width="120" />
  Species Distribution Models Application
  
 [![License](https://img.shields.io/badge/license-GPL%20%28%3E=%203%29-lightgrey.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
