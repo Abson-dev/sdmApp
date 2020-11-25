@@ -49,7 +49,7 @@ The vignette is also available via this [link](https://github.com/Abson-dev/sdmA
 
 ## Help file
 
-The help file is also available via this [link](https://github.com/Abson-dev/sdmApp/blob/master/sdmApp_github.md).
+The help file is also available via this [link](https://github.com/Abson-dev/sdmApp/blob/master/doc/sdm.html).
 
 ## License
 
