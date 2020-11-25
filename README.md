@@ -32,10 +32,10 @@ To install the package from GitHub use:
 ```r
 remotes::install_github("Abson-dev/sdmApp", dependencies = TRUE)
 ```
-Or installing from CRAN:
+Or installing from CRAN (not yet available on CRAN):
 
 ```r
-install.packages("sdmApp", dependencies = TRUE)
+#install.packages("sdmApp", dependencies = TRUE)
 ```
 
 ## Vignette
