@@ -31,7 +31,8 @@ sdmApp<-function (maxRequestSize = 50, debug = FALSE, theme = "IHSN",
   if (maxRequestSize < 1) {
     maxRequestSize <- 10
   }
-  appDir <- system.file("shiny", "sdmApp", package = "sdmApp")
+  #appDir <- system.file("shiny", "sdmApp", package = "sdmApp")
+  appDir <- "C:/Users/DELLDRAMOMO/Dropbox/Package/sdmApp/shiny/sdmApp"
   if (appDir == "") {
     stop("Could not find directory.",
          call. = FALSE)
