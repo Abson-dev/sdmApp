@@ -2,19 +2,36 @@
 % Please edit documentation in R/sdmApp.R
 \name{sdmApp}
 \alias{sdmApp}
-\title{Using the interactive GUI - sdmApp}
+\title{starts the graphical user interface developed with shiny.}
 \usage{
-sdmApp()
+sdmApp(
+  maxRequestSize = 50,
+  debug = FALSE,
+  theme = "IHSN",
+  ...,
+  shiny.server = FALSE
+)
+}
+\arguments{
+\item{maxRequestSize}{(numeric) number defining the maximum allowed filesize (in megabytes) for uploaded files, defaults to 50MB}
+
+\item{debug}{logical if TRUE, set shiny-debugging options}
+
+\item{theme}{select stylesheet for the interface.}
+
+\item{...}{arguments (e.g host) that are passed through runApp when starting the shiny application}
+
+\item{shiny.server}{Setting this parameter to TRUE will return the app in the form of an object rather than invoking it. This is useful for deploying sdcApp via shiny-server.}
 }
 \value{
-An interactive GUI
+starts the interactive graphical user interface which may be used to perform the anonymisation process.
 }
 \description{
-Using the interactive GUI - sdmApp
+starts the graphical user interface developed with shiny.
 }
 \examples{
-
-#load the package
-library(sdmApp)
+## Not run:
 sdmApp()
+
+## End (Not run)
 }
