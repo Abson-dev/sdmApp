@@ -40,7 +40,14 @@ if (!getShinyOption("sdmAppInvoked", FALSE)) {### Beginning required code for de
   shinyOptions(.guitheme = "ihsn-root.css")
   shinyOptions(.guijsfile = "js/ihsn-style.js")
 }## End of deployment code
-
+# required that 'dQuote()' works nicely when
+# outputting R-Code
+options(useFancyQuotes=FALSE)
+obj <- reactiveValues()
+obj$code <- c(
+  paste("# created using sdmApp", packageVersion("sdmApp")),
+  "library(sdmApp)", "",
+  "obj <- NULL")
 
 
 
