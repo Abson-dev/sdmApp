@@ -12,11 +12,19 @@ shinyServer(function(session, input, output) {
     values$starting <- FALSE
   })
 
-
-  # Environmental variable loading
+  myActionButton <- function(inputId, label, btn.style="", css.class="") {
+    if ( btn.style %in% c("primary","info","success","warning","danger","inverse","link")) {
+      btn.css.class <- paste("btn", btn.style, sep="-")
+    } else {
+      btn.css.class <- ""
+    }
+    tags$button(id=inputId, type="button", class=paste("btn action-button", btn.css.class, css.class, collapse=" "), label)
+  }
+  data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
   load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
-  working.directory <- "C:\\Users\\DELLDRAMOMO\\Desktop\\Package\\data\\"
-  example = system.file("extdata", package = "SSDM")
+  #working.directory <- "C:\\Users\\DELLDRAMOMO\\Desktop\\Package\\data\\"
+  working.directory <- system.file("extdata", package = "sdmApp")
+  example = system.file("extdata", package = "sdmApp")
   if(Sys.info()[['sysname']] == 'Linux') {
     shinyFileChoose(input, 'envfiles', session=session,
                     roots=c(wd = working.directory,
@@ -320,4 +328,39 @@ shinyServer(function(session, input, output) {
   })
 
   ##############################
+
+  ####################################################""
+  output$Xcol <- renderUI({selectInput('Xcol', 'Longitude (X)', load.occ$columns, multiple = FALSE)})
+  observeEvent(input$Xcol,{
+    load.occ$Ycolumns<-setdiff(load.occ$columns,input$Xcol)
+    output$Ycol <- renderUI({selectInput('Ycol', 'Latitude (Y)', load.occ$Ycolumns, multiple = FALSE)})
+    observeEvent(input$Ycol,{
+      load.occ$Pcol<-setdiff(load.occ$Ycolumns,input$Ycol)
+      output$Pcol <- renderUI({selectInput('Pcol', 'Specie column', load.occ$Pcol, multiple = FALSE)})
+    })
+  })
+  observeEvent(input$load2, {
+    validate(
+      need(length(data$Env@layers) > 0, 'You need to load environmental variable before !'),
+      need(length(input$Occ) > 0, 'Choose occurrences file first !')
+    )
+    load.occ$select<-load.occ$df_occ[,c(input$Xcol,input$Ycol,input$Pcol)]
+    load.occ$lon<-input$Xcol
+    load.occ$lat<-input$Ycol
+    load.occ$spec_select<-input$Pcol
+
+  })
+
+  ################
+  occ_data_df = reactive({
+    datatable(load.occ$df_occ,
+              rownames = FALSE,
+              selection="none",
+              options = list(scrollX=TRUE, scrollY=250, lengthMenu=list(c(20, 50, 100, -1), c('20', '50', '100', 'All')), pageLength=20)
+    )
+  })
+  #, options = list(scrollX=TRUE, lengthMenu=list(c(10, 25, 100, -1), c('10', '20', '100', 'All')), pageLength=25), filter="top", rownames=FALSE
+  output$occ <- DT::renderDataTable({
+    occ_data_df()
+  })
 })
