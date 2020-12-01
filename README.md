@@ -13,6 +13,7 @@
 [![GitHub Issues](https://img.shields.io/github/issues/Abson-dev/sdmApp.svg
 )](https://github.com/Abson-dev/sdmApp/issues)
 [![Disscussion](https://img.shields.io/badge/chat-wechat-brightgreen?style=flat)](./README.md#disscussiongroup)
+[![Download Count](https://img.shields.io/github/downloads/Abson-dev/sdmApp/total.svg?style=for-the-badge)](https://github.com/Abson-dev/sdmApp/releases)
 <!--[![DOI](https://zenodo.org/badge/116337503.svg)](https://zenodo.org/badge/latestdoi/116337503) -->
 
 
