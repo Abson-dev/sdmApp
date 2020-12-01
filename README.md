@@ -1,18 +1,18 @@
 # sdmApp <img src="/doc/Logo_sdmApp.png" align="right" width="120" />
  Species Distribution Models Application
 
-<!--[![Build Status](https://travis-ci.org/rvalavi/blockCV.svg?branch=master)](https://travis-ci.org/rvalavi/blockCV)-->
-![Build Status](https://travis-ci.org/Abson-dev/sdmApp.svg?branch=master)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/Abson-dev/sdmApp?branch=master&svg=true)](https://github.com/Abson-dev/sdmApp/commits/master/sdmApp_github.md)
+![Build Status](https://travis-ci.com/Abson-dev/sdmApp.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/Abson-dev/sdmApp/badge.svg?branch=master)](https://coveralls.io/github/Abson-dev/sdmApp?branch=master)
-[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%203%29-lightgrey.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
+[![License](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![CRAN version](https://www.r-pkg.org/badges/version/sdmApp)](https://CRAN.R-project.org/package=sdmApp)
+![Github](https://img.shields.io/badge/Github-0.0.1-green.svg)
 [![Last-changedate](https://img.shields.io/github/last-commit/Abson-dev/sdmApp.svg)](https://github.com/Abson-dev/sdmApp/commits/master)
 [![Downloads](http://cranlogs.r-pkg.org/badges/sdmApp)](https://CRAN.R-project.org/package=sdmApp)
-<!--[![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/sdmApp)](https://CRAN.R-project.org/package=sdmApp)-->
-<!--[![codecov](https://codecov.io/gh/rvalavi/blockCV/branch/master/graph/badge.svg)](https://codecov.io/gh/rvalavi/blockCV)
-[![CRAN version](https://www.r-pkg.org/badges/version/blockCV)](https://CRAN.R-project.org/package=blockCV)
-[![total](http://cranlogs.r-pkg.org/badges/grand-total/blockCV)](https://www.rpackages.io/package/blockCV) -->
+[![codecov](https://codecov.io/gh/Abson-dev/sdmApp/branch/master/graph/badge.svg)](https://codecov.io/gh/Abson-dev/sdmApp)
+[![total](http://cranlogs.r-pkg.org/badges/grand-total/sdmApp)](https://www.rpackages.io/package/sdmApp)
+[![GitHub Issues](https://img.shields.io/github/issues/Abson-dev/sdmApp.svg
+)](https://github.com/Abson-dev/sdmApp/issues)
+[![Disscussion](https://img.shields.io/badge/chat-wechat-brightgreen?style=flat)](./README.md#disscussiongroup)
 <!--[![DOI](https://zenodo.org/badge/116337503.svg)](https://zenodo.org/badge/latestdoi/116337503) -->
 
 
