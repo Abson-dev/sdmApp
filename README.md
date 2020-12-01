@@ -5,7 +5,7 @@
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/rvalavi/blockCV?branch=master&svg=true)](https://github.com/Abson-dev/sdmApp/commits/master/sdmApp_github.md)
 [![License](https://img.shields.io/badge/license-GPL%20%28%3E=%203%29-lightgrey.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 [![CRAN version](https://www.r-pkg.org/badges/version/sdmApp)](https://CRAN.R-project.org/package=sdmApp)
-[![Last-changedate](https://img.shields.io/github/last-commit/unhcr/koboloader.svg)](https://github.com/Abson-dev/sdmApp/commits/master)
+[![Last-changedate](https://img.shields.io/github/last-commit/Abson-dev/sdmApp.svg)](https://github.com/Abson-dev/sdmApp/commits/master)
 <!--[![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/sdmApp)](https://CRAN.R-project.org/package=sdmApp)-->
 <!--[![codecov](https://codecov.io/gh/rvalavi/blockCV/branch/master/graph/badge.svg)](https://codecov.io/gh/rvalavi/blockCV)
 [![CRAN version](https://www.r-pkg.org/badges/version/blockCV)](https://CRAN.R-project.org/package=blockCV)
