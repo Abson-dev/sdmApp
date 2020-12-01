@@ -12,7 +12,7 @@ output$ui_import_data <- renderUI({
   txt_rasters_info<-paste0("You have" ,code(raster::nlayers(data$Env)),"layers.The extent is xmin=",code(raster::extent(data$Env)@xmin),",xmax=",code(raster::extent(data$Env)@xmax),",ymin=",code(raster::extent(data$Env)@ymin),",ymax=",code(raster::extent(data$Env)@ymax))
   out<-list(out,
             sidebarPanel(width = 3,
-                         p('Load environmental rasters for model building or model forecasting'),
+                         p('Load environmental variables'),
                          uiOutput('Envbug'),
                          shinyFilesButton('envfiles', 'Raster selection', 'Please select rasters', FALSE, multiple = TRUE),
                          selectInput("categorical_var","Categorical variable",
@@ -129,7 +129,7 @@ output$ui_import_data <- renderUI({
   out<-list(out,
             column(12,
                    sidebarPanel(width = 3,
-                                p('Occurrence table'),
+                                p('Load occurence data'),
                                 selectInput("file_type","Type of file:", list(`text (csv)` = "text",
                                                                               Excel = "Excel", SPSS = "SPSS",
                                                                               Stata = "Stata", SAS = "SAS"), selected = "text"),
