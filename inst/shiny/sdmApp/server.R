@@ -40,6 +40,15 @@ shinyServer(function(session, input, output) {
     }
 
   ###########################
+  noInputData <- function(prefix="btn_a_micro_", uri) {
+    btn <- myActionButton(paste0(prefix, uri), label=("Load dataset"), "primary")
+    fluidRow(
+      column(12, h3("No input data available!"), class="wb-header"),
+      column(12, p("Go to the Data Upload tab to upload a dataset"), class="wb-header-hint"),
+      column(12, p("Go back to the Data Upload tab by clicking the button below and load a dataset."), align="center"),
+      column(12, div(btn, align="center")))
+  }
+  ###########################"
   data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
   load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
   #working.directory <- "C:\\Users\\DELLDRAMOMO\\Desktop\\Package\\data\\"
