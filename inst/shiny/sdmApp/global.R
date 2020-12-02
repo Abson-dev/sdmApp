@@ -49,5 +49,5 @@ obj$code <- c(
   "library(sdmApp)", "",
   "obj <- NULL")
 
-
+obj$cur_selection_results <- "btn_results_1"
 
