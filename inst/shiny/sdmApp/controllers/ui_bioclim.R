@@ -82,7 +82,7 @@ output$ui_bioclim<-renderUI({
       output$proba_occ_Bioclim<-renderPlot({
         if(title_probaplot_Bioclim=='Presence/Absence'){PASpecies(map)}
         else{
-          ggR_P(map)
+          sdmApp_RasterPlot(map)
         }
 
       })
