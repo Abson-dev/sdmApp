@@ -97,7 +97,7 @@ output$ui_SVM<-renderUI({
       output$proba_occ_SVM<-renderPlot({
         if(title_probaplot_SVM=='Presence/Absence'){PASpecies(map)}
         else{
-          ggR_P(map)
+          sdmApp_RasterPlot(map)
         }
 
       })
