@@ -65,7 +65,7 @@ output$ui_bioclim<-renderUI({
     model_pred[["AUC"]]<-auc[which.max(auc)]
     model_pred[["threshold"]]<- threshold(evaluate_model[[which.max(auc)]], 'spec_sens')
     model_pred[["PresenceAbsence"]]<-model_pred[["espece"]]>model_pred[["threshold"]]
-    model_pred[["ProbaPresence"]]<-TimesRasters(model_pred[["espece"]],model_pred[["PresenceAbsence"]])
+    model_pred[["ProbaPresence"]]<-sdmApp::sdmApp_TimesRasters(model_pred[["espece"]],model_pred[["PresenceAbsence"]])
     observeEvent(input$probaplot_Bioclim,{
       if(input$probaplot_Bioclim=='Probability of occurence(absence/presence)'){
         title_probaplot_Bioclim<-'Probability of occurence(absence/presence)'
