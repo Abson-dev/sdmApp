@@ -81,7 +81,7 @@ output$ui_domain<-renderUI({
       output$proba_occ_Domain<-renderPlot({
         if(title_probaplot_Domain=='Presence/Absence'){PASpecies(map)}
         else{
-          ggR_P(map)
+          sdmApp_RasterPlot(map)
         }
 
       })
