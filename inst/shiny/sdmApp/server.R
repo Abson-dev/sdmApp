@@ -20,6 +20,26 @@ shinyServer(function(session, input, output) {
     }
     tags$button(id=inputId, type="button", class=paste("btn action-button", btn.css.class, css.class, collapse=" "), label)
   }
+
+  ################################
+  genObserver_menus <-
+    function(pat="btn_results_", n=1, updateVal) {
+      res <- paste0('observeEvent(input$',pat,n,', {
+                  curid <- "',pat,n,'"
+                  nn <- names(input)
+                  nn <- nn[grep("',pat,'",nn)]
+                  nn <- setdiff(nn, curid)
+                  for (btnid in nn) {
+                  updateButton(session, btnid, style="default")
+                  }
+                  obj$',updateVal,' <- "',pat,n,'"
+                  updateButton(session, curid, style="primary")
+  });
+                  ')
+      res
+    }
+
+  ###########################
   data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
   load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
   #working.directory <- "C:\\Users\\DELLDRAMOMO\\Desktop\\Package\\data\\"
