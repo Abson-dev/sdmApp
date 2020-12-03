@@ -2,10 +2,10 @@
 ########################  Data Upload content ##################################################################################
 ##################################################################################################################################
 output$ui_import_data <- renderUI({
-  txt_setup <- "First load rasters file, after species occurence file"
+  txt_setup <- "First load raster files and load species occurence file"
   out<-NULL
   out <- fluidRow(
-    column(width = 12, offset = 0, h3("Uploading environmental variables and occurrence table"), class="wb-header"),
+    column(width = 12, offset = 0, h3("Uploading environmental variables and occurrence data"), class="wb-header"),
     column(width = 12, offset = 0, p("Load the dataset."), class="wb-header-hint"),
     fluidRow(column(12, h4("Read Me", tipify(icon("info-circle"), title=txt_setup, placement="bottom"), class="wb-block-title"), align="center"))
   )
