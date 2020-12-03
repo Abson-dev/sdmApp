@@ -21,6 +21,3 @@ A map showing folds and the species data, that can be used to explore folds.
 \description{
 Blocks‐to‐folds is one of the key steps for species modelling because species data are rarely evenly dispersed over landscapes. When random selection of folds is chosen, constraints can be set to avoid folds with little or no presence or (where relevant) absence data. Techniques are also implemented for finding block‐to‐fold allocations that achieve most even spread of species data across folds (e.g., a similar number of presence and absence records in each fold). In systematic allocation, blocks are numbered and assigned to folds sequentially. The number of folds can be specified by the user in the systematic and random allocations and it can be equal or less than the number of blockWe note that in all the spatial blocking scenarios, all data in the test folds (including background points, if relevant) are excluded from the training datasetss.
 }
-\seealso{
-[blockCV::spatialBlock()], `browseVignettes("blockCV")`
-}
