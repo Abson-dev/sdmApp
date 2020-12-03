@@ -36,14 +36,14 @@ output$ui_Models_main <- renderUI({
 output$ui_Models_sidebar_left <- renderUI({
   output$ui_sel_Models_btns <- renderUI({
     cc1 <- c("Bioclim","Domain","Mahalanobis distance")
-    cc2 <- c("Generalized Linear Models", "Generalized Additive Models")
-    cc3 <- c("MaxEnt", "Boosted Regression Trees", "Random Forest","Support Vector Machines")
+    cc2 <- c("Generalized Linear Models")
+    cc3 <- c("MaxEnt", "Random Forest","Support Vector Machines")
     cc4 <- c("Combining model")
     df <- data.frame(lab=c(cc1,cc2,cc3,cc4), header=NA)
-    df$header[1] <- "Profile methods"
+    df$header[1] <- "Profile models"
     df$header[4] <- "Classical regression models"
-    df$header[6] <- "Machine learning methods"
-    df$header[10] <- "Combining model predictions"
+    df$header[5] <- "Machine learning models"
+    df$header[8] <- "Combining model predictions"
     out <- NULL
     for (i in 1:nrow(df)) {
       id <- paste0("btn_Models_results_",i)
