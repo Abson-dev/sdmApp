@@ -14,6 +14,7 @@
 #'
 #' @return starts the interactive graphical user interface which may be used to perform the anonymisation process.
 #' @export
+#' @import shiny
 #'
 #' @examples
 #' ## Not run:
