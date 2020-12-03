@@ -53,11 +53,11 @@ shinyServer(function(session, input, output) {
   load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
   #working.directory <- "C:\\Users\\DELLDRAMOMO\\Desktop\\Package\\data\\"
   working.directory <- system.file("extdata", package = "sdmApp")
-  example = system.file("extdata", package = "sdmApp")
+  #example = system.file("extdata", package = "sdmApp")
   if(Sys.info()[['sysname']] == 'Linux') {
     shinyFileChoose(input, 'envfiles', session=session,
                     roots=c(wd = working.directory,
-                            example = example,
+                            #example = example,
                             home = '/home',
                             root = '/'),
                     filetypes=c('',"grd", "tif", "asc","sdat", "rst", "nc", "tif", "envi", "bil", "img"))
@@ -70,13 +70,13 @@ shinyServer(function(session, input, output) {
     names(disks) = disks
     shinyFileChoose(input, 'envfiles', session=session,
                     roots=c(wd = working.directory,
-                            example = example,
+                            #example = example,
                             disks),
                     filetypes=c('',"grd", "tif", "asc","sdat", "rst", "nc", "tif", "envi", "bil", "img"))
   } else {
     shinyFileChoose(input, 'envfiles', session=session,
                     roots = c(wd = working.directory,
-                              example = example,
+                              #example = example,
                               home = '/user',
                               root = '/'),
                     filetypes=c('',"grd", "tif", "asc","sdat", "rst", "nc", "tif", "envi", "bil", "img"))
@@ -274,7 +274,7 @@ shinyServer(function(session, input, output) {
     if(Sys.info()[['sysname']] == 'Linux') {
       shinyFileChoose(input, 'Occ', session=session,
                       roots = c(wd = working.directory,
-                                example = example,
+                                #example = example,
                                 home = '/home',
                                 root = '/'),
                       filetypes=load.occ$type_file)
@@ -287,13 +287,13 @@ shinyServer(function(session, input, output) {
       names(disks) = disks
       shinyFileChoose(input, 'Occ', session=session,
                       roots = c(wd = working.directory,
-                                example = example,
+                                #example = example,
                                 disks),
                       filetypes=load.occ$type_file)
     } else {
       shinyFileChoose(input, 'Occ', session=session,
                       roots = c(wd = working.directory,
-                                example = example,
+                                #example = example,
                                 home = '/user',
                                 root = '/'),
                       filetypes=load.occ$type_file)
