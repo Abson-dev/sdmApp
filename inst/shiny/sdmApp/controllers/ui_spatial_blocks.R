@@ -57,7 +57,7 @@ output$ui_spatial_blocks<-renderUI({
   })
   output$test_train_plot<-renderPlot({
     spatialblock<-spatialblock()
-    sdmApp::sdmApp_fold_Explorer(spatialblock, data$Env, pa_data(),load.occ$fold)
+    sdmApp::sdmApp_fold_Explorer(spatialblock, data$Env, pa_data(),1) #1=load.occ$fold
   })
 
   fluidRow(column(12, h4("Spatial blocking"), align="center"),
