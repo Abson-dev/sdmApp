@@ -1,5 +1,5 @@
 
-
+sp<-reactiveValues()
 
 output$ui_spatial_blocks<-renderUI({
   observeEvent(input$number_fold,{
@@ -33,8 +33,13 @@ output$ui_spatial_blocks<-renderUI({
                                       biomod2Format = FALSE,
                                       xOffset = 0, # shift the blocks horizontally
                                       yOffset = 0)))
-    a
-
+    if(inherits(a, 'try-error'))
+      {
+      output$Envbug_sp <- renderUI(p('Spatial blocking failed, please check your inputs and try again!'))
+    } else {
+      output$Envbug_sp <- renderUI(p())
+      a
+    }
   })
 
   output$sp_block<-renderPlot({
@@ -57,7 +62,7 @@ output$ui_spatial_blocks<-renderUI({
   })
   output$test_train_plot<-renderPlot({
     spatialblock<-spatialblock()
-    sdmApp::Explorer(spatialblock, data$Env, pa_data(),1) #1=load.occ$fold
+    Explorer(spatialblock, data$Env, pa_data(),1) #1=load.occ$fold
   })
 
   fluidRow(column(12, h4("Spatial blocking"), align="center"),
