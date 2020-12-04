@@ -58,78 +58,6 @@ shinyServer(function(session, input, output) {
     return(records)
   }
   ################################
-  Explorer<-function (blocks, rasterLayer, speciesData, num) {
-    polyObj <- blocks$blocks
-    folds <- blocks$folds
-    kmax <- length(folds)
-    species <- blocks$species
-    speciesData <- sf::st_as_sf(speciesData)
-    samp <- raster::sampleRegular(rasterLayer[[1]], 5e+05, asRaster = TRUE)
-    map_df <- raster::as.data.frame(samp, xy = TRUE, centroids = TRUE,
-                                    na.rm = TRUE)
-    colnames(map_df) <- c("Easting", "Northing", "MAP")
-    mid <- stats::median(map_df$MAP)
-    basePlot <- ggplot2::ggplot() + ggplot2::geom_raster(data = map_df,
-                                                         ggplot2::aes_string(y = "Northing", x = "Easting", fill = "MAP")) +
-      ggplot2::scale_fill_gradient2(low = "darkred", mid = "yellow",
-                                    high = "darkgreen", midpoint = mid) + ggplot2::guides(fill = FALSE) +
-      ggplot2::theme_bw() + ggplot2::labs(x = "", y = "")
-    trainSet <- unlist(folds[[num]][1])
-    testSet <- unlist(folds[[num]][2])
-    training <- speciesData[trainSet, ]
-    testing <- speciesData[testSet, ]
-    plotPoly <- polyObj[polyObj$folds ==num,]
-    plotPoly <- sf::st_as_sf(plotPoly)
-    if (is.null(species)) {
-      if (class(blocks) == "SpatialBlock") {
-        ptr <- basePlot + ggplot2::geom_sf(data = plotPoly,
-                                           color = "red", fill = "orangered4", alpha = 0.04,
-                                           size = 0.2) + ggplot2::geom_sf(data = training,
-                                                                          alpha = 0.7, color = "blue", size = 2) +
-          ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
-        pts <- basePlot + ggplot2::geom_sf(data = plotPoly,
-                                           color = "red", fill = "orangered4", alpha = 0.04,
-                                           size = 0.2) + ggplot2::geom_sf(data = testing,
-                                                                          alpha = 0.7, color = "blue", size = 2) +
-          ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
-      }
-      else {
-        ptr <- basePlot + ggplot2::geom_sf(data = training,
-                                           alpha = 0.7, color = "blue", size = 2) +
-          ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
-        pts <- basePlot + ggplot2::geom_sf(data = testing,
-                                           alpha = 0.7, color = "blue", size = 2) +
-          ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
-      }
-    }
-    else {
-      if (class(blocks) == "SpatialBlock") {
-        ptr <- basePlot + ggplot2::geom_sf(data = plotPoly,
-                                           color = "red", fill = "orangered4", alpha = 0.04,
-                                           size = 0.2) + ggplot2::geom_sf(data = training,
-                                                                          ggplot2::aes(color = get(species)), show.legend = "point",
-                                                                          alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
-          ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
-        pts <- basePlot + ggplot2::geom_sf(data = plotPoly,
-                                           color = "red", fill = "orangered4", alpha = 0.04,
-                                           size = 0.2) + ggplot2::geom_sf(data = testing,
-                                                                          ggplot2::aes(color = get(species)), show.legend = "point",
-                                                                          alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
-          ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
-      }
-      else {
-        ptr <- basePlot + ggplot2::geom_sf(data = training,
-                                           ggplot2::aes(color = get(species)), show.legend = "point",
-                                           alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
-          ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
-        pts <- basePlot + ggplot2::geom_sf(data = testing,
-                                           ggplot2::aes(color = get(species)), show.legend = "point",
-                                           alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
-          ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
-      }
-    }
-    plot(ggpubr::ggarrange(ptr, pts,common.legend = TRUE))
-  }
   ######################"
   data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
   load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
@@ -459,7 +387,7 @@ shinyServer(function(session, input, output) {
     load.occ$lon<-input$Xcol
     load.occ$lat<-input$Ycol
     load.occ$spec_select<-input$Pcol
-    #if(length(input$load2)>=0){return(uiOutput("ui_preparation"))}
+
   })
 
   ################
