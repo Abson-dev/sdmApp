@@ -88,16 +88,17 @@ output$ui_view_species_data <- renderUI({
   txt_rasters_info<-paste0("You have" ,code(raster::nlayers(data$Env)),"layers.The extent is xmin=",code(raster::extent(data$Env)@xmin),",xmax=",code(raster::extent(data$Env)@xmax),",ymin=",code(raster::extent(data$Env)@ymin),",ymax=",code(raster::extent(data$Env)@ymax))
   fluidRow(
     mainPanel(width = 8, tabsetPanel(type = "tabs",
+                                     tabPanel("Layers summary",
+                                              p(HTML(txt_rasters_info)),
+                                              dataTableOutput("sumlayers")),
                                      tabPanel("Occurence data",
                                               p(HTML(txt_species_data)),
                                               dataTableOutput("occ_data_select")
                                      ),
-                                     tabPanel("Summarise Occurence data",
-                                              p(HTML(txt_rasters_info)),
+                                     tabPanel("Summary Occurence data",
                                               dataTableOutput("SpeciesTable")
-                                     ),
-                                     tabPanel("Layers summerize",
-                                              dataTableOutput("sumlayers"))
+                                     )
+
 
 
     ),
@@ -267,17 +268,22 @@ output$ui_enfa<-renderUI({
 
     )})
   txt_enfa_info<-paste0('The number of significant factors is',code(brStick(s.factor(mod.enfa()))))
-  fluidRow(column(12, h4("Ecological Niche Factor Analysis"), align="center"),
+  fluidRow(column(12, h4("Ecological Niche Factor Analysis"),p("ENFA ((ecological-niche factor analysis, Hirzel et al.,
+2002a)
+) is based on the concept of the ecological niche, and provides a measure of the realised niche within the available space from
+the computation of two parameters, the marginality and the specialization.
+"), align="center"),
            mainPanel(width = 8, tabsetPanel(type = "tabs",
                                             tabPanel("ENFA",
                                                      conditionalPanel(
                                                        condition = brStick(s.factor(mod.enfa()))>1,
-                                                       selectInput('number_spec', 'Please select the number between 2 and the number of significant factors.', 2:brStick(s.factor(mod.enfa())), multiple = FALSE, selectize = TRUE)
+                                                       p(HTML(txt_enfa_info)),
+                                                       selectInput('number_spec', 'Please select a number between 2 and the number of significant factors.', 2:brStick(s.factor(mod.enfa())), multiple = FALSE, selectize = TRUE)
                                                      ),
                                                      plotOutput("enfa_scatter"))
                                             ,
                                             tabPanel("Marginality and specialization",
-                                                     p(HTML(txt_enfa_info)),
+
                                                      DT::dataTableOutput("marg")
                                             )),
                      id = "tabs")
@@ -446,10 +452,10 @@ output$ui_preparation_main <- renderUI({
   if (val=="btn_preparation_results_3") {
     return(uiOutput("ui_enfa"))
   }
-  if (val=="btn_impute_results_4") {
+  if (val=="btn_preparation_results_4") {
     return(uiOutput("ui_spatial_auto_range"))
   }
-  if (val=="btn_impute_results_5") {
+  if (val=="btn_preparation_results_5") {
     return(uiOutput("ui_spatial_blocks"))
   }
 
@@ -458,7 +464,7 @@ output$ui_preparation_main <- renderUI({
 output$ui_preparation_sidebar_left <- renderUI({
   output$ui_sel_preparation_btns <- renderUI({
     cc1 <- c("Summarise")
-    cc2 <- c("Correlation", "ENFA", "spatial autocorrelation", "spatial blocks")
+    cc2 <- c("Correlation", "ENFA", "Spatial autocorrelation", "Spatial blocking")
     df <- data.frame(lab=c(cc1,cc2), header=NA)
     df$header[1] <- "View"
     df$header[2] <- "Spatial Analysis"
