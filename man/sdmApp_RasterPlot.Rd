@@ -17,5 +17,5 @@ Plot a continous raster
 }
 \examples{
 r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
-sdmApp_RasterPlot(x)
+sdmApp_RasterPlot(r)
 }
