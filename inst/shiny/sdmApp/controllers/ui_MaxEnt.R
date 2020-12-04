@@ -79,7 +79,7 @@ output$ui_MaxEnt<-renderUI({
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ<-renderPlot({
-        if(title_probaplot=='Presence/Absence'){PASpecies(map)}
+        if(title_probaplot=='Presence/Absence'){sdmApp_PA(map)}
         else{
           sdmApp_RasterPlot(map)
         }
