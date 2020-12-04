@@ -131,7 +131,7 @@ output$ui_import_data <- renderUI({
                                 uiOutput('Ycol'),
                                 uiOutput('Pcol'),
                                 myActionButton("load2",label=("Load data"), "primary")
-                                #actionButton('load2', 'Select studied specie')
+
                    ),
                    mainPanel(width = 7, tabsetPanel(type = "tabs",
                                                     tabPanel("Preview",
