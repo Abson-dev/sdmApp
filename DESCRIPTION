@@ -2,7 +2,7 @@ Package: sdmApp
 Type: Package
 Title: A user-friendly application for species distribution modelling
 Version: 0.0.1
-Authors: c(person("Aboubacar", "HEMA", email = "aboubacarhema94@gmail.com", c("aut", "cre")),
+Author: c(person("Aboubacar", "HEMA", email = "aboubacarhema94@gmail.com", c("aut", "cre")),
     person("Babacar", "NDAO", email = "babacar.ndao@cse.sn", role = "aut"),
     person("Louise", "LEROUX", email = "louise.leroux@cirad.fr", role = "aut"),
     person("Abdoul Aziz", "DIOUF", email = "aziz.diouf@cse.sn", role = "aut"))
