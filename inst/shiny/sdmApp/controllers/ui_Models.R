@@ -73,7 +73,7 @@ output$ui_Models_noproblem <- renderUI({
   ))
 })
 output$ui_Models <- renderUI({
-  if(length(input$Occ)==0){
+  if(length(load.occ$Pcol) == 0){
     return(uiOutput("ui_Models_noproblem"))}
   {
     fluidRow(
