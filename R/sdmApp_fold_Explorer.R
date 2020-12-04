@@ -53,7 +53,7 @@ sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
                                                        ggplot2::aes_string(y = "Northing", x = "Easting", fill = "MAP")) +
     ggplot2::scale_fill_gradient2(low = "darkred", mid = "yellow",
                                   high = "darkgreen", midpoint = mid) + ggplot2::guides(fill = FALSE) +
-    ggplot2::theme_bw() + ggplot2::labs(x = "", y = "")
+    ggplot2::ggplot2::theme_bw() + ggplot2::labs(x = "", y = "")
   trainSet <- unlist(folds[[num]][1])
   testSet <- unlist(folds[[num]][2])
   training <- speciesData[trainSet, ]
@@ -66,20 +66,20 @@ sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
                                          color = "red", fill = "orangered4", alpha = 0.04,
                                          size = 0.2) + ggplot2::geom_sf(data = training,
                                                                         alpha = 0.7, color = "blue", size = 2) +
-        ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+        ggplot2::ggtitle("Training set") + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))
       pts <- basePlot + ggplot2::geom_sf(data = plotPoly,
                                          color = "red", fill = "orangered4", alpha = 0.04,
                                          size = 0.2) + ggplot2::geom_sf(data = testing,
                                                                         alpha = 0.7, color = "blue", size = 2) +
-        ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+        ggplot2::ggtitle("Testing set") + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))
     }
     else {
       ptr <- basePlot + ggplot2::geom_sf(data = training,
                                          alpha = 0.7, color = "blue", size = 2) +
-        ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+        ggplot2::ggtitle("Training set") + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))
       pts <- basePlot + ggplot2::geom_sf(data = testing,
                                          alpha = 0.7, color = "blue", size = 2) +
-        ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+        ggplot2::ggtitle("Testing set") + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))
     }
   }
   else {
@@ -89,23 +89,23 @@ sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
                                          size = 0.2) + ggplot2::geom_sf(data = training,
                                                                         ggplot2::aes(color = get(species)), show.legend = "point",
                                                                         alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
-        ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+        ggplot2::ggtitle("Training set") + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))
       pts <- basePlot + ggplot2::geom_sf(data = plotPoly,
                                          color = "red", fill = "orangered4", alpha = 0.04,
                                          size = 0.2) + ggplot2::geom_sf(data = testing,
                                                                         ggplot2::aes(color = get(species)), show.legend = "point",
                                                                         alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
-        ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+        ggplot2::ggtitle("Testing set") + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))
     }
     else {
       ptr <- basePlot + ggplot2::geom_sf(data = training,
                                          ggplot2::aes(color = get(species)), show.legend = "point",
                                          alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
-        ggplot2::ggtitle("Training set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+        ggplot2::ggtitle("Training set") + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))
       pts <- basePlot + ggplot2::geom_sf(data = testing,
                                          ggplot2::aes(color = get(species)), show.legend = "point",
                                          alpha = 0.7, size = 2) + ggplot2::labs(color = species) +
-        ggplot2::ggtitle("Testing set") + theme(plot.title = element_text(hjust = 0.5, size = 10))
+        ggplot2::ggtitle("Testing set") + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))
     }
   }
   plot(ggpubr::ggarrange(ptr, pts,common.legend = TRUE))
