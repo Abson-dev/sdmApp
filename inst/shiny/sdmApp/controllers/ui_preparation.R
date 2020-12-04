@@ -487,11 +487,10 @@ output$ui_anonymize_noproblem <- renderUI({
   return(list(
     noInputData(uri="ui_preparation"),
     fluidRow(column(12, tags$br(), p(""), align="center"))
-    #fluidRow(column(12, myActionButton("nodata_anonymize_uploadproblem", label="Upload a previously saved problem", btn.style="primary"), align="center"))
   ))
 })
 output$ui_preparation <- renderUI({
-  if(length(input$Occ)==0){
+  if(length(load.occ$Pcol) == 0){
     return(uiOutput("ui_anonymize_noproblem"))}
   else{
     fluidRow(
