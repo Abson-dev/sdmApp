@@ -22,7 +22,7 @@ sdmApp_PA<-function(x){
   map_df$MAP<-factor(map_df$MAP)
   basePlot <- ggplot2::ggplot() + ggplot2::geom_raster(data = map_df,
                                                        ggplot2::aes_string(y = "Northing", x = "Easting", fill = "MAP"))
-  basePlot<-basePlot + ggplot2::theme_bw() + ggplot2::labs(x = "Longitude", y = "Latitude") + ggtitle(label = names(x)) + theme(plot.title = element_text(hjust = 0.5, size = 10))+scale_fill_manual(values=c("red","green"),name="Specie",labels=c("Absence","Presence"))
+  basePlot<-basePlot + ggplot2::theme_bw() + ggplot2::labs(x = "Longitude", y = "Latitude") + ggplot2::ggtitle(label = names(x)) + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))+ggplot2::scale_fill_manual(values=c("red","green"),name="Specie",labels=c("Absence","Presence"))
 
   return(basePlot)
 }
