@@ -28,7 +28,7 @@ sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
     stop("Species data should be provided")
   }
   else if (is.null(blocks)) {
-    stop("An object of SpatialBlock, EnvironmentalBlock or BufferedBlock is needed")
+    stop("An object of SpatialBlock is needed")
   }
   if (class(blocks) == "SpatialBlock") {
     polyObj <- blocks$blocks
@@ -38,11 +38,11 @@ sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
   }
 
   if (num<0 || num>length(blocks$folds)){
-    stop("The num parameter is incorrect")
+    stop("The num parameter is incorrect!")
   }
   folds <- blocks$folds
   kmax <- length(folds)
-  species <- blocks$species
+  species <- as.factor(blocks$species)
   speciesData <- sf::st_as_sf(speciesData)
   samp <- raster::sampleRegular(rasterLayer[[1]], 5e+05, asRaster = TRUE)
   map_df <- raster::as.data.frame(samp, xy = TRUE, centroids = TRUE,
