@@ -15,6 +15,30 @@
 #' @return starts the interactive graphical user interface which may be used to perform the anonymisation process.
 #' @export
 #' @import shiny
+#' @import raster
+#' @import sp
+#' @import sf
+#' @import grid
+#' @import rhandsontable
+#' @import haven
+#' @import shinyBS
+#' @import data.table
+#' @import ggplot2
+#' @import biomod2
+#' @import dismo
+#' @import DT
+#' @import readxl
+#' @import shinyFiles
+#' @import shinydashboard
+#' @import SSDM
+#' @import automap
+#' @import blockCV
+#' @import tidyverse
+#' @import ggpubr
+#' @import CENFA
+#' @import rJava
+#' @import randomForest
+#' @import kernlab
 #'
 #' @examples
 #' ## Not run:
