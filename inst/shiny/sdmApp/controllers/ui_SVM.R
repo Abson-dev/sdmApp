@@ -95,7 +95,7 @@ output$ui_SVM<-renderUI({
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_SVM<-renderPlot({
-        if(title_probaplot_SVM=='Presence/Absence'){PASpecies(map)}
+        if(title_probaplot_SVM=='Presence/Absence'){sdmApp::sdmApp_PA(map)}
         else{
           sdmApp_RasterPlot(map)
         }
