@@ -1,5 +1,5 @@
 sac<-reactive({
-  a = try(withProgress(message = 'Variables loading',
+  a = try(withProgress(message = 'Spatial Autorange',
                        spatialAutoRange(rasterLayer = data$Env,
                                         doParallel = T,
                                         plotVariograms = TRUE,
