@@ -1,6 +1,3 @@
-
-
-
 #' Plot a continous raster
 #'
 #' @param x \code{Raster object}
@@ -11,11 +8,12 @@
 #'
 #' @import ggplot2
 #'
+#' @import ggpubr
 #' @export
 #'
 #' @examples
 #' r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
-#' sdmApp_RasterPlot(x)
+#' sdmApp_RasterPlot(r)
 sdmApp_RasterPlot<-function(x){
   if(is.raster(x)){return(NULL)}
   samp <- raster::sampleRegular(x, 5e+05, asRaster = TRUE)
@@ -25,7 +23,7 @@ sdmApp_RasterPlot<-function(x){
   basePlot1 <- ggplot2::ggplot() + ggplot2::geom_raster(data = map_df,
                                                         ggplot2::aes_string(y = "Northing", x = "Easting", fill = "MAP"))
    basePlot1<-basePlot1 + ggplot2::theme_bw() + ggplot2::labs(x = "Longitude", y = "Latitude") +
-    ggtitle(label = names(x))   + ggplot2::scale_fill_gradientn(name = " ", colours = rev(terrain.colors(10)))
+     ggplot2::ggtitle(label = names(x))   + ggplot2::scale_fill_gradientn(name = " ", colours = rev(terrain.colors(10)))
   basePlot1<-basePlot1 + theme(plot.title = element_text(hjust = 0.5, size = 10))
 
   return(basePlot1)
