@@ -79,7 +79,7 @@ output$ui_domain<-renderUI({
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_Domain<-renderPlot({
-        if(title_probaplot_Domain=='Presence/Absence'){PASpecies(map)}
+        if(title_probaplot_Domain=='Presence/Absence'){sdmApp_PA(map)}
         else{
           sdmApp_RasterPlot(map)
         }
