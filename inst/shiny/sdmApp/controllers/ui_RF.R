@@ -90,7 +90,7 @@ output$ui_RF<-renderUI({
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_RF<-renderPlot({
-        if(title_probaplot_RF=='Presence/Absence'){PASpecies(map)}
+        if(title_probaplot_RF=='Presence/Absence'){sdmApp::sdmApp_PA(map)}
         else{
           sdmApp_RasterPlot(map)
         }
