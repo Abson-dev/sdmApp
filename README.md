@@ -1,14 +1,9 @@
 # sdmApp <img src="/doc/Logo_sdmApp.png" align="right" width="120" />
  Species Distribution Models Application
 
-<<<<<<< HEAD
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.com/Abson-dev/sdmApp.svg?branch=master)](https://travis-ci.com/Abson-dev/sdmApp)
+ [![Travis build status](https://travis-ci.com/Abson-dev/sdmApp.svg?branch=master)](https://travis-ci.com/Abson-dev/sdmApp)
   <!-- badges: end -->
-=======
-
-[![Travis build status](https://travis-ci.com/Abson-dev/sdmApp.svg?branch=master)](https://travis-ci.com/Abson-dev/sdmApp)
->>>>>>> 445361e0c605d9fb4f019fac35363501e1684388
 [![Coverage Status](https://coveralls.io/repos/github/Abson-dev/sdmApp/badge.svg?branch=master)](https://coveralls.io/github/Abson-dev/sdmApp?branch=master)
 [![License](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![CRAN version](https://www.r-pkg.org/badges/version/sdmApp)](https://CRAN.R-project.org/package=sdmApp)
