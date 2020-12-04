@@ -83,7 +83,7 @@ output$ui_mahal<-renderUI({
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_Mahal<-renderPlot({
-        if(title_probaplot_Mahal=='Presence/Absence'){PASpecies(map)}
+        if(title_probaplot_Mahal=='Presence/Absence'){sdmApp_PA(map)}
         else{
           sdmApp_RasterPlot(map)
         }
