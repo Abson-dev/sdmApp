@@ -12,6 +12,7 @@ output$ui_spatial_blocks<-renderUI({
   })
   Specdata<-reactive({
     dsf<-load.occ$select
+    dsf[,load.occ$spec_select]<-as.factor(dsf[,load.occ$spec_select])
     dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
     dsf
   })
