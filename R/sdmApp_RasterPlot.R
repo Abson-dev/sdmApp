@@ -24,7 +24,7 @@ sdmApp_RasterPlot<-function(x){
                                                         ggplot2::aes_string(y = "Northing", x = "Easting", fill = "MAP"))
    basePlot1<-basePlot1 + ggplot2::theme_bw() + ggplot2::labs(x = "Longitude", y = "Latitude") +
      ggplot2::ggtitle(label = names(x))   + ggplot2::scale_fill_gradientn(name = " ", colours = rev(terrain.colors(10)))
-  basePlot1<-basePlot1 + theme(plot.title = element_text(hjust = 0.5, size = 10))
+  basePlot1<-basePlot1 + ggplot2::theme(plot.title = element_text(hjust = 0.5, size = 10))
 
   return(basePlot1)
 
