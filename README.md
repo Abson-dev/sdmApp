@@ -60,7 +60,3 @@ The help file is also available via this [link](https://github.com/Abson-dev/sdm
 
 The sdmApp sticker was made through R art kindly shared by [art.djnavarro.net](art.djnavarro.net) and released under a [CC-BY-SA 4.0](https://www.donneesquebec.ca/fr/licence/) licence.
 
-## Citation
-To cite package **sdmApp** in publications, please use:
-
-[Aboubacar H](https://orcid.org/0000-0001-9756-7270), [Babacar N](https://orcid.org/0000-0001-9848-7459), [Louise L](https://orcid.org/0000-0002-7631-2399), [Abdoul Aziz D](https://orcid.org/0000-0002-2918-6211). **sdmApp package: A user-friendly application for species distribution modelling**. *Methods Ecol Evol*. 2019; 10:225–232. [lien de l'article à ajouter](https://doi.org/10.1111/2041-210X.13107)
