@@ -9,9 +9,8 @@ library(sf) # classes and functions for vector data
 library(raster)# classes and functions for raster data
 library(ggplot2)
 library(biomod2)
+library(dismo)
 library(DT)
-library(shinyBS)
-library(data.table)
 library(readxl)
 library(shinyFiles)
 library(shinydashboard)
@@ -21,9 +20,10 @@ library(blockCV)
 library(tidyverse)
 library(ggpubr)
 library(CENFA)
-library(dismo)
+library(rJava)
 library(randomForest)
 library(kernlab)
+library(dplyr)
 
 if (!getShinyOption("sdmAppInvoked", FALSE)) {### Beginning required code for deployment
   .startdir <- .guitheme <- .guijsfile <- NULL
