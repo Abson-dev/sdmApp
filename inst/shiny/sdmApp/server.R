@@ -41,12 +41,13 @@ shinyServer(function(session, input, output) {
 
   ###########################
   noInputData <- function(prefix="btn_a_micro_", uri) {
-    btn <- myActionButton(paste0(prefix, uri), label=("Load dataset"), "primary")
+    #btn <- myActionButton(paste0(prefix, uri), label=("Load data"), "primary")
     fluidRow(
-      column(12, h3("No input data available!"), class="wb-header"),
-      column(12, p("Go to the Data Upload tab to upload a dataset"), class="wb-header-hint"),
-      column(12, p("Go back to the Data Upload tab by clicking the button below and load a dataset."), align="center"),
-      column(12, div(btn, align="center")))
+      column(12, h3("No environmental variables or occurrence data available!"), class="wb-header"),
+      column(12, p("Go to the Data Upload tab to load  data"), class="wb-header-hint"))
+    # ,
+    #   column(12, p("Go back to the Data Upload tab by clicking the button below and load  data."), align="center"),
+    #   column(12, div(btn, align="center")))
   }
   ###########################"
   data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
@@ -370,14 +371,14 @@ shinyServer(function(session, input, output) {
   })
   observeEvent(input$load2, {
     validate(
-      need(length(data$Env@layers) > 0, 'You need to load environmental variable before !'),
-      need(length(input$Occ) > 0, 'Choose occurrences file first !')
+      need(length(data$Env@layers) > 0, 'You need to load environmental variables!'),
+      need(length(input$Occ) > 0, 'Choose occurrence data !')
     )
     load.occ$select<-load.occ$df_occ[,c(input$Xcol,input$Ycol,input$Pcol)]
     load.occ$lon<-input$Xcol
     load.occ$lat<-input$Ycol
     load.occ$spec_select<-input$Pcol
-
+    #if(length(input$load2)>=0){return(uiOutput("ui_preparation"))}
   })
 
   ################
