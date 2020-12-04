@@ -1,5 +1,5 @@
 
-sp<-reactiveValues()
+
 
 output$ui_spatial_blocks<-renderUI({
   observeEvent(input$number_fold,{
@@ -59,12 +59,12 @@ output$ui_spatial_blocks<-renderUI({
     )})
   observeEvent(input$test_fold,{
     load.occ$fold<-input$test_fold
-  })
+
   output$test_train_plot<-renderPlot({
     spatialblock<-spatialblock()
-    Explorer(spatialblock, data$Env, pa_data(),1) #1=load.occ$fold
+    sdmApp::sdmApp_fold_Explorer(spatialblock, data$Env, pa_data(),load.occ$fold) #1=load.occ$fold
   })
-
+  })
   fluidRow(column(12, h4("Spatial blocking"), align="center"),
            mainPanel(width = 8, tabsetPanel(type = "tabs",
                                             tabPanel("Spatial blocking",
