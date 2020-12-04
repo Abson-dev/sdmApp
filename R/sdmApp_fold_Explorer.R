@@ -53,7 +53,7 @@ sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
                                                        ggplot2::aes_string(y = "Northing", x = "Easting", fill = "MAP")) +
     ggplot2::scale_fill_gradient2(low = "darkred", mid = "yellow",
                                   high = "darkgreen", midpoint = mid) + ggplot2::guides(fill = FALSE) +
-    ggplot2::ggplot2::theme_bw() + ggplot2::labs(x = "", y = "")
+    ggplot2::theme_bw() + ggplot2::labs(x = "", y = "")
   trainSet <- unlist(folds[[num]][1])
   testSet <- unlist(folds[[num]][2])
   training <- speciesData[trainSet, ]
