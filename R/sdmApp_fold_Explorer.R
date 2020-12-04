@@ -42,7 +42,7 @@ sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
   }
   folds <- blocks$folds
   kmax <- length(folds)
-  species <- as.factor(blocks$species)
+  species <- blocks$species
   speciesData <- sf::st_as_sf(speciesData)
   samp <- raster::sampleRegular(rasterLayer[[1]], 5e+05, asRaster = TRUE)
   map_df <- raster::as.data.frame(samp, xy = TRUE, centroids = TRUE,
