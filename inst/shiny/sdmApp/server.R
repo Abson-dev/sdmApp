@@ -50,6 +50,14 @@ shinyServer(function(session, input, output) {
     #   column(12, div(btn, align="center")))
   }
   ###########################"
+  summarise_fold<-function(sb){
+    records<-sb$records
+    records$fold<-1:nrow(records)
+    records <- records[,c(5,1,2,3,4)] %>%
+      dplyr::mutate(Pourcentage= round((test_0 + test_1)*100/(test_0 + test_1+train_1 + train_0),digits = 0))
+    return(records)
+  }
+  ################################
   data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
   load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
   #working.directory <- "C:\\Users\\DELLDRAMOMO\\Desktop\\Package\\data\\"
