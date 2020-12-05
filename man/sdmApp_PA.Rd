@@ -16,9 +16,7 @@ a \code{ggplot object}
 Plot presence/absence map
 }
 \examples{
-\dontrun{
 r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
 r <- r > 4000
 sdmApp_PA(r)
-}
 }
