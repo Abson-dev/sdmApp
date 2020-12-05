@@ -30,7 +30,9 @@ PA <- read.csv(system.file("extdata", "PA.csv", package = "blockCV"))
 #make a sf object from data.frame
 pa_data <- sf::st_as_sf(PA, coords = c("x", "y"), crs = raster::crs(awt))
 #spatial blocking by specified range and random assignment
-sb <- spatialBlock(speciesData = pa_data,species = "Species", rasterLayer = awt,theRange = 70000,k = 5,selection = "random",iteration = 100)
+sb <- spatialBlock(speciesData = pa_data,species = "Species",
+rasterLayer = awt,theRange = 70000,k = 5,
+selection = "random",iteration = 100)
 sdmApp_fold_Explorer(sb,awt,pa_data,1)
 }
 }
