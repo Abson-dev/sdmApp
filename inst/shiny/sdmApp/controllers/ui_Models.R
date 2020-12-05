@@ -15,21 +15,15 @@ output$ui_Models_main <- renderUI({
     return(uiOutput("ui_GLM"))
   }
   if (val=="btn_Models_results_5") {
-    return(uiOutput("ui_GAM"))
+    return(uiOutput("ui_MaxEnt"))
   }
   if (val=="btn_Models_results_6") {
-    return( uiOutput("ui_MaxEnt"))
+    return( uiOutput("ui_RF"))
   }
   if (val=="btn_Models_results_7") {
-    return(uiOutput("ui_BRT"))
+    return(uiOutput("ui_SVM"))
   }
   if (val=="btn_Models_results_8") {
-    return(uiOutput("ui_RF"))
-  }
-  if (val=="btn_Models_results_9") {
-    return( uiOutput("ui_SVM"))
-  }
-  if (val=="btn_Models_results_10") {
     return( uiOutput("ui_Combining"))
   }
 })
