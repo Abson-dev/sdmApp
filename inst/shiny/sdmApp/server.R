@@ -61,7 +61,6 @@ shinyServer(function(session, input, output) {
   ######################"
   data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
   load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
-  #working.directory <- "C:\\Users\\DELLDRAMOMO\\Desktop\\Package\\data\\"
   working.directory <- system.file("extdata", package = "sdmApp")
   #example = system.file("extdata", package = "sdmApp")
   if(Sys.info()[['sysname']] == 'Linux') {
@@ -239,30 +238,6 @@ shinyServer(function(session, input, output) {
   # Occurrences loading
   #load.occ <- reactiveValues(columns = c())
   load.occ <- reactiveValues()
-
-  # type_file <-reactive({
-  #         if(input$file_type=="text"){
-  #               type_file=c('',"csv", "txt")}
-  #             else {
-  #               if(input$file_type=="Excel"){
-  #                 type_file=c('',"xlsx", "xls")
-  #                 }
-  #               else{
-  #                 if(input$file_type=="SPSS"){
-  #                   type_file=c('',"sav", "zsav","por")}
-  #                 else{
-  #                   if(input$file_type=="Stata"){
-  #                     type_file=c('',"dta")}
-  #                   else{if(input$file_type == "SAS"){type_file=c('',"sas7bdat")}}
-  #                   }
-  #                  }
-  #
-  #             }
-  #
-  #
-  #               type_file
-  #             })
-  ######################################################################"
   observeEvent(input$file_type,{
     if(input$file_type=="text"){
       load.occ$type_file=c('',"csv", "txt")}
