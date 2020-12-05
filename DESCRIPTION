@@ -18,6 +18,8 @@ Depends:
 Encoding: UTF-8
 LazyData: true
 Imports:
+    utils,
+    stats,
     shiny,
     sf,
     raster,
@@ -40,7 +42,8 @@ Imports:
     randomForest,
     kernlab,
     rJava,
-    rgdal
+    rgdal,
+    graphics
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,
