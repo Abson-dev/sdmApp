@@ -47,7 +47,7 @@ output$ui_bioclim<-renderUI({
     #fold<-kfold()
     model<-list()
     evaluate_model<-list()
-    for (i in 1:5) {
+    for (i in 1:input$number_no_block_fold_bioclim) {
       p<-Specdata[Specdata[fold != i,ncol(Specdata)] == 1, 1:(ncol(Specdata)-1)]
       a<-Specdata[Specdata[fold != i,ncol(Specdata)] == 0, 1:(ncol(Specdata)-1)]
       #test<-Specdata[fold == i, ]
