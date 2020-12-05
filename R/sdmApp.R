@@ -12,6 +12,7 @@
 #' @param ... arguments (e.g host) that are passed through runApp when starting the shiny application
 #' @param shiny.server Setting this parameter to TRUE will return the app in the form of an object rather than invoking it. This is useful for deploying sdcApp via shiny-server.
 #'
+#' @seealso \code{\link{sdcApp}}
 #' @return starts the interactive graphical user interface which may be used to perform the anonymisation process.
 #' @export
 #' @import shiny
@@ -41,10 +42,9 @@
 #' @import kernlab
 #'
 #' @examples
-#' ## Not run:
+#' \dontrun{
 #' sdmApp()
-#'
-#' ## End (Not run)
+#' }
 sdmApp<-function (maxRequestSize = 50, debug = FALSE, theme = "IHSN",
           ..., shiny.server = FALSE)
 {
