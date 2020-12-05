@@ -66,16 +66,16 @@ output$ui_domain<-renderUI({
     model_pred[["ProbaPresence"]]<-sdmApp::sdmApp_TimesRasters(model_pred[["espece"]],model_pred[["PresenceAbsence"]])
 
     observeEvent(input$probaplot_Domain,{
-      if(input$probaplot_Domain=='Probability of occurence(absence/presence)'){
-        title_probaplot_Domain<-'Probability of occurence(absence/presence)'
+      if(input$probaplot_Domain=='Occurence map'){
+        title_probaplot_Domain<-'Occurence map'
         map<-model_pred[["espece"]]}
       if(input$probaplot_Domain=='Presence/Absence'){
         title_probaplot_Domain<-'Presence/Absence'
         map<-model_pred[["PresenceAbsence"]]
 
       }
-      if(input$probaplot_Domain=='Probability of occurence(presence)'){
-        title_probaplot_Domain<-'Probability of occurence(presence)'
+      if(input$probaplot_Domain=='Occurence map (presence)'){
+        title_probaplot_Domain<-'Occurence map (presence)'
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_Domain<-renderPlot({
