@@ -1,12 +1,14 @@
 #' Explore the generated folds andvisualising the placement of folds and distribution of species data over folds.
 #'
-#' @param blocks An SpatialBlock, EnvironmentalBlock or BufferedBlock object.
+#' @param blocks A SpatialBlock object.
 #' @param rasterLayer A raster object as background map for visualisation.
 #' @param speciesData A simple features (sf) or SpatialPoints object containing species data (response variable).
 #' @param num A number of fold to assign as data testset.
 #'
 #' @return A map showing folds and the species data, that can be used to explore folds.
 #' @export
+#'
+#'@seealso \code{\link{foldExplorer}}
 #'
 #' @import raster
 #'
@@ -20,6 +22,17 @@
 #' @description Blocks‐to‐folds is one of the key steps for species modelling because species data are rarely evenly dispersed over landscapes. When random selection of folds is chosen, constraints can be set to avoid folds with little or no presence or (where relevant) absence data. Techniques are also implemented for finding block‐to‐fold allocations that achieve most even spread of species data across folds (e.g., a similar number of presence and absence records in each fold). In systematic allocation, blocks are numbered and assigned to folds sequentially. The number of folds can be specified by the user in the systematic and random allocations and it can be equal or less than the number of blockWe note that in all the spatial blocking scenarios, all data in the test folds (including background points, if relevant) are excluded from the training datasetss.
 #'
 #' @examples
+#' \dontrun{
+#' # load blockCV package data
+#' awt <- raster::brick(system.file("extdata", "awt.grd", package = "blockCV"))
+#' #import presence-absence species data
+#' PA <- read.csv(system.file("extdata", "PA.csv", package = "blockCV"))
+#'#make a sf object from data.frame
+#' pa_data <- sf::st_as_sf(PA, coords = c("x", "y"), crs = raster::crs(awt))
+#' #spatial blocking by specified range and random assignment
+#' sb <- spatialBlock(speciesData = pa_data,species = "Species", rasterLayer = awt,theRange = 70000,k = 5,selection = "random",iteration = 100)
+#' sdmApp_fold_Explorer(sb,awt,pa_data,1)
+#' }
 sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
   if (is.null(rasterLayer)) {
     stop("A raster layer should be provided")
