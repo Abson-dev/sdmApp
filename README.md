@@ -1,4 +1,4 @@
-# sdmApp <img src="/doc/Logo_sdmApp.png" align="right" width="120" />
+# sdmApp <img src="/docs/Logo_sdmApp.png" align="right" width="120" />
  Species Distribution Models Application
 
 
