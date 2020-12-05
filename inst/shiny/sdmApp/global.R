@@ -25,6 +25,8 @@ library(rJava)
 library(randomForest)
 library(kernlab)
 library(dplyr)
+library(sp)
+library(raster)
 
 if (!getShinyOption("sdmAppInvoked", FALSE)) {### Beginning required code for deployment
   .startdir <- .guitheme <- .guijsfile <- NULL
