@@ -34,6 +34,3 @@ starts the graphical user interface developed with shiny.
 sdmApp()
 }
 }
-\seealso{
-\code{\link{sdcApp}}
-}
