@@ -54,7 +54,7 @@ output$ui_domain<-renderUI({
 
       bgtest<-Specdata[Specdata[fold == i,ncol(Specdata)] == 0, 1:(ncol(Specdata)-1)]
       model[[i]] <- dismo::domain(data$enfa, p) #, factors='Sol'
-      evaluate_model[[i]] <- evaluate(occtest, bgtest, model[[i]], data$enfa)
+      evaluate_model[[i]] <- dismo::evaluate(occtest, bgtest, model[[i]], data$enfa)
 
     }
     model_pred<-list()
@@ -110,9 +110,9 @@ output$ui_domain<-renderUI({
         dismo::response(model[[which.max(auc)]],var=input$response_var_Domain,main=load.occ$spec_select)
       })
     })
-    output$var_importance_Domain<-renderPlot({
-      plot(model[[which.max(auc)]], main=load.occ$spec_select,xlab="Purcentage(%)")
-    })
+    # output$var_importance_Domain<-renderPlot({
+    #   plot(model[[which.max(auc)]], main=load.occ$spec_select,xlab="Purcentage(%)")
+    # })
   })
 
 
@@ -142,7 +142,7 @@ output$ui_domain<-renderUI({
                                                ),
                                                tabPanel("Map",
 
-                                                        selectInput('probaplot_Domain', '', c("Probability of occurence(absence/presence)","Presence/Absence","Probability of occurence(presence)"), multiple = FALSE, selectize = TRUE),
+                                                        selectInput('probaplot_Domain', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
                                                         plotOutput("proba_occ_Domain")
 
                                                ),
@@ -153,10 +153,11 @@ output$ui_domain<-renderUI({
                                                tabPanel("Variable response",
                                                         selectInput('response_var_Domain', 'Please select the variable to get its ecological response', names(data$enfa), multiple = FALSE, selectize = TRUE),
                                                         plotOutput("response_eco_Domain")
-                                               ),
-                                               tabPanel("Variable Importance",
-                                                        plotOutput("var_importance_Domain")
                                                )
+                                               # ,
+                                               # tabPanel("Variable Importance",
+                                               #          plotOutput("var_importance_Domain")
+                                               # )
 
 
               ),
