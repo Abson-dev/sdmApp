@@ -70,16 +70,16 @@ output$ui_mahal<-renderUI({
     model_pred[["PresenceAbsence"]]<-model_pred[["espece"]]>model_pred[["threshold"]]
     model_pred[["ProbaPresence"]]<-sdmApp::sdmApp_TimesRasters(model_pred[["espece"]],model_pred[["PresenceAbsence"]])
     observeEvent(input$probaplot_Mahal,{
-      if(input$probaplot_Mahal=='Probability of occurence(absence/presence)'){
-        title_probaplot_Mahal<-'Probability of occurence(absence/presence)'
+      if(input$probaplot_Mahal=='Occurence map'){
+        title_probaplot_Mahal<-'Occurence map'
         map<-model_pred[["espece"]]}
       if(input$probaplot_Mahal=='Presence/Absence'){
         title_probaplot_Mahal<-'Presence/Absence'
         map<-model_pred[["PresenceAbsence"]]
 
       }
-      if(input$probaplot_Mahal=='Probability of occurence(presence)'){
-        title_probaplot_Mahal<-'Probability of occurence(presence)'
+      if(input$probaplot_Mahal=='Occurence map (presence)'){
+        title_probaplot_Mahal<-'Occurence map (presence)'
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_Mahal<-renderPlot({
