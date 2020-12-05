@@ -125,9 +125,9 @@ output$ui_GLM<-renderUI({
         dismo::response(model[[which.max(auc)]])#,var=input$response_var,main=load.occ$spec_select)
       })
     })
-    output$var_importance_GLM<-renderPlot({
-      plot(model[[which.max(auc)]])#, main=load.occ$spec_select,xlab="Purcentage(%)")
-    })
+    # output$var_importance_GLM<-renderPlot({
+    #   plot(model[[which.max(auc)]])#, main=load.occ$spec_select,xlab="Purcentage(%)")
+    # })
   })
 
 
@@ -160,7 +160,7 @@ output$ui_GLM<-renderUI({
                                                ),
                                                tabPanel("Map",
 
-                                                        selectInput('probaplot_GLM', '', c("Probability of occurence(absence/presence)","Presence/Absence","Probability of occurence(presence)"), multiple = FALSE, selectize = TRUE),
+                                                        selectInput('probaplot_GLM', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
                                                         plotOutput("proba_occ_GLM")
 
                                                ),
@@ -171,10 +171,11 @@ output$ui_GLM<-renderUI({
                                                tabPanel("Variable response",
                                                         selectInput('response_var_GLM', 'Please select the variable to get its ecological response', names(data$enfa), multiple = FALSE, selectize = TRUE),
                                                         plotOutput("response_eco_GLM")
-                                               ),
-                                               tabPanel("Variable Importance",
-                                                        plotOutput("var_importance_GLM")
                                                )
+                                               # ,
+                                               # tabPanel("Variable Importance",
+                                               #          plotOutput("var_importance_GLM")
+                                               # )
 
 
               ),
