@@ -55,7 +55,7 @@ output$ui_MaxEnt<-renderUI({
 
       bgtest<-Specdata[Specdata[fold == i,ncol(Specdata)] == 0, 1:(ncol(Specdata)-1)]
       model[[i]] <- dismo::maxent(data$enfa, p, a) #, factors='Sol'
-      evaluate_model[[i]] <- evaluate(occtest, bgtest, model[[i]], data$enfa)
+      evaluate_model[[i]] <- dismo::evaluate(occtest, bgtest, model[[i]], data$enfa)
 
     }
     model_pred<-list()
