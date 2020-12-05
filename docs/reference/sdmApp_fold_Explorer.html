@@ -92,7 +92,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/Abson-dev/sdmApp/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -107,7 +112,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Explore the generated folds andvisualising the placement of folds and distribution of species data over folds.</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/Abson-dev/sdmApp/blob/master/R/sdmApp_fold_Explorer.R'><code>R/sdmApp_fold_Explorer.R</code></a></small>
     <div class="hidden name"><code>sdmApp_fold_Explorer.Rd</code></div>
     </div>
 
@@ -122,7 +127,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>blocks</th>
-      <td><p>An SpatialBlock, EnvironmentalBlock or BufferedBlock object.</p></td>
+      <td><p>A SpatialBlock object.</p></td>
     </tr>
     <tr>
       <th>rasterLayer</th>
@@ -141,7 +146,25 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A map showing folds and the species data, that can be used to explore folds.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
+    <div class='dont-index'><p><code>foldExplorer</code></p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'># load blockCV package data</span>
+<span class='va'>awt</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/brick.html'>brick</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"awt.grd"</span>, package <span class='op'>=</span> <span class='st'>"blockCV"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>#import presence-absence species data</span>
+<span class='va'>PA</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"PA.csv"</span>, package <span class='op'>=</span> <span class='st'>"blockCV"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>#make a sf object from data.frame</span>
+<span class='va'>pa_data</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='va'>PA</span>, coords <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span>, crs <span class='op'>=</span> <span class='fu'>raster</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/projection.html'>crs</a></span><span class='op'>(</span><span class='va'>awt</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>#spatial blocking by specified range and random assignment</span>
+<span class='va'>sb</span> <span class='op'>&lt;-</span> <span class='fu'>spatialBlock</span><span class='op'>(</span>speciesData <span class='op'>=</span> <span class='va'>pa_data</span>,species <span class='op'>=</span> <span class='st'>"Species"</span>,
+rasterLayer <span class='op'>=</span> <span class='va'>awt</span>,theRange <span class='op'>=</span> <span class='fl'>70000</span>,k <span class='op'>=</span> <span class='fl'>5</span>,
+selection <span class='op'>=</span> <span class='st'>"random"</span>,iteration <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
+<span class='fu'>sdmApp_fold_Explorer</span><span class='op'>(</span><span class='va'>sb</span>,<span class='va'>awt</span>,<span class='va'>pa_data</span>,<span class='fl'>1</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
