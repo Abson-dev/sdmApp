@@ -38,7 +38,8 @@ Imports:
     CENFA,
     dismo,
     randomForest,
-    kernlab
+    kernlab,
+    rJava
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,
