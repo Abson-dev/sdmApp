@@ -1,38 +1,39 @@
 ### SVM contents
+output$enfa_var_SVM<-renderPlot({
+  enfa_plot()
+})
 output$ui_SVM<-renderUI({
 
-  Specdata<-reactive({
-    dsf<-load.occ$select
-    dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
-    dsf
-  })
+  # Specdata<-reactive({
+  #   dsf<-load.occ$select
+  #   dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
+  #   dsf
+  # })
+  #
+  # Specdata_Presence<-reactive({
+  #   dsf<-Specdata()
+  #   dsf<-dsf[dsf[,ncol(dsf)] == 1,]
+  #   sp::coordinates(dsf) <-~lon+lat
+  #   sp::proj4string(dsf) <-raster::crs(data$Env)
+  #   dsf
+  # })
+  #
+  # glc<-reactive({
+  #   GLcenfa(x = data$Env)
+  # })
+  #
+  # mod.enfa<-reactive({
+  #   pr<-Specdata_Presence()
+  #   pr@data$load.occ$spec_select<-as.numeric(pr@data$load.occ$spec_select)
+  #   CENFA::enfa(x = data$Env, s.dat = pr, field = load.occ$spec_select)
+  # })
+  # enfa_plot<-reactive({
+  #   glc <- glc()
+  #
+  #   mod.enfa <- mod.enfa()
+  #   CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
+  # })
 
-  Specdata_Presence<-reactive({
-    dsf<-Specdata()
-    dsf<-dsf[dsf[,ncol(dsf)] == 1,]
-    sp::coordinates(dsf) <-~lon+lat
-    sp::proj4string(dsf) <-raster::crs(data$Env)
-    dsf
-  })
-
-  glc<-reactive({
-    GLcenfa(x = data$Env)
-  })
-
-  mod.enfa<-reactive({
-    pr<-Specdata_Presence()
-    pr@data$load.occ$spec_select<-as.numeric(pr@data$load.occ$spec_select)
-    CENFA::enfa(x = data$Env, s.dat = pr, field = load.occ$spec_select)
-  })
-  enfa_plot<-reactive({
-    glc <- glc()
-
-    mod.enfa <- mod.enfa()
-    CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
-  })
-  output$enfa_var<-renderPlot({
-    enfa_plot()
-  })
 
   observeEvent(input$SVM,{
     validate(
@@ -156,7 +157,7 @@ output$ui_SVM<-renderUI({
                                                tabPanel("Specie predictors",
                                                         selectInput('var_expl_SVM', 'Please select the specie predictors', names(data$Env), multiple = TRUE, selectize = TRUE),
                                                         myActionButton("SVM",label=("Apply SVM"), "primary"),
-                                                        plotOutput("enfa_var")
+                                                        plotOutput("enfa_var_SVM")
                                                ),
                                                tabPanel("Map",
 
