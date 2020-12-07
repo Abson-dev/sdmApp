@@ -82,8 +82,9 @@ output$ui_bioclim<-renderUI({
       output$proba_occ_Bioclim<-renderPlot({
         if(title_probaplot_Bioclim=='Occurence map (Presence/Absence)'){sdmApp::sdmApp_PA(map)}
         else{
-          if(title_probaplot_Bioclim=='Occurence map (Presence)'){sdmApp::sdmApp_RasterPlot(map)}
-        }
+          #if(title_probaplot_Bioclim=='Occurence map (Presence)'){sdmApp::sdmApp_RasterPlot(map)}
+          sdmApp::sdmApp_RasterPlot(map)
+          }
 
       })
     })
