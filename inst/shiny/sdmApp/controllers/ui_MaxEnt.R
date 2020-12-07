@@ -66,22 +66,22 @@ output$ui_MaxEnt<-renderUI({
     model_pred[["PresenceAbsence"]]<-model_pred[["espece"]]>model_pred[["threshold"]]
     model_pred[["ProbaPresence"]]<-sdmApp::sdmApp_TimesRasters(model_pred[["espece"]],model_pred[["PresenceAbsence"]])
     observeEvent(input$probaplot,{
-      if(input$probaplot=='Probability of occurence(absence/presence)'){
-        title_probaplot<-'Probability of occurence(absence/presence)'
+      if(input$probaplot=='Occurence map'){
+        title_probaplot<-'Occurence map'
         map<-model_pred[["espece"]]}
-      if(input$probaplot=='Presence/Absence'){
-        title_probaplot<-'Presence/Absence'
+      if(input$probaplot=='Occurence map (Presence/Absence)'){
+        title_probaplot<-'Occurence map (Presence/Absence)'
         map<-model_pred[["PresenceAbsence"]]
 
       }
-      if(input$probaplot=='Probability of occurence(presence)'){
-        title_probaplot<-'Probability of occurence(presence)'
+      if(input$probaplot=='Occurence map (Presence)'){
+        title_probaplot<-'Occurence map (Presence)'
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ<-renderPlot({
-        if(title_probaplot=='Presence/Absence'){sdmApp_PA(map)}
+        if(title_probaplot=='Occurence map (Presence/Absence)'){sdmApp::sdmApp_PA(map)}
         else{
-          sdmApp_RasterPlot(map)
+          sdmApp::sdmApp_RasterPlot(map)
         }
 
       })
@@ -145,7 +145,7 @@ output$ui_MaxEnt<-renderUI({
                                                ),
                                                tabPanel("Map",
 
-                                                        selectInput('probaplot', '', c("Probability of occurence(absence/presence)","Presence/Absence","Probability of occurence(presence)"), multiple = FALSE, selectize = TRUE),
+                                                        selectInput('probaplot', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
                                                         plotOutput("proba_occ")
 
                                                ),
