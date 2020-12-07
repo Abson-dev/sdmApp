@@ -322,9 +322,8 @@ shinyServer(function(session, input, output) {
         })
       }
       else if (input$file_type == "Excel") {
-        load.occ$columns <- names(read_excel(file))
-        load.occ$df_occ<-as.data.frame(read_excel(file,
-                                                  stringsAsFactors = FALSE))
+        load.occ$columns <- names(as.data.frameread_excel(file))
+        load.occ$df_occ<-as.data.frame(read_excel(file))
       }
       else if (input$file_type == "SPSS") {
         load.occ$columns <- names(read_sav(file))
