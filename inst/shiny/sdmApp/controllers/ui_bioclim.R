@@ -34,7 +34,7 @@ output$ui_bioclim<-renderUI({
   #   mod.enfa <- mod.enfa()
   #   CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
   # })
-  output$enfa_var<-renderPlot({
+  output$enfa_var_bioclim<-renderPlot({
     enfa_plot()
   })
 
@@ -143,7 +143,7 @@ output$ui_bioclim<-renderUI({
                                        tabPanel("Specie predictors",
                                                 selectInput('var_expl_Bioclim', 'Please select the specie predictors', names(data$Env), multiple = TRUE, selectize = TRUE),
                                                 myActionButton("Bioclim",label=("Apply Bioclim"), "primary"),
-                                                plotOutput("enfa_var")
+                                                plotOutput("enfa_var_bioclim")
                                        ),
                                        tabPanel("Map",
                                                 selectInput('probaplot_Bioclim', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
