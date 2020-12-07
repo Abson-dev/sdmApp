@@ -234,7 +234,92 @@ shinyServer(function(session, input, output) {
     }
     updateTabItems(session, "actions", selected = "newdata")
   })
+   observeEvent(input$Bioclim,{
+     string_code_bioclim <- reactive({
+       p <- paste("sdmApp_RasterPlot(map)")
+       p <- paste(p, "+ scale_fill_","gradientn", "(name = 'Value',  colours = rev(terrain.colors(10)))",
+                  sep = "")
+       #p <- paste("+ theme(plot.title = element_text(hjust = 0.5, size = 10))")
+       if (input$label_axes)
+         p <- paste(p, "+ labs(x = 'input$lab_x', y = 'input$lab_y')")
+       if (input$add_title)
+         p <- paste(p, "+ ggtitle('input$title')")
+       if (input$adj_leg == "Change legend")
+         p <- paste(p, "+ scale_fill_","gradientn", "(name = 'input$leg_ttl',  colours = rev(terrain.colors(10)))",
+                    sep = "")
+       # if (input$adj_col)
+       #   p <- paste(p, "+ scale_fill_","gradientn", "(name = 'input$leg_ttl',  colours = rev(terrain.colors(10)))",
+       #     sep = "")
+       p <- paste(p, "+", input$theme)
+       if (input$adj_fnt_sz || input$adj_fnt || input$rot_txt ||
+           input$adj_leg != "Keep legend as it is" ||
+           input$adj_grd) {
+         p <- paste(p, paste(" + theme(\n    ",
+                             "plot.title = element_text(hjust = 0.5, size = 10),\n    ",
+                             if (input$adj_fnt_sz)
+                               "axis.title = element_text(size = input$fnt_sz_ttl),\n    ",
+                             if (input$adj_fnt_sz)
+                               "axis.text = element_text(size = input$fnt_sz_ax),\n    ",
+                             if (input$adj_fnt)
+                               "text = element_text(family = 'input$font'),\n    ",
+                             if (input$rot_txt)
+                               "axis.text.x = element_text(angle = 45, hjust = 1),\n    ",
+                             if (input$adj_leg == "Remove legend")
+                               "legend.position = 'none',\n    ",
+                             if (input$adj_leg == "Change legend")
+                               "legend.position = 'input$pos_leg',\n    ",
+                             if (input$grd_maj)
+                               "panel.grid.major = element_blank(),\n    ",
+                             if (input$grd_min)
+                               "panel.grid.minor = element_blank(),\n    ",
+                             ")", sep = ""), sep = "")
+       }
+       p <- str_replace_all(p, c(`input\\$lab_x` = as.character(input$lab_x),
+                                 `input\\$lab_y` = as.character(input$lab_y),
+                                 `input\\$title` = as.character(input$title),
+                                 `input\\$palet` = as.character(input$palet),
+                                 `input\\$fnt_sz_ttl` = as.character(input$fnt_sz_ttl),
+                                 `input\\$fnt_sz_ax` = as.character(input$fnt_sz_ax),
+                                 `input\\$font` = as.character(input$font),
+                                 `input\\$leg_ttl` = as.character(input$leg_ttl),
+                                 `input\\$pos_leg` = as.character(input$pos_leg))
+       )
+       p <- str_replace_all(p, ",\n    \\)", "\n  \\)")
+       p
+     })
+     output$env <- renderPlot(width = width, height = height,{
+       # if(!is.null(input$layer)){
+       #   i = as.numeric(which(as.list(names(data$Env)) == input$layer))
+       #   if(data$Env[[i]]@data@isfactor) {
+       #     map = !as.factor(data$Env[[i]])
+       #   } else {
+       #     map = data$Env[[i]]
+       #   }
+       #   a =try(eval(parse(text = string_code())))
+       #   if(inherits(a, 'try-error')){
+       #     output$Envbugplot <- renderUI(p('Can not plot this raster! Please verify it and try again.'))
+       #   }
+       #   else{
+       #     output$Envbugplot <- renderUI(p())
+       #     a
+       #   }
+       # }
 
+       output$proba_occ_Bioclim<-renderPlot({
+         if(title_probaplot_Bioclim=='Occurence map (Presence/Absence)'){sdmApp::sdmApp_PA(map)}
+         else{
+           a =try(eval(parse(text = string_code_bioclim())))
+             if(inherits(a, 'try-error')){
+               output$Envbugplot <- renderUI(p('Can not plot this raster! Please verify it and try again.'))
+             }
+             else{
+               output$Envbugplot <- renderUI(p())
+               a
+             }
+         }
+       })
+     })
+   })
   # Occurrences loading
   #load.occ <- reactiveValues(columns = c())
   load.occ <- reactiveValues()
