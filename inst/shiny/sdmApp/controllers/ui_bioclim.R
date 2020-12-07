@@ -5,6 +5,9 @@ output$ui_bioclim<-renderUI({
   Specdata<-reactive({
     dsf<-load.occ$select
     dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
+    dsf[,1]<-as.numeric(unlist(dsf[,1]))
+    dsf[,2]<-as.numeric(unlist(dsf[,2]))
+    dsf[,3]<-as.numeric(unlist(dsf[,3]))
     dsf
   })
 
