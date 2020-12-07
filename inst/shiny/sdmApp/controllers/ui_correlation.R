@@ -13,6 +13,8 @@
 Specdata<-reactive({
   dsf<-load.occ$select
   dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
+  dsf[,1]<-as.numeric(dsf[,1])
+  dsf[,2]<-as.numeric(dsf[,2])
   dsf
 })
 # correlation matrix
