@@ -31,7 +31,7 @@ output$ui_domain<-renderUI({
   #   mod.enfa <- mod.enfa()
   #   CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
   # })
-  output$enfa_var<-renderPlot({
+  output$enfa_var_domain<-renderPlot({
     enfa_plot()
   })
 
@@ -138,7 +138,7 @@ output$ui_domain<-renderUI({
                                                tabPanel("Specie predictors",
                                                         selectInput('var_expl_Domain', 'Please select the specie predictors', names(data$Env), multiple = TRUE, selectize = TRUE),
                                                         myActionButton("Domain",label=("Apply Domain"), "primary"),
-                                                        plotOutput("enfa_var")
+                                                        plotOutput("enfa_var_domain")
                                                ),
                                                tabPanel("Map",
 
