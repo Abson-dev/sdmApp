@@ -326,16 +326,16 @@ shinyServer(function(session, input, output) {
         load.occ$df_occ<-as.data.frame(read_excel(file))
       }
       else if (input$file_type == "SPSS") {
-        load.occ$columns <- names(read_sav(file))
-        load.occ$df_occ<-read_sav(file)
+        load.occ$columns <- names(as.data.frame(read_sav(file)))
+        load.occ$df_occ<-as.data.frame(read_sav(file))
       }
       else if (input$file_type == "Stata") {
-        load.occ$columns <- names(read_dta(file))
-        load.occ$df_occ<-read_dta(file)
+        load.occ$columns <- names(as.data.frame(read_dta(file)))
+        load.occ$df_occ<-as.data.frame(read_dta(file))
       }
       else if (input$file_type == "SAS") {
-        load.occ$columns <- names(read_sas(file))
-        load.occ$df_occ<-read_sas(file)
+        load.occ$columns <- names(as.data.frame(read_sas(file)))
+        load.occ$df_occ<-as.data.frame(read_sas(file))
       }
     }
   })
