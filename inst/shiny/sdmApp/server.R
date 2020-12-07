@@ -322,8 +322,11 @@ shinyServer(function(session, input, output) {
         })
       }
       else if (input$file_type == "Excel") {
-        load.occ$columns <- names(read_excel(file))
-        load.occ$df_occ<-read_excel(file)
+        allowed=
+        fI <- fileInput("file1", p(paste0("Select file (allowed types are '",paste0(allowed, collapse="', '"),"')")),
+                        width="75%", accept=allowed)
+        # load.occ$columns <- names(read_excel(file))
+        # load.occ$df_occ<-read_excel(file)
       }
       else if (input$file_type == "SPSS") {
         load.occ$columns <- names(read_sav(file))
