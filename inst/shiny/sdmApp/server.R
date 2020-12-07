@@ -59,9 +59,9 @@ shinyServer(function(session, input, output) {
   }
   ################################
   ######################"
-  data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
-  load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
-  working.directory <- system.file("extdata", package = "sdmApp")
+  # data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
+  # load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
+  # working.directory <- system.file("extdata", package = "sdmApp")
   #example = system.file("extdata", package = "sdmApp")
   if(Sys.info()[['sysname']] == 'Linux') {
     shinyFileChoose(input, 'envfiles', session=session,
@@ -236,7 +236,7 @@ shinyServer(function(session, input, output) {
   })
   # Occurrences loading
   #load.occ <- reactiveValues(columns = c())
-  load.occ <- reactiveValues()
+  #load.occ <- reactiveValues()
   observeEvent(input$file_type,{
     if(input$file_type=="text"){
       load.occ$type_file=c('',"csv", "txt")}
@@ -378,31 +378,63 @@ shinyServer(function(session, input, output) {
   })
 
   #########################
-  Specdata<-reactive({
-    dsf<-load.occ$select
-    dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
-    dsf[,1]<-as.numeric(unlist(dsf[,1]))
-    dsf[,2]<-as.numeric(unlist(dsf[,2]))
-    dsf[,3]<-as.numeric(unlist(dsf[,3]))
-    dsf
-  })
-
-  Specdata_Presence<-reactive({
-    dsf<-Specdata()
-    dsf<-dsf[dsf[,ncol(dsf)] == 1,]
-    sp::coordinates(dsf) <-~lon+lat
-    sp::proj4string(dsf) <-raster::crs(data$Env)
-    dsf
-  })
-
-  glc<-reactive({
-    GLcenfa(x = data$Env)
-  })
-
-  mod.enfa<-reactive({
-    pr<-Specdata_Presence()
-    pr@data$load.occ$spec_select<-as.numeric(pr@data$load.occ$spec_select)
-    CENFA::enfa(x = data$Env, s.dat = pr, field = load.occ$spec_select)
-  })
-
+  # Specdata<-reactive({
+  #   dsf<-load.occ$select
+  #   dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
+  #   dsf[,1]<-as.numeric(unlist(dsf[,1]))
+  #   dsf[,2]<-as.numeric(unlist(dsf[,2]))
+  #   dsf[,3]<-as.numeric(unlist(dsf[,3]))
+  #   dsf
+  # })
+  #
+  # Specdata_Presence<-reactive({
+  #   dsf<-Specdata()
+  #   dsf<-dsf[dsf[,ncol(dsf)] == 1,]
+  #   sp::coordinates(dsf) <-~lon+lat
+  #   sp::proj4string(dsf) <-raster::crs(data$Env)
+  #   dsf
+  # })
+  #
+  # glc<-reactive({
+  #   GLcenfa(x = data$Env)
+  # })
+  #
+  # mod.enfa<-reactive({
+  #   pr<-Specdata_Presence()
+  #   pr@data$load.occ$spec_select<-as.numeric(pr@data$load.occ$spec_select)
+  #   CENFA::enfa(x = data$Env, s.dat = pr, field = load.occ$spec_select)
+  # })
+  #
+  # enfa_plot<-reactive({
+  #   glc <- glc()
+  #
+  #   mod.enfa <- mod.enfa()
+  #   CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
+  # })
+  #
+  # #################
+  # Z<-reactive({
+  #   CENFA::parScale(data$Env)
+  # })
+  #
+  #
+  # # Efficient calculation of covariance matrices for Raster* objects
+  # mat<-reactive({
+  #   CENFA::parCov(Z())
+  # })
+  #
+  # pa_data<-reactive({
+  #   sf::st_as_sf(Specdata(), coords = c("lon","lat"), crs = crs(data$Env))
+  #
+  # })
+  # Cor<-reactive({
+  #   Corr<-raster::extract(data$Env, pa_data(), df = TRUE)
+  #   Corr<-Corr[,-1]
+  #   Corr
+  # })
+  #
+  # p.mat <-reactive({
+  #   p_mat<-ggcorrplot::cor_pmat(Cor())
+  #   p_mat
+  # })
 })
