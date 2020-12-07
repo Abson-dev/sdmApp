@@ -73,8 +73,8 @@ output$ui_mahal<-renderUI({
       if(input$probaplot_Mahal=='Occurence map'){
         title_probaplot_Mahal<-'Occurence map'
         map<-model_pred[["espece"]]}
-      if(input$probaplot_Mahal=='Presence/Absence'){
-        title_probaplot_Mahal<-'Presence/Absence'
+      if(input$probaplot_Mahal=='Occurence map (Presence/Absence)'){
+        title_probaplot_Mahal<-'Occurence map (Presence/Absence)'
         map<-model_pred[["PresenceAbsence"]]
 
       }
@@ -83,7 +83,7 @@ output$ui_mahal<-renderUI({
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_Mahal<-renderPlot({
-        if(title_probaplot_Mahal=='Presence/Absence'){sdmApp_PA(map)}
+        if(title_probaplot_Mahal=='Occurence map (Presence/Absence)'){sdmApp_PA(map)}
         else{
           sdmApp_RasterPlot(map)
         }
