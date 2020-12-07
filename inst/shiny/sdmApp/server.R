@@ -322,28 +322,52 @@ shinyServer(function(session, input, output) {
         })
       }
       else if (input$file_type == "Excel") {
-        load.occ$columns <- names(as.data.frame(read_excel(file)))
-        load.occ$df_occ<-as.data.frame(read_excel(file))
+        a = try(withProgress(message = 'Loading Excel occurence data...',
+                             as.data.frame(read_excel(file))))
+        if(inherits(a, 'try-error')){
+          output$Envbug_occ <- renderUI(p('Excel occurence data loading failed, please check your inputs and try again'))
+        }
+        else{
+          output$Envbug_occ <- renderUI(p())
+          load.occ$columns <- names(a)
+          load.occ$df_occ<-a
+        }
       }
       else if (input$file_type == "SPSS") {
         a = try(withProgress(message = 'Loading SPSS occurence data...',
                              as.data.frame(read_sav(file))))
         if(inherits(a, 'try-error')){
-          output$Envbug <- renderUI(p('SPSS occurence data loading failed, please check your inputs and try again'))
+          output$Envbug_occ <- renderUI(p('SPSS occurence data loading failed, please check your inputs and try again'))
         }
         else{
-          output$Envbug <- renderUI(p())
+          output$Envbug_occ <- renderUI(p())
           load.occ$columns <- names(a)
           load.occ$df_occ<-a
           }
       }
       else if (input$file_type == "Stata") {
-        load.occ$columns <- names(as.data.frame(read_dta(file)))
-        load.occ$df_occ<-as.data.frame(read_dta(file))
+        a = try(withProgress(message = 'Loading Stata occurence data...',
+                             as.data.frame(read_dta(file))))
+        if(inherits(a, 'try-error')){
+          output$Envbug_occ <- renderUI(p('Stata occurence data loading failed, please check your inputs and try again'))
+        }
+        else{
+          output$Envbug_occ <- renderUI(p())
+          load.occ$columns <- names(a)
+          load.occ$df_occ<-a
+        }
       }
       else if (input$file_type == "SAS") {
-        load.occ$columns <- names(as.data.frame(read_sas(file)))
-        load.occ$df_occ<-as.data.frame(read_sas(file))
+        a = try(withProgress(message = 'Loading SAS occurence data...',
+                             as.data.frame(read_sas(file))))
+        if(inherits(a, 'try-error')){
+          output$Envbug_occ <- renderUI(p('SAS occurence data loading failed, please check your inputs and try again'))
+        }
+        else{
+          output$Envbug_occ <- renderUI(p())
+          load.occ$columns <- names(a)
+          load.occ$df_occ<-a
+        }
       }
     }
   })
