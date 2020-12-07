@@ -112,6 +112,7 @@ output$ui_import_data <- renderUI({
             column(12,
                    sidebarPanel(width = 3,
                                 p('Load occurence data'),
+                                uiOutput('Envbug_occ'),
                                 selectInput("file_type","Type of file:", list(`text (csv)` = "text",
                                                                               Excel = "Excel", SPSS = "SPSS",
                                                                               Stata = "Stata", SAS = "SAS"), selected = "text"),
