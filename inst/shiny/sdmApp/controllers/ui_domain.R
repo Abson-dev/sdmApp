@@ -47,7 +47,7 @@ output$ui_domain<-renderUI({
     #fold<-kfold()
     model<-list()
     evaluate_model<-list()
-    for (i in 1:5) {
+    for (i in 1:input$number_no_block_fold_Domain) {
       p<-Specdata[Specdata[fold != i,ncol(Specdata)] == 1, 1:(ncol(Specdata)-1)]
       a<-Specdata[Specdata[fold != i,ncol(Specdata)] == 0, 1:(ncol(Specdata)-1)]
       occtest<-Specdata[Specdata[fold == i,ncol(Specdata)] == 1, 1:(ncol(Specdata)-1)]
