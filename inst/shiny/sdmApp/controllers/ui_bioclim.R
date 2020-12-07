@@ -70,19 +70,19 @@ output$ui_bioclim<-renderUI({
       if(input$probaplot_Bioclim=='Occurence map'){
         title_probaplot_Bioclim<-'Occurence map'
         map<-model_pred[["espece"]]}
-      if(input$probaplot_Bioclim=='Presence/Absence'){
-        title_probaplot_Bioclim<-'Presence/Absence'
+      if(input$probaplot_Bioclim=='Occurence map (Presence/Absence)'){
+        title_probaplot_Bioclim<-'Occurence map (Presence/Absence)'
         map<-model_pred[["PresenceAbsence"]]
 
       }
-      if(input$probaplot_Bioclim=='Occurence map (presence)'){
-        title_probaplot_Bioclim<-'Occurence map (presence)'
+      if(input$probaplot_Bioclim=='Occurence map (Presence)'){
+        title_probaplot_Bioclim<-'Occurence map (Presence)'
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_Bioclim<-renderPlot({
-        if(title_probaplot_Bioclim=='Presence/Absence'){sdmApp::sdmApp_PA(map)}
+        if(title_probaplot_Bioclim=='Occurence map (Presence/Absence)'){sdmApp::sdmApp_PA(map)}
         else{
-          sdmApp_RasterPlot(map)
+          if(title_probaplot_Bioclim=='Occurence map (Presence)'){sdmApp::sdmApp_RasterPlot(map)}
         }
 
       })
