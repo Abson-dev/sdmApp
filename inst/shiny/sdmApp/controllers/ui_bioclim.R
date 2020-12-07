@@ -28,12 +28,12 @@ output$ui_bioclim<-renderUI({
   #   pr@data$load.occ$spec_select<-as.numeric(pr@data$load.occ$spec_select)
   #   CENFA::enfa(x = data$Env, s.dat = pr, field = load.occ$spec_select)
   # })
-  enfa_plot<-reactive({
-    glc <- glc()
-
-    mod.enfa <- mod.enfa()
-    CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
-  })
+  # enfa_plot<-reactive({
+  #   glc <- glc()
+  #
+  #   mod.enfa <- mod.enfa()
+  #   CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
+  # })
   output$enfa_var<-renderPlot({
     enfa_plot()
   })
