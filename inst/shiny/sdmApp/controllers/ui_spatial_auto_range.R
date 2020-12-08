@@ -1,29 +1,19 @@
-sac<-reactive({
-  a = try(withProgress(message = 'Spatial Autorange',
-                       spatialAutoRange(rasterLayer = data$Env,
-                                        doParallel = T,
-                                        plotVariograms = TRUE,
-                                        showPlots = FALSE)))
-  a
-})
-
-range<-reactive({
-  sac<-sac()
-  round(sac$range,0)
-
-})
+# sac<-reactive({
+#   a = try(withProgress(message = 'Spatial Autorange',
+#                        spatialAutoRange(rasterLayer = data$Env,
+#                                         doParallel = T,
+#                                         plotVariograms = TRUE,
+#                                         showPlots = FALSE)))
+#   a
+# })
+#
+# range<-reactive({
+#   sac<-sac()
+#   round(sac$range,0)
+#
+# })
 output$ui_spatial_auto_range<-renderUI({
-
-
-  tableRange<-reactive({
-    sac<-sac()
-    sac$rangeTable
-  })
-
-
-
-
-  output$tableRange <- DT::renderDataTable({
+output$tableRange <- DT::renderDataTable({
     datatable(tableRange(),
               rownames = FALSE,
               selection="none",
