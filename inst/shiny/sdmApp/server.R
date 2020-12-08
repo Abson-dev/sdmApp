@@ -441,6 +441,16 @@ shinyServer(function(session, input, output) {
     occ_data_df()
   })
 
+  sac<-reactive({
+    a = try(withProgress(message = 'Spatial Autorange',
+                         blockCV::spatialAutoRange(rasterLayer = data$Env,
+                                                   doParallel = T,
+                                                   plotVariograms = TRUE,
+                                                   showPlots = FALSE)))
+    load.occ$sac<-a
+    load.occ$sac
+  })
+
   output$download_cor_mat <- downloadHandler(
     filename = function() {
       paste('correlation_matrix', Sys.Date(), '.csv', sep='')
