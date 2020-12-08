@@ -85,7 +85,8 @@ enfa_plot<-reactive({
   glc <- glc()
 
   mod.enfa <- mod.enfa()
-  CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
+  load.occ$enfa_plot<-CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
+  load.occ$enfa_plot
 })
 
 #################
@@ -131,7 +132,6 @@ marg_spec<-reactive({
 range<-reactive({
   sac<-load.occ$sac
   round(sac$range,0)
-
 })
 
 
