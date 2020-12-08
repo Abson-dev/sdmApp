@@ -31,7 +31,9 @@ output$ui_RF<-renderUI({
   #   CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
   # })
   output$enfa_var_RF<-renderPlot({
-    load.occ$enfa_plot
+    glc <- glc()
+    mod.enfa <- mod.enfa()
+    CENFA::scatter(x = mod.enfa,y = glc,n=nlayers(data$Env),p=1)
   })
 
   observeEvent(input$RandomForest,{
