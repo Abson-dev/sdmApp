@@ -29,7 +29,8 @@ shinyServer(function(session, input, output) {
   #     } else {
   #       map = data$Env[[i]]
   #     }
-  #     sdmApp_RasterPlot(map)
+  #     #sdmApp_RasterPlot(map)
+  #     #sdmApp_RasterPlot(data$Env[[i]])
   #   }
   # }
   ################################
@@ -246,7 +247,6 @@ shinyServer(function(session, input, output) {
         }
       })
 
-      observeEvent(input$layer,{
         # downloadHandler contains 2 arguments as functions, namely filename, content
         output$down <- downloadHandler(
           filename =  function() {
@@ -258,11 +258,11 @@ shinyServer(function(session, input, output) {
               grDevices::png(file) # open the png device
             else
               grDevices::pdf(file) # open the pdf device
-            sdmApp::sdmApp_RasterPlot(map)
+            #sdmApp::sdmApp_RasterPlot(map)
+            sdmApp::sdmApp_RasterPlot(data$Env[[1]])
             dev.off()  # turn the device off
 
           })
-      })
     }
     updateTabItems(session, "actions", selected = "newdata")
   })
