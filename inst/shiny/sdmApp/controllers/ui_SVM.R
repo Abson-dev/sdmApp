@@ -1,9 +1,11 @@
 ### SVM contents
-output$enfa_var_SVM<-renderPlot({
-  load.occ$enfa_plot
-})
-output$ui_SVM<-renderUI({
 
+output$ui_SVM<-renderUI({
+  output$enfa_var_SVM<-renderPlot({
+    glc <- glc()
+    mod.enfa <- mod.enfa()
+    CENFA::scatter(x = mod.enfa,y = glc,n=nlayers(data$Env),p=1)
+  })
   # Specdata<-reactive({
   #   dsf<-load.occ$select
   #   dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
