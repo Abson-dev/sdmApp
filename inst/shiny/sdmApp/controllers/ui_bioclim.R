@@ -35,7 +35,7 @@ output$ui_bioclim<-renderUI({
   #   CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
   # })
   output$enfa_var_bioclim<-renderPlot({
-    enfa_plot()
+    load.occ$enfa_plot
   })
 
   observeEvent(input$Bioclim,{
