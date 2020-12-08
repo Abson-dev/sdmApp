@@ -158,6 +158,12 @@ shinyServer(function(session, input, output) {
       height <- reactive({
         input$fig_height
       })
+      # width_download <- reactive({
+      #   input$fig_width_download
+      # })
+      # height_download <- reactive({
+      #   input$fig_height_download
+      # })
       string_code <- reactive({
         p <- paste("sdmApp_RasterPlot(map)")
         p <- paste(p, "+ scale_fill_","gradientn", "(name = 'Value',  colours = rev(terrain.colors(10)))",
@@ -228,9 +234,8 @@ shinyServer(function(session, input, output) {
           }
         }
       })
-      # observeEvent(input$export_raster_plot,{
-      #   ggsave(paste0(working.directory,input$layer,".png"),a)
-      # })
+
+
     }
     updateTabItems(session, "actions", selected = "newdata")
   })
