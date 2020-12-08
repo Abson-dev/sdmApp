@@ -29,9 +29,9 @@ output$ui_import_data <- renderUI({
                                                       p(HTML(txt_rasters_info))
                                              ),
                                              tabPanel("Plot",
-
                                                       uiOutput('layerchoice'),
                                                       myActionButton("export_raster_plot",label=("Export"), "primary"),
+                                                      #downloadButton('export_raster_plot', 'Download Plot'),
                                                       uiOutput('Envbugplot'),
                                                       plotOutput('env')
                                              )
