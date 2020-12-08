@@ -236,23 +236,40 @@ shinyServer(function(session, input, output) {
       })
 
       observeEvent(input$layer,{
-        plotInput <- reactive({
-          a =try(eval(parse(text = string_code())))
-          if(inherits(a, 'try-error')){
-            output$Envbugplot <- renderUI(p('Can not export a plot of this raster! Please verify it and try again.'))
+        ## a plot function
+        plotInput <- function(){
+          if(!is.null(input$layer)){
+            i = as.numeric(which(as.list(names(data$Env)) == input$layer))
+            if(data$Env[[i]]@data@isfactor) {
+              map = !as.factor(data$Env[[i]])
+            } else {
+              map = data$Env[[i]]
+            }
+            a =try(eval(parse(text = string_code())))
+            if(inherits(a, 'try-error')){
+              output$Envbugplot <- renderUI(p('Can not export this raster as a plot! Please verify it and try again.'))
+            }
+            else{
+              #output$Envbugplot <- renderUI(p())
+              a
+            }
           }
-          else{
-            output$Envbugplot <- renderUI(p())
-            a
-          }
-        })
-        output$export_raster_plot <- plotPNG(
-          plotInput(),
-          filename = tempfile(fileext = ".png"),
-          width = 400,
-          height = 400,
-          res = 72
-        )
+        }
+        # downloadHandler contains 2 arguments as functions, namely filename, content
+        output$down <- downloadHandler(
+          filename =  function() {
+            paste(input$layer, input$plot_type, sep=".")
+          },
+          # content is a function with argument file. content writes the plot to the device
+          content = function(file) {
+            if(input$plot_type == "png")
+              grDevices::png(file) # open the png device
+            else
+              grDevices::pdf(file) # open the pdf device
+            plotInput()
+            dev.off()  # turn the device off
+
+          })
       })
     }
     updateTabItems(session, "actions", selected = "newdata")
