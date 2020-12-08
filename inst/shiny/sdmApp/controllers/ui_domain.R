@@ -117,11 +117,11 @@ output$ui_domain<-renderUI({
 
 
   out <- NULL
-  txt_setup<-'The Domain algorithm computes the Gower distance between environmental variables at any location and those at any of the known locations of occurrence (training sites).'
+  #txt_setup<-'The Domain algorithm computes the Gower distance between environmental variables at any location and those at any of the known locations of occurrence (training sites).'
   out <- fluidRow(
     column(width = 12, offset = 0, h3("Domain"), class="wb-header"),
-    column(width = 12, offset = 0, p("The first step is to choose specie predictors accordint to ENFA or other source, afther apply Domain method."), class="wb-header-hint"),
-    fluidRow(column(12, h4("Read Me", tipify(icon("info-circle"), title=txt_setup, placement="bottom"), class="wb-block-title"), align="center"))
+    column(width = 12, offset = 0, p("The first step is to choose specie predictors accordint to ENFA or other source, afther apply Domain method."), class="wb-header-hint")
+    #fluidRow(column(12, h4("Read Me", tipify(icon("info-circle"), title=txt_setup, placement="bottom"), class="wb-block-title"), align="center"))
   )
   out<-list(out,
             sidebarPanel(
