@@ -49,10 +49,10 @@ output$ui_enfa<-renderUI({
 
 
 
-  marg_spec<-reactive({
-    mod.enfa <- mod.enfa()
-    data.frame(mod.enfa@co)
-  })
+  # marg_spec<-reactive({
+  #   mod.enfa <- mod.enfa()
+  #   data.frame(mod.enfa@co)
+  # })
 
   output$marg<- DT::renderDataTable({
     datatable(marg_spec(),
@@ -74,10 +74,11 @@ the computation of two parameters, the marginality and the specialization.
                                                        p(HTML(txt_enfa_info)),
                                                        selectInput('number_spec', 'Please select a number between 2 and the number of significant factors.', 2:brStick(s.factor(mod.enfa())), multiple = FALSE, selectize = TRUE)
                                                      ),
+                                                     downloadButton('download_enfa_scatter','Download'),
                                                      plotOutput("enfa_scatter"))
                                             ,
                                             tabPanel("Marginality and specialization",
-
+                                                     downloadButton('download_Marg_Spec','Download'),
                                                      DT::dataTableOutput("marg")
                                             )),
                      id = "tabs")
