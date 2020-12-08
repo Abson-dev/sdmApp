@@ -450,4 +450,13 @@ shinyServer(function(session, input, output) {
     }
   )
 
+  output$download_Marg_Spec <- downloadHandler(
+    filename = function() {
+      paste('Marg_Spec', Sys.Date(), '.csv', sep='')
+    },
+    content = function(file) {
+      utils::write.csv(marg_spec(), file)
+    }
+  )
+
 })
