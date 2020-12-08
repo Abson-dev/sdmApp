@@ -16,8 +16,6 @@ a \code{ggplot object}
 Plot a continous raster
 }
 \examples{
-\dontrun{
 r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
 sdmApp_RasterPlot(r)
-}
 }
