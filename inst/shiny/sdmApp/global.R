@@ -119,6 +119,27 @@ marg_spec<-reactive({
   data.frame(mod.enfa@co)
 })
 
+sac<-reactive({
+  a = try(withProgress(message = 'Spatial Autorange',
+                       spatialAutoRange(rasterLayer = data$Env,
+                                        doParallel = T,
+                                        plotVariograms = TRUE,
+                                        showPlots = FALSE)))
+  a
+})
+
+range<-reactive({
+  sac<-sac()
+  round(sac$range,0)
+
+})
+
+
+tableRange<-reactive({
+  sac<-sac()
+  sac$rangeTable
+})
+
 data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
 load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
 working.directory <- system.file("extdata", package = "sdmApp")
