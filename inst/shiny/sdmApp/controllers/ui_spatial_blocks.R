@@ -10,17 +10,17 @@ output$ui_spatial_blocks<-renderUI({
 
     load.occ$allocation_fold<-input$allocation_fold
   })
-  Specdata<-reactive({
-    dsf<-load.occ$select
-    dsf[,load.occ$spec_select]<-as.factor(dsf[,load.occ$spec_select])
-    dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
-    dsf
-  })
-
-  pa_data<-reactive({
-    load.occ$pa_data<-sf::st_as_sf(Specdata(), coords = c("lon","lat"), crs = crs(data$Env))
-    load.occ$pa_data
-  })
+  # Specdata<-reactive({
+  #   dsf<-load.occ$select
+  #   dsf[,load.occ$spec_select]<-as.factor(dsf[,load.occ$spec_select])
+  #   dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
+  #   dsf
+  # })
+  #
+  # pa_data<-reactive({
+  #   load.occ$pa_data<-sf::st_as_sf(Specdata(), coords = c("lon","lat"), crs = crs(data$Env))
+  #   load.occ$pa_data
+  # })
   spatialblock<-reactive({
     a = try(withProgress(message = 'Spatial blocking',
                          spatialBlock(speciesData = pa_data(),
@@ -73,10 +73,12 @@ output$ui_spatial_blocks<-renderUI({
                                                      sliderInput("number_fold", "folds", min=1, max=100, value=5),
                                                      selectInput("allocation_fold","allocation of blocks to folds",choices = c("random","systematic"),selected="random"),
                                                      sliderInput("test_fold","Select the number of fold to assign as test dataset",min = 1,max=100,value = 1),
+                                                     uiOutput("Envbug_sp"),
                                                      plotOutput("sp_block"),
                                                      plotOutput("test_train_plot")),
                                             tabPanel("Summarize fold",
                                                      p('Fold summarizing. Purcentage means the purcentage of test dataset'),
+                                                     uiOutput("Envbug_sp"),
                                                      DT::dataTableOutput("sum_fold"))
 
            ),
