@@ -71,9 +71,11 @@ output$ui_correlation <- renderUI({
   fluidRow(column(12, h4("Correlation between rasters"), align="center"),
            mainPanel(width = 8, tabsetPanel(type = "tabs",
                                             tabPanel("Correlation matrix",
+                                                     downloadButton('download_cor_mat', 'Download'),
                                                      DT::dataTableOutput("coor_mat")
                                             ),
                                             tabPanel("Correlation Plot",
+                                                     downloadButton('download_cor_plot', 'Download'),
                                                      plotOutput("coor_plot")
                                             )
 
