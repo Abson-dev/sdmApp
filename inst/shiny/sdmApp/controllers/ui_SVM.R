@@ -1,6 +1,6 @@
 ### SVM contents
 output$enfa_var_SVM<-renderPlot({
-  enfa_plot()
+  load.occ$enfa_plot
 })
 output$ui_SVM<-renderUI({
 
