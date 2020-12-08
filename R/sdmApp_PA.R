@@ -11,11 +11,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
 #' r <- r > 4000
 #' sdmApp_PA(r)
-#' }
 sdmApp_PA<-function(x){
   samp <- raster::sampleRegular(x, 5e+05, asRaster = TRUE)
   map_df <- raster::as.data.frame(samp, xy = TRUE, centroids = TRUE,
