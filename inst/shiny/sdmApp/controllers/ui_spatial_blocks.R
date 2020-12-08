@@ -23,7 +23,7 @@ output$ui_spatial_blocks<-renderUI({
   # })
   spatialblock<-reactive({
     a = try(withProgress(message = 'Spatial blocking',
-                         spatialBlock(speciesData = pa_data(),
+                         blockCV::spatialBlock(speciesData = pa_data(),
                                       species = load.occ$spec_select,
                                       rasterLayer = data$Env,
                                       theRange = range(), #load.occ$range, # size of the blocks
@@ -51,8 +51,18 @@ output$ui_spatial_blocks<-renderUI({
 
   output$sum_fold <- DT::renderDataTable({
     spatialblock<-spatialblock()
-    sumfold<-summarise_fold(spatialblock)
-    datatable(sumfold,
+    sumfold<-reactive({
+      a = try(withProgress(message = 'Summary fold...',
+             summarise_fold(spatialblock)))
+      if(inherits(a, 'try-error'))
+      {
+        output$Envbug_sp <- renderUI(p('Spatial blocking failed, please check your inputs and try again!'))
+      } else {
+        output$Envbug_sp <- renderUI(p())
+        a
+      }
+    })
+    datatable(sumfold(),
               rownames = FALSE,
               selection="none",
               options = list(scrollX=TRUE, scrollY=250, lengthMenu=list(c(20, 50, 100, -1), c('20', '50', '100', 'All')), pageLength=20)
