@@ -31,7 +31,7 @@ output$ui_GLM<-renderUI({
   #   CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
   # })
   output$enfa_var_GLM<-renderPlot({
-    enfa_plot()
+    load.occ$enfa_plot
   })
 
   observeEvent(input$GLM,{
