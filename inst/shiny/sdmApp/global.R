@@ -119,24 +119,24 @@ marg_spec<-reactive({
   data.frame(mod.enfa@co)
 })
 
-sac<-reactive({
-  a = try(withProgress(message = 'Spatial Autorange',
-                       spatialAutoRange(rasterLayer = data$Env,
-                                        doParallel = T,
-                                        plotVariograms = TRUE,
-                                        showPlots = FALSE)))
-  a
-})
+# sac<-reactive({
+#   a = try(withProgress(message = 'Spatial Autorange',
+#                        blockCV::spatialAutoRange(rasterLayer = data$Env,
+#                                         doParallel = T,
+#                                         plotVariograms = TRUE,
+#                                         showPlots = FALSE)))
+#   a
+# })
 
 range<-reactive({
-  sac<-sac()
+  sac<-load.occ$sac
   round(sac$range,0)
 
 })
 
 
 tableRange<-reactive({
-  sac<-sac()
+  sac<-load.occ$sac
   sac$rangeTable
 })
 
