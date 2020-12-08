@@ -245,14 +245,7 @@ shinyServer(function(session, input, output) {
             } else {
               map = data$Env[[i]]
             }
-            a =try(eval(parse(text = string_code())))
-            if(inherits(a, 'try-error')){
-              output$Envbugplot <- renderUI(p('Can not export this raster as a plot! Please verify it and try again.'))
-            }
-            else{
-              #output$Envbugplot <- renderUI(p())
-              a
-            }
+            eval(parse(text = string_code()))
           }
         }
         # downloadHandler contains 2 arguments as functions, namely filename, content
