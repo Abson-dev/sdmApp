@@ -441,5 +441,13 @@ shinyServer(function(session, input, output) {
     occ_data_df()
   })
 
+  output$download_cor_mat <- downloadHandler(
+    filename = function() {
+      paste('correlation_matrix', Sys.Date(), '.csv', sep='')
+    },
+    content = function(file) {
+      utils::write.csv(mat(), file)
+    }
+  )
 
 })
