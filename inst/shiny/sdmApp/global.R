@@ -114,6 +114,10 @@ p.mat <-reactive({
   p_mat
 })
 
+marg_spec<-reactive({
+  mod.enfa <- mod.enfa()
+  data.frame(mod.enfa@co)
+})
 
 data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)
 load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = list())
