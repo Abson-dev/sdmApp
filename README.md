@@ -1,4 +1,4 @@
-# sdmApp <img src="/docs/Logo_sdmApp.png" align="right" width="120" />
+# sdmApp <img src="inst/docs/Logo_sdmApp.png" align="right" width="120" />
  Species Distribution Models Application
 
 <!--[![Build Status](https://travis-ci.com/Abson-dev/sdmApp.svg?branch=master)](https://travis-ci.com/Abson-dev/sdmApp)
