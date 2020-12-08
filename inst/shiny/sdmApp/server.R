@@ -259,7 +259,7 @@ shinyServer(function(session, input, output) {
             else
               grDevices::pdf(file) # open the pdf device
             #sdmApp::sdmApp_RasterPlot(map)
-            sdmApp::sdmApp_RasterPlot(data$Env[[1]])
+            plot(data$Env[[1]])
             dev.off()  # turn the device off
 
           })
