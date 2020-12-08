@@ -30,10 +30,11 @@ output$ui_import_data <- renderUI({
                                              ),
                                              tabPanel("Plot",
                                                       uiOutput('layerchoice'),
-                                                      myActionButton("export_raster_plot",label=("Export"), "primary"),
-                                                      #downloadButton('export_raster_plot', 'Download Plot'),
+                                                      #myActionButton("export_raster_plot",label=("Export"), "primary"),
+                                                      radioButtons(inputId = "plot_type", label = "Select the file type", choices = list("png", "pdf")),
                                                       uiOutput('Envbugplot'),
-                                                      plotOutput('env')
+                                                      plotOutput('env'),
+                                                      downloadButton(outputId = "down", label = "Download the plot")
                                              )
             ),id = "tabsPreview"),
             sidebarPanel(width = 3, h4("Change aesthetics"),
