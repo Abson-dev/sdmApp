@@ -20,17 +20,7 @@ shinyServer(function(session, input, output) {
     }
     tags$button(id=inputId, type="button", class=paste("btn action-button", btn.css.class, css.class, collapse=" "), label)
   }
-  ## a plot function
-  plotInput <- reactive({
-    if(!is.null(input$layer)){
-      i = as.numeric(which(as.list(names(data$Env)) == input$layer))
-      if(data$Env[[i]]@data@isfactor) {
-        map = !as.factor(data$Env[[i]])
-      } else {
-        map = data$Env[[i]]
-      }
-    }
-   })
+
   ################################
   genObserver_menus <-
     function(pat="btn_results_", n=1, updateVal) {
@@ -244,7 +234,19 @@ shinyServer(function(session, input, output) {
           }
         }
       })
-
+      ## a plot function
+      plotInput <- reactive({
+        if(!is.null(input$layer)){
+          i = as.numeric(which(as.list(names(data$Env)) == input$layer))
+          if(data$Env[[i]]@data@isfactor) {
+            map = !as.factor(data$Env[[i]])
+          } else {
+            map = data$Env[[i]]
+            a =eval(parse(text = string_code()))
+            a
+          }
+        }
+      })
         # downloadHandler contains 2 arguments as functions, namely filename, content
         output$down <- downloadHandler(
           filename =  function() {
@@ -257,7 +259,7 @@ shinyServer(function(session, input, output) {
             else
               grDevices::pdf(file) # open the pdf device
             #sdmApp::sdmApp_RasterPlot(map)
-            plot(plotInput())
+            plotInput()
             dev.off()  # turn the device off
 
           })
