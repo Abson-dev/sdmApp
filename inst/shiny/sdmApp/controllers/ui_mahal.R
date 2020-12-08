@@ -126,7 +126,7 @@ output$ui_mahal<-renderUI({
   #txt_setup<-'The Mahal software is based on the maximum-entropy approach for modeling species niches and distributions. From a set of environmental (e.g., climatic) grids and georeferenced occurrence localities (e.g. mediated by GBIF), the model expresses a probability distribution where each grid cell has a predicted suitability of conditions for the species. Mahal is a stand-alone Java application and can be used on any computer running Java version 1.5 or later.'
   out <- fluidRow(
     column(width = 12, offset = 0, h3("Mahal"), class="wb-header"),
-    column(width = 12, offset = 0, p("The first step is to choose specie predictors accordint to ENFA or other source, afther apply Mahal method."), class="wb-header-hint")
+    column(width = 12, offset = 0, p("After choosing your spatial blocking approach  please choose the species predictors according to ENFA or own selection, and then the mahal model."), class="wb-header-hint")
     #fluidRow(column(12, h4("Read Me", tipify(icon("info-circle"), title=txt_setup, placement="bottom"), class="wb-block-title"), align="center"))
   )
   out<-list(out,
