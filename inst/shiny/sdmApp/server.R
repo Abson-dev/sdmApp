@@ -262,7 +262,8 @@ shinyServer(function(session, input, output) {
             plot(plotInput())
             dev.off()  # turn the device off
 
-          })
+          }
+          )
     }
     updateTabItems(session, "actions", selected = "newdata")
   })
@@ -473,7 +474,14 @@ shinyServer(function(session, input, output) {
     }
   )
 
-
+  ## a plot function
+  Cor_plotInput <- reactive({
+    ggcorrplot::ggcorrplot(mat(),ggtheme = ggplot2::theme_gray,
+                           hc.order = TRUE,
+                           type = "lower",
+                           p.mat = p.mat(),
+                           colors = c("#6D9EC1", "white", "#E46726"))
+  })
   output$download_cor_plot <- downloadHandler(
     filename =  function() {
       paste("cor_plot", input$plot_type_cor, sep=".")
@@ -484,12 +492,10 @@ shinyServer(function(session, input, output) {
         grDevices::png(file) # open the png device
       else
         grDevices::pdf(file) # open the pdf device
-      ggcorrplot::ggcorrplot(mat(),ggtheme = ggplot2::theme_gray,
-                             hc.order = TRUE,
-                             type = "lower",
-                             p.mat = p.mat(),
-                             colors = c("#6D9EC1", "white", "#E46726"))
+
+      Cor_plotInput()
       dev.off()  # turn the device off
-    })
+    }
+    )
 
 })
