@@ -79,20 +79,20 @@ output$ui_RF<-renderUI({
     model_pred[["PresenceAbsence"]]<-model_pred[["espece"]]>model_pred[["threshold"]]
     model_pred[["ProbaPresence"]]<-sdmApp::sdmApp_TimesRasters(model_pred[["espece"]],model_pred[["PresenceAbsence"]])
     observeEvent(input$probaplot_RF,{
-      if(input$probaplot_RF=='Probability of occurence(absence/presence)'){
-        title_probaplot_RF<-'Probability of occurence(absence/presence)'
+      if(input$probaplot_RF=='Occurence map'){
+        title_probaplot_RF<-'Occurence map'
         map<-model_pred[["espece"]]}
-      if(input$probaplot_RF=='Presence/Absence'){
-        title_probaplot_RF<-'Presence/Absence'
+      if(input$probaplot_RF=='Occurence map (Presence/Absence)'){
+        title_probaplot_RF<-'Occurence map (Presence/Absence)'
         map<-model_pred[["PresenceAbsence"]]
 
       }
-      if(input$probaplot_RF=='Probability of occurence(presence)'){
-        title_probaplot_RF<-'Probability of occurence(presence)'
+      if(input$probaplot_RF=='Occurence map (Presence)'){
+        title_probaplot_RF<-'Occurence map (Presence)'
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_RF<-renderPlot({
-        if(title_probaplot_RF=='Presence/Absence'){sdmApp::sdmApp_PA(map)}
+        if(title_probaplot_RF=='Occurence map (Presence/Absence)'){sdmApp::sdmApp_PA(map)}
         else{
           sdmApp_RasterPlot(map)
         }
