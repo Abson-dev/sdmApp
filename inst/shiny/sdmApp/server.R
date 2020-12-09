@@ -516,15 +516,20 @@ shinyServer(function(session, input, output) {
       }
 
       if(input$plot_type_Bioclim == "png"){
-        grDevices::png(file) # open the pdf device
-        Cor_plotInput()
-        dev.off()  # turn the device off
+        # grDevices::png(file) # open the pdf device
+        # Cor_plotInput()
+        # dev.off()  # turn the device off
       }
 
       if(input$plot_type_Bioclim == "tif"){
-        grDevices::png(file) # open the pdf device
-        Cor_plotInput()
-        dev.off()  # turn the device off
+        #r <- raster(system.file("external/test.grd", package="raster"))
+        res <- writeRaster(load.occ$Bioclim, filename=file, format="GTiff", overwrite=TRUE)
+
+        # Show the corresponding output filename
+        print(res@file@name)
+
+        # Rename it to the correct filename
+        file.rename(res@file@name, file)
       }
     }
   )
