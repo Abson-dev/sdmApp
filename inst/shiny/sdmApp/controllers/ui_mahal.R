@@ -157,6 +157,8 @@ output$ui_mahal<-renderUI({
                                                ),
                                                tabPanel("Model Evaluation",
                                                         selectInput('model_ev_Mahal', 'Please select the metric to evaluate the model', c("ROC","density","boxplot","kappa","FPR","prevalence"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_model_ev_Mahal", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_model_ev_Mahal', 'Download'),
                                                         plotOutput("eval_Mahal")
                                                ),
                                                tabPanel("Variable response",
