@@ -259,7 +259,7 @@ shinyServer(function(session, input, output) {
             else
               grDevices::pdf(file) # open the pdf device
             #sdmApp::sdmApp_RasterPlot(map)
-            plot(plotInput()) + xlab("Longitude")
+            plot(plotInput())
             dev.off()  # turn the device off
 
           })
@@ -472,5 +472,24 @@ shinyServer(function(session, input, output) {
       utils::write.csv(marg_spec(), file)
     }
   )
+
+
+  output$download_cor_plot <- downloadHandler(
+    filename =  function() {
+      paste(input$layer, input$plot_type_cor, sep=".")
+    },
+    # content is a function with argument file. content writes the plot to the device
+    content = function(file) {
+      if(input$plot_type_cor == "png")
+        grDevices::png(file) # open the png device
+      else
+        grDevices::pdf(file) # open the pdf device
+      ggcorrplot::ggcorrplot(mat(),ggtheme = ggplot2::theme_gray,
+                             hc.order = TRUE,
+                             type = "lower",
+                             p.mat = p.mat(),
+                             colors = c("#6D9EC1", "white", "#E46726"))
+      dev.off()  # turn the device off
+    })
 
 })
