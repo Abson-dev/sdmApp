@@ -145,17 +145,22 @@ output$ui_domain<-renderUI({
                                                         plotOutput("enfa_var_domain")
                                                ),
                                                tabPanel("Map",
-
                                                         selectInput('probaplot_Domain', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_Domain", label = "Select the file type to export", choices = list("png", "pdf","tif"),inline = TRUE),
+                                                        downloadButton('download_Domain', 'Download'),
                                                         plotOutput("proba_occ_Domain")
 
                                                ),
                                                tabPanel("Model Evaluation",
                                                         selectInput('model_ev_Domain', 'Please select the metric to evaluate the model', c("ROC","density","boxplot","kappa","FPR","prevalence"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_model_ev_Domain", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_model_ev_Domain', 'Download'),
                                                         plotOutput("eval_Domain")
                                                ),
                                                tabPanel("Variable response",
                                                         selectInput('response_var_Domain', 'Please select the variable to get its ecological response', names(data$enfa), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_response_var_Domain", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_response_var_Domain', 'Download'),
                                                         plotOutput("response_eco_Domain")
                                                )
                                                # ,
