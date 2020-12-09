@@ -149,13 +149,19 @@ output$ui_bioclim<-renderUI({
                                        ),
                                        tabPanel("Map",
                                                 selectInput('probaplot_Bioclim', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
+                                                radioButtons(inputId = "plot_type_Bioclim", label = "Select the file type to export", choices = list("png", "pdf","tif"),inline = TRUE),
+                                                downloadButton('download_Bioclim', 'Download'),
                                                 plotOutput("proba_occ_Bioclim")),
                                        tabPanel("Model Evaluation",
                                                 selectInput('model_ev_Bioclim', 'Please select the metric to evaluate the model', c("ROC","density","boxplot","kappa","FPR","prevalence"), multiple = FALSE, selectize = TRUE),
+                                                radioButtons(inputId = "plot_type_model_ev_Bioclim", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                downloadButton('download_model_ev_Bioclim', 'Download'),
                                                 plotOutput("eval_Bioclim")
                                        ),
                                        tabPanel("Variable response",
                                                 selectInput('response_var_Bioclim', 'Please select the variable to get its ecological response', names(data$enfa), multiple = FALSE, selectize = TRUE),
+                                                radioButtons(inputId = "plot_type_response_var_Bioclim", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                downloadButton('download_response_var_Bioclim', 'Download'),
                                                 plotOutput("response_eco")
                                        )
                 ),
