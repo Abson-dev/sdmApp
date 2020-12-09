@@ -242,8 +242,8 @@ shinyServer(function(session, input, output) {
             map = !as.factor(data$Env[[i]])
           } else {
             map = data$Env[[i]]
-            a =eval(parse(text = string_code()))
-            a
+            #a =eval(parse(text = string_code()))
+            map
           }
         }
       })
@@ -259,7 +259,7 @@ shinyServer(function(session, input, output) {
             else
               grDevices::pdf(file) # open the pdf device
             #sdmApp::sdmApp_RasterPlot(map)
-            plotInput()
+            plot(plotInput())
             dev.off()  # turn the device off
 
           })
