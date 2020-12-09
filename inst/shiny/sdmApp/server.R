@@ -476,7 +476,7 @@ shinyServer(function(session, input, output) {
 
   output$download_cor_plot <- downloadHandler(
     filename =  function() {
-      paste(input$layer, input$plot_type_cor, sep=".")
+      paste("cor_plot", input$plot_type_cor, sep=".")
     },
     # content is a function with argument file. content writes the plot to the device
     content = function(file) {
