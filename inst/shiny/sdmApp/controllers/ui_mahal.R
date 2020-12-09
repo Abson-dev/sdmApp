@@ -80,8 +80,8 @@ output$ui_mahal<-renderUI({
         map<-model_pred[["PresenceAbsence"]]
 
       }
-      if(input$probaplot_Mahal=='Occurence map (presence)'){
-        title_probaplot_Mahal<-'Occurence map (presence)'
+      if(input$probaplot_Mahal=='Occurence map (Presence)'){
+        title_probaplot_Mahal<-'Occurence map (Presence)'
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_Mahal<-renderPlot({
@@ -149,8 +149,9 @@ output$ui_mahal<-renderUI({
                                                         plotOutput("enfa_var_mahal")
                                                ),
                                                tabPanel("Map",
-
                                                         selectInput('probaplot_Mahal', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_Mahal", label = "Select the file type to export", choices = list("png", "pdf","tif"),inline = TRUE),
+                                                        downloadButton('download_Mahal', 'Download'),
                                                         plotOutput("proba_occ_Mahal")
 
                                                ),
