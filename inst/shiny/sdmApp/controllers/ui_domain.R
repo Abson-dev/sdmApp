@@ -70,15 +70,17 @@ output$ui_domain<-renderUI({
     observeEvent(input$probaplot_Domain,{
       if(input$probaplot_Domain=='Occurence map'){
         title_probaplot_Domain<-'Occurence map'
-        map<-model_pred[["espece"]]}
-      if(input$probaplot_Domain=='Occurence map'){
-        title_probaplot_Domain<-'Occurence map'
+        map<-model_pred[["espece"]]
+        load.occ$Domain <- map}
+      if(input$probaplot_Domain=='Occurence map (Presence/Absence)'){
+        title_probaplot_Domain<-'Occurence map (Presence/Absence)'
         map<-model_pred[["PresenceAbsence"]]
-
+        load.occ$Domain <- map
       }
       if(input$probaplot_Domain=='Occurence map (presence)'){
         title_probaplot_Domain<-'Occurence map (presence)'
         map<-model_pred[["ProbaPresence"]]
+        load.occ$Domain <- map
       }
       output$proba_occ_Domain<-renderPlot({
         if(title_probaplot_Domain=='Occurence map (Presence/Absence)'){sdmApp_PA(map)}
