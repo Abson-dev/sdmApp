@@ -157,20 +157,27 @@ output$ui_RF<-renderUI({
                                                         plotOutput("enfa_var_RF")
                                                ),
                                                tabPanel("Map",
-
                                                         selectInput('probaplot_RF', '', c("Probability of occurence(absence/presence)","Presence/Absence","Probability of occurence(presence)"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_RF", label = "Select the file type to export", choices = list("png", "pdf","tif"),inline = TRUE),
+                                                        downloadButton('download_RF', 'Download'),
                                                         plotOutput("proba_occ_RF")
 
                                                ),
                                                tabPanel("Model Evaluation",
                                                         selectInput('model_ev_RF', 'Please select the metric to evaluate the model', c("ROC","density","boxplot","kappa","FPR","prevalence"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_model_ev_RF", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_model_ev_RF', 'Download'),
                                                         plotOutput("eval_RF")
                                                ),
                                                tabPanel("Variable response",
                                                         selectInput('response_var_RF', 'Please select the variable to get its ecological response', names(data$enfa), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_response_var_RF", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_response_var_RF', 'Download'),
                                                         plotOutput("response_eco_RF")
                                                ),
                                                tabPanel("Variable Importance",
+                                                        radioButtons(inputId = "plot_type_var_importance_RF", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_var_importance_RF', 'Download'),
                                                         plotOutput("var_importance_RF")
                                                )
 
