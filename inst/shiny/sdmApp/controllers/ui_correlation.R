@@ -75,6 +75,7 @@ output$ui_correlation <- renderUI({
                                                      DT::dataTableOutput("coor_mat")
                                             ),
                                             tabPanel("Correlation Plot",
+                                                     radioButtons(inputId = "plot_type_cor", label = "Select the file type", choices = list("png", "pdf"),inline = TRUE),
                                                      downloadButton('download_cor_plot', 'Download'),
                                                      plotOutput("coor_plot")
                                             )
