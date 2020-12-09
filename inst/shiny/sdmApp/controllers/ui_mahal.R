@@ -163,6 +163,8 @@ output$ui_mahal<-renderUI({
                                                ),
                                                tabPanel("Variable response",
                                                         selectInput('response_var_Mahal', 'Please select the variable to get its ecological response', names(data$enfa), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_response_var_Mahal", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_response_var_Mahal', 'Download'),
                                                         plotOutput("response_eco_Mahal")
                                                )
                                                # ,
