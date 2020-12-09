@@ -82,11 +82,11 @@ output$ui_GLM<-renderUI({
     model_pred[["PresenceAbsence"]]<-model_pred[["espece"]]>model_pred[["threshold"]]
     model_pred[["ProbaPresence"]]<-sdmApp::sdmApp_TimesRasters(model_pred[["espece"]],model_pred[["PresenceAbsence"]])
     observeEvent(input$probaplot_GLM,{
-      if(input$probaplot_GLM=='Probability of occurence(absence/presence)'){
-        title_probaplot_GLM<-'Probability of occurence(absence/presence)'
+      if(input$probaplot_GLM=='Occurence map'){
+        title_probaplot_GLM<-'Occurence map'
         map<-model_pred[["espece"]]}
-      if(input$probaplot_GLM=='Presence/Absence'){
-        title_probaplot_GLM<-'Presence/Absence'
+      if(input$probaplot_GLM=='Occurence map (Presence/Absence)'){
+        title_probaplot_GLM<-'Occurence map (Presence/Absence)'
         map<-model_pred[["PresenceAbsence"]]
 
       }
