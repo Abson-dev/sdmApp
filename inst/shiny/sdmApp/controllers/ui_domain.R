@@ -77,8 +77,8 @@ output$ui_domain<-renderUI({
         map<-model_pred[["PresenceAbsence"]]
         load.occ$Domain <- map
       }
-      if(input$probaplot_Domain=='Occurence map (presence)'){
-        title_probaplot_Domain<-'Occurence map (presence)'
+      if(input$probaplot_Domain=='Occurence map (Presence)'){
+        title_probaplot_Domain<-'Occurence map (Presence)'
         map<-model_pred[["ProbaPresence"]]
         load.occ$Domain <- map
       }
