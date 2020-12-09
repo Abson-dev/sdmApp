@@ -488,13 +488,17 @@ shinyServer(function(session, input, output) {
     },
     # content is a function with argument file. content writes the plot to the device
     content = function(file) {
-      if(input$plot_type_cor == "png")
-        grDevices::png(file) # open the png device
-      else
-        grDevices::pdf(file) # open the pdf device
+      if(input$plot_type_cor == "png"){
+        grDevices::png(file) # open the pdf device
+        Cor_plotInput()
+        dev.off()  # turn the device off
+      }
 
-      Cor_plotInput()
-      dev.off()  # turn the device off
+      else{
+        grDevices::pdf(file) # open the pdf device
+        Cor_plotInput()
+        dev.off()  # turn the device off
+      }
     }
     )
 
