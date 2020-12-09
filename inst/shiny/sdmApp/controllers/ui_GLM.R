@@ -90,12 +90,12 @@ output$ui_GLM<-renderUI({
         map<-model_pred[["PresenceAbsence"]]
 
       }
-      if(input$probaplot_GLM=='Probability of occurence(presence)'){
-        title_probaplot_GLM<-'Probability of occurence(presence)'
+      if(input$probaplot_GLM=='Occurence map (Presence)'){
+        title_probaplot_GLM<-'Occurence map (Presence)'
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_GLM<-renderPlot({
-        if(title_probaplot_GLM=='Presence/Absence'){sdmApp::sdmApp_PA(map)}
+        if(title_probaplot_GLM=='Occurence map (Presence/Absence)'){sdmApp::sdmApp_PA(map)}
         else{
           sdmApp_RasterPlot(map)
         }
