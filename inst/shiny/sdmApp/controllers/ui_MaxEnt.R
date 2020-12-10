@@ -146,20 +146,27 @@ output$ui_MaxEnt<-renderUI({
                                                         plotOutput("enfa_var_Maxent")
                                                ),
                                                tabPanel("Map",
-
                                                         selectInput('probaplot', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_MaxEnt", label = "Select the file type to export", choices = list("png", "pdf","tif"),inline = TRUE),
+                                                        downloadButton('download_MaxEnt', 'Download'),
                                                         plotOutput("proba_occ")
 
                                                ),
                                                tabPanel("Model Evaluation",
                                                         selectInput('model_ev', 'Please select the metric to evaluate the model', c("ROC","density","boxplot","kappa","FPR","prevalence"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_model_ev_MaxEnt", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_model_ev_MaxEnt', 'Download'),
                                                         plotOutput("eval")
                                                ),
                                                tabPanel("Variable response",
                                                         selectInput('response_var', 'Please select the variable to get its ecological response', names(data$enfa), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_response_var_MaxEnt", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_response_var_MaxEnt', 'Download'),
                                                         plotOutput("response_eco")
                                                ),
                                                tabPanel("Variable Importance",
+                                                        radioButtons(inputId = "plot_type_var_importance_MaxEnt", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_var_importance_MaxEnt', 'Download'),
                                                         plotOutput("var_importance")
                                                )
 
