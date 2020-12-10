@@ -13,33 +13,37 @@
 #
 # })
 output$ui_spatial_auto_range<-renderUI({
-output$tableRange <- DT::renderDataTable({
-    datatable(tableRange(),
+  observeEvent(input$sp_auto,{
+        output$tableRange <- DT::renderDataTable({
+              datatable(tableRange(),
               rownames = FALSE,
               selection="none",
               options = list(scrollX=TRUE, scrollY=250, lengthMenu=list(c(20, 50, 100, -1), c('20', '50', '100', 'All')), pageLength=20)
 
-    )})
-  observeEvent(input$vario_var,{
-    output$variogram<-renderPlot({
-      sac<-sac()
-      vect<-names(data$Env)
-      plot(sac$variograms[[which(vect==input$vario_var)]])
-    })
-  })
+              )})
+       observeEvent(input$vario_var,{
+              output$variogram<-renderPlot({
+                  sac<-sac()
+                  vect<-names(data$Env)
+                  plot(sac$variograms[[which(vect==input$vario_var)]])
+                                        })
+                  })
 
-  output$barchart <- renderPlot({
-    sac<-sac()
-    sac$plots$barchart
-  })
+                output$barchart <- renderPlot({
+                  sac<-sac()
+                  sac$plots$barchart
+                })
 
-  output$mapplot <- renderPlot({
-    sac<-sac()
-    sac$plots$mapplot
-  })
-
+                output$mapplot <- renderPlot({
+                  sac<-sac()
+                  sac$plots$mapplot
+                })
+        })
   fluidRow(column(12, h4("Spatial autocorrelation "), align="center"),
            mainPanel(width = 8, tabsetPanel(type = "tabs",
+                                            tabPanel("Apply",
+                                                     p('Spatial autocorrelation ranges in input environnemental variables '),
+                                                     myActionButton("sp_auto",label=("Apply"), "primary")),
                                             tabPanel("Barchart",
                                                      p('Spatial autocorrelation ranges in input environnemental variables '),
                                                      downloadButton('download_barchart','Download'),
