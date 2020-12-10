@@ -162,22 +162,28 @@ output$ui_SVM<-renderUI({
                                                         plotOutput("enfa_var_SVM")
                                                ),
                                                tabPanel("Map",
-
                                                         selectInput('probaplot_SVM', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_SVM", label = "Select the file type to export", choices = list("png", "pdf","tif"),inline = TRUE),
+                                                        downloadButton('download_SVM', 'Download'),
                                                         plotOutput("proba_occ_SVM")
 
                                                ),
                                                tabPanel("Model Evaluation",
                                                         selectInput('model_ev_SVM', 'Please select the metric to evaluate the model', c("ROC","density","boxplot","kappa","FPR","prevalence"), multiple = FALSE, selectize = TRUE),
+                                                        radioButtons(inputId = "plot_type_model_ev_SVM", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                                        downloadButton('download_model_ev_SVM', 'Download'),
                                                         plotOutput("eval_SVM")
-                                               ),
-                                               tabPanel("Variable response",
-                                                        selectInput('response_var_SVM', 'Please select the variable to get its ecological response', names(data$enfa), multiple = FALSE, selectize = TRUE),
-                                                        plotOutput("response_eco_SVM")
-                                               ),
-                                               tabPanel("Variable Importance",
-                                                        plotOutput("var_importance_SVM")
                                                )
+                                               # ,
+                                               # tabPanel("Variable response",
+                                               #          selectInput('response_var_SVM', 'Please select the variable to get its ecological response', names(data$enfa), multiple = FALSE, selectize = TRUE),
+                                               #          radioButtons(inputId = "plot_type_response_var_SVM", label = "Select the file type to export", choices = list("png", "pdf"),inline = TRUE),
+                                               #          downloadButton('download_response_var_SVM', 'Download'),
+                                               #          plotOutput("response_eco_SVM")
+                                               # ),
+                                               # tabPanel("Variable Importance",
+                                               #          plotOutput("var_importance_SVM")
+                                               # )
 
 
               ),
