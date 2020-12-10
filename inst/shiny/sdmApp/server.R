@@ -54,7 +54,7 @@ shinyServer(function(session, input, output) {
     records<-sb$records
     records$fold<-1:nrow(records)
     records <- records[,c(5,1,2,3,4)] %>%
-      dplyr::mutate(Purcentage= round((test_0 + test_1)*100/(test_0 + test_1+train_1 + train_0),digits = 0))
+      dplyr::mutate(Percentage= round((test_0 + test_1)*100/(test_0 + test_1+train_1 + train_0),digits = 0))
     return(records)
   }
   ################################
