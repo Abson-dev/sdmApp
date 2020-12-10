@@ -62,11 +62,7 @@ output$ui_enfa<-renderUI({
 
     )})
   txt_enfa_info<-paste0('The number of significant factors is',code(brStick(s.factor(mod.enfa()))))
-  fluidRow(column(12, h4("Ecological Niche Factor Analysis"),p("ENFA ((ecological-niche factor analysis, Hirzel et al.,
-2002a)
-) is based on the concept of the ecological niche, and provides a measure of the realised niche within the available space from
-the computation of two parameters, the marginality and the specialization.
-"), align="center"),
+  fluidRow(column(12, h4("Ecological Niche Factor Analysis"),p("Ecological-niche factor analysis (ENFA, Hirze; et al., 2002), relies on the concept of the ecological niche. Based on the computation of two parameters, the marginality and the specialization, ENFA provides a measure of the realised niche within the available space."), align="center"),
            mainPanel(width = 8, tabsetPanel(type = "tabs",
                                             tabPanel("ENFA",
                                                      conditionalPanel(
