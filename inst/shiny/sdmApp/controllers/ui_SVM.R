@@ -163,7 +163,7 @@ output$ui_SVM<-renderUI({
                                                ),
                                                tabPanel("Map",
 
-                                                        selectInput('probaplot_SVM', '', c("Probability of occurence(absence/presence)","Presence/Absence","Probability of occurence(presence)"), multiple = FALSE, selectize = TRUE),
+                                                        selectInput('probaplot_SVM', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
                                                         plotOutput("proba_occ_SVM")
 
                                                ),
