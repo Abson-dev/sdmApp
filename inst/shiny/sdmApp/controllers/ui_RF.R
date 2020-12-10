@@ -157,7 +157,7 @@ output$ui_RF<-renderUI({
                                                         plotOutput("enfa_var_RF")
                                                ),
                                                tabPanel("Map",
-                                                        selectInput('probaplot_RF', '', c("Probability of occurence(absence/presence)","Presence/Absence","Probability of occurence(presence)"), multiple = FALSE, selectize = TRUE),
+                                                        selectInput('probaplot_RF', '', c("Occurence map","Occurence map (Presence/Absence)","Occurence map (Presence)"), multiple = FALSE, selectize = TRUE),
                                                         radioButtons(inputId = "plot_type_RF", label = "Select the file type to export", choices = list("png", "pdf","tif"),inline = TRUE),
                                                         downloadButton('download_RF', 'Download'),
                                                         plotOutput("proba_occ_RF")
