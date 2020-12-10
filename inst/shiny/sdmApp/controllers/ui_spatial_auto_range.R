@@ -38,14 +38,14 @@ output$tableRange <- DT::renderDataTable({
     sac$plots$mapplot
   })
 
-  fluidRow(column(12, h4("Spatial"), align="center"),
+  fluidRow(column(12, h4("Spatial autocorrelation "), align="center"),
            mainPanel(width = 8, tabsetPanel(type = "tabs",
-                                            tabPanel("barchart",
-                                                     p('Spatial autocorrelation ranges in input covariates'),
+                                            tabPanel("Barchart",
+                                                     p('Spatial autocorrelation ranges in input environnemental variables '),
                                                      downloadButton('download_barchart','Download'),
                                                      plotOutput("barchart")),
-                                            tabPanel("mapplot",
-                                                     p('Corresponding spatial blocks (the selected block size is based on median spatial autocorrelation range across all input data)'),
+                                            tabPanel("Map plot",
+                                                     p('Corresponding spatial blocks (the selected block size is based on median spatial autocorrelation range across all input environnemental variables)'),
                                                      downloadButton('download_mapplot','Download'),
                                                      plotOutput("mapplot")),
                                             tabPanel("Autocorrelation range table",
