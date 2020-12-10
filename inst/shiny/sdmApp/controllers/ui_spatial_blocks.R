@@ -2,6 +2,7 @@
 
 
 output$ui_spatial_blocks<-renderUI({
+  observeEvent(input$sp_block,{
   observeEvent(input$number_fold,{
     load.occ$k<-input$number_fold
   })
@@ -76,6 +77,7 @@ output$ui_spatial_blocks<-renderUI({
     sdmApp::sdmApp_fold_Explorer(spatialblock, data$Env, sp_pa_data(),load.occ$fold) #1=load.occ$fold
   })
   })
+  })
   fluidRow(column(12, h4("Spatial blocking"),p("'The spatial blocking procedure can take a long time depending on the number of input variables"), align="center"),
            mainPanel(width = 8, tabsetPanel(type = "tabs",
                                             tabPanel("Spatial blocking",
@@ -83,6 +85,7 @@ output$ui_spatial_blocks<-renderUI({
                                                      sliderInput("number_fold", "folds", min=1, max=100, value=5),
                                                      selectInput("allocation_fold","allocation of blocks to folds",choices = c("random","systematic"),selected="random"),
                                                      sliderInput("test_fold","Select the number of fold to assign as test dataset",min = 1,max=100,value = 1),
+                                                     myActionButton("sp_block",label=("Apply"), "primary"),
                                                      uiOutput("Envbug_sp"),
                                                      plotOutput("sp_block"),
                                                      plotOutput("test_train_plot")),
