@@ -76,7 +76,7 @@ output$ui_spatial_blocks<-renderUI({
     sdmApp::sdmApp_fold_Explorer(spatialblock, data$Env, sp_pa_data(),load.occ$fold) #1=load.occ$fold
   })
   })
-  fluidRow(column(12, h4("Spatial blocking"), align="center"),
+  fluidRow(column(12, h4("Spatial blocking"),p("'The spatial blocking procedure can take a long time depending on the number of input variables"), align="center"),
            mainPanel(width = 8, tabsetPanel(type = "tabs",
                                             tabPanel("Spatial blocking",
                                                      p('Set spatial bloking parameters'),
