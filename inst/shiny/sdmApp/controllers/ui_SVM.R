@@ -93,12 +93,12 @@ output$ui_SVM<-renderUI({
         map<-model_pred[["PresenceAbsence"]]
 
       }
-      if(input$probaplot_SVM=='Probability of occurence(presence)'){
-        title_probaplot_SVM<-'Probability of occurence(presence)'
+      if(input$probaplot_SVM=='Occurence map (Presence)'){
+        title_probaplot_SVM<-'Occurence map (Presence)'
         map<-model_pred[["ProbaPresence"]]
       }
       output$proba_occ_SVM<-renderPlot({
-        if(title_probaplot_SVM=='Presence/Absence'){sdmApp::sdmApp_PA(map)}
+        if(title_probaplot_SVM=='Occurence map (Presence/Absence)'){sdmApp::sdmApp_PA(map)}
         else{
           sdmApp_RasterPlot(map)
         }
