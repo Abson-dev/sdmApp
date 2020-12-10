@@ -10,20 +10,20 @@ output$ui_spatial_blocks<-renderUI({
 
     load.occ$allocation_fold<-input$allocation_fold
   })
-  # Specdata<-reactive({
-  #   dsf<-load.occ$select
-  #   dsf[,load.occ$spec_select]<-as.factor(dsf[,load.occ$spec_select])
-  #   dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
-  #   dsf
-  # })
-  #
-  # pa_data<-reactive({
-  #   load.occ$pa_data<-sf::st_as_sf(Specdata(), coords = c("lon","lat"), crs = crs(data$Env))
-  #   load.occ$pa_data
-  # })
+  sp_Specdata<-reactive({
+    dsf<-load.occ$select
+    dsf[,load.occ$spec_select]<-as.factor(dsf[,load.occ$spec_select])
+    dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
+    dsf
+  })
+
+  sp_pa_data<-reactive({
+    load.occ$sp_pa_data<-sf::st_as_sf(sp_Specdata(), coords = c("lon","lat"), crs = crs(data$Env))
+    load.occ$sp_pa_data
+  })
   spatialblock<-reactive({
     a = try(withProgress(message = 'Spatial blocking',
-                         blockCV::spatialBlock(speciesData = pa_data(),
+                         blockCV::spatialBlock(speciesData = sp_pa_data(),
                                       species = load.occ$spec_select,
                                       rasterLayer = data$Env,
                                       theRange = range(), #load.occ$range, # size of the blocks
@@ -45,7 +45,7 @@ output$ui_spatial_blocks<-renderUI({
 
   output$sp_block<-renderPlot({
     spatialblock<-spatialblock()
-    spatialblock$plots + geom_sf(data = pa_data(), alpha = 0.5)
+    spatialblock$plots + geom_sf(data = sp_pa_data(), alpha = 0.5)
   })
 
 
@@ -73,7 +73,7 @@ output$ui_spatial_blocks<-renderUI({
 
   output$test_train_plot<-renderPlot({
     spatialblock<-spatialblock()
-    sdmApp::sdmApp_fold_Explorer(spatialblock, data$Env, pa_data(),load.occ$fold) #1=load.occ$fold
+    sdmApp::sdmApp_fold_Explorer(spatialblock, data$Env, sp_pa_data(),load.occ$fold) #1=load.occ$fold
   })
   })
   fluidRow(column(12, h4("Spatial blocking"), align="center"),
