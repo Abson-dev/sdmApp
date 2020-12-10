@@ -85,11 +85,11 @@ output$ui_SVM<-renderUI({
     model_pred[["PresenceAbsence"]]<-model_pred[["espece"]]>model_pred[["threshold"]]
     model_pred[["ProbaPresence"]]<-sdmApp::sdmApp_TimesRasters(model_pred[["espece"]],model_pred[["PresenceAbsence"]])
     observeEvent(input$probaplot_SVM,{
-      if(input$probaplot_SVM=='Probability of occurence(absence/presence)'){
-        title_probaplot_SVM<-'Probability of occurence(absence/presence)'
+      if(input$probaplot_SVM=='Occurence map'){
+        title_probaplot_SVM<-'Occurence map'
         map<-model_pred[["espece"]]}
-      if(input$probaplot_SVM=='Presence/Absence'){
-        title_probaplot_SVM<-'Presence/Absence'
+      if(input$probaplot_SVM=='Occurence map (Presence/Absence)'){
+        title_probaplot_SVM<-'Occurence map (Presence/Absence)'
         map<-model_pred[["PresenceAbsence"]]
 
       }
