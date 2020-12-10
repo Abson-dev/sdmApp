@@ -86,8 +86,8 @@ output$ui_spatial_blocks<-renderUI({
                                                      uiOutput("Envbug_sp"),
                                                      plotOutput("sp_block"),
                                                      plotOutput("test_train_plot")),
-                                            tabPanel("Summarize fold",
-                                                     p('Fold summarizing. Purcentage means the purcentage of test dataset'),
+                                            tabPanel("Fold summary",
+                                                     p('The percentage values indicate the percentage of data the test dataset corresponds to'),
                                                      uiOutput("Envbug_sp"),
                                                      DT::dataTableOutput("sum_fold"))
 
