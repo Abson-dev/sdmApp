@@ -92,7 +92,7 @@ output$ui_view_species_data <- renderUI({
                                               p(HTML(txt_species_data)),
                                               dataTableOutput("occ_data_select")
                                      ),
-                                     tabPanel("Summary Occurence data",
+                                     tabPanel("Occurence data summary",
                                               dataTableOutput("SpeciesTable")
                                      )
 
