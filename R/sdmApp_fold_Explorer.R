@@ -21,6 +21,7 @@
 #' @importFrom graphics plot
 #'
 #' @examples
+#' \donttest{
 #' # load blockCV package data
 #' library(blockCV)
 #' awt <- raster::brick(system.file("extdata", "awt.grd", package = "blockCV"))
@@ -33,6 +34,7 @@
 #' rasterLayer = awt,theRange = 70000,k = 5,
 #' selection = "random",iteration = 100)
 #' sdmApp_fold_Explorer(sb,awt,pa_data,1)
+#' }
 sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
   if (is.null(rasterLayer)) {
     stop("A raster layer should be provided")
