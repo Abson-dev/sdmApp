@@ -1,9 +1,9 @@
 #' Multiply the probability of occurrence map with the presence/absence map to get a presence map only.
 #'
-#' @param x Probability of occurence map, a \code{Raster object}
+#' @param x Probability of occurrence map, a \code{Raster object}
 #' @param y Presence/Absence map, a \code{Raster object}
 #'
-#' @return Probability of occurence map with only presence
+#' @return Probability of occurrence map with only presence
 #' @export
 #'
 #' @examples
