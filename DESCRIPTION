@@ -44,7 +44,8 @@ Imports:
     kernlab,
     rJava,
     rgdal,
-    graphics
+    graphics,
+    rgeos
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,
