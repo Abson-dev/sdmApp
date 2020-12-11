@@ -1,4 +1,4 @@
-#' Times two rasters
+#' Multiply the probability of occurrence map with the presence/absence map to get a presence map only.
 #'
 #' @param x Probability of occurence map, a \code{Raster object}
 #' @param y Presence/Absence map, a \code{Raster object}
