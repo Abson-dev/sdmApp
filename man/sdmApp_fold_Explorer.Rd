@@ -7,7 +7,7 @@
 sdmApp_fold_Explorer(blocks, rasterLayer, speciesData, num)
 }
 \arguments{
-\item{blocks}{A \code{\link{SpatialBlock}} object.}
+\item{blocks}{A SpatialBlock object.}
 
 \item{rasterLayer}{A raster object as background map for visualization.}
 
