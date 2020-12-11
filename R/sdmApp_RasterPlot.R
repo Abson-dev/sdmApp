@@ -1,4 +1,4 @@
-#' Plot a continous raster
+#' Plot a  raster
 #'
 #' @param x \code{Raster object}
 #'
@@ -14,8 +14,10 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
 #' sdmApp_RasterPlot(r)
+#' }
 sdmApp_RasterPlot<-function(x){
   if(grDevices::is.raster(x)){return(NULL)}
   samp <- raster::sampleRegular(x, 5e+05, asRaster = TRUE)
