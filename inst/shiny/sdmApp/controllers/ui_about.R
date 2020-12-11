@@ -1,7 +1,7 @@
 output$ui_about <- renderUI({
   out <- fluidRow(
     column(width = 8, offset = 2, h2(("sdmApp"))),
-    column(width = 8, offset = 2, tags$img(src=system.file("docs","Logo_sdmApp.png",package = "sdmApp"),height=50,width=50)),
+    #column(width = 8, offset = 2, tags$img(src=system.file("docs","Logo_sdmApp.png",package = "sdmApp"),height=50,width=50)),
     column(width = 8, offset = 2, p("sdmApp is a R package containing a shiny application that allows non-expert R users to easily model species distribution. It offers a reproducible worklow for species distribution modelling into a single and user friendly environment. sdmApp takes raster data (in format supported by the raster package) and species occurrence data (several format supported) as input argument. the sdmApp provides an interactive, graphical user interface (GUI).")
     ))
 
