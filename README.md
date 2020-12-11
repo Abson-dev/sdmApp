@@ -23,8 +23,8 @@ sdmApp is a R package containing a shiny application that allows non-expert R us
 
 * Uploading data (raster and species occurrence files)
 * View correlation between raster
-* Use [CENFA](https://cran.r-project.org/web/packages/CENFA/index.html) to select species predictors
-* Apply a spatial blocking for cross-validation based on the [blockCV](https://cran.r-project.org/web/packages/blockCV/index.html) package
+* Use [CENFA](https://CRAN.R-project.org/package=CENFA) to select species predictors
+* Apply a spatial blocking for cross-validation based on the [blockCV](https://CRAN.R-project.org/package=blockCV) package
 * Apply species distribution models with or without a spatial blocking strategy 
 
 * Export results
