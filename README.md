@@ -61,9 +61,3 @@ The help file is also available via this [link](https://github.com/Abson-dev/sdm
 ## License
 
 The sdmApp sticker was made through R art kindly shared by [art.djnavarro.net](art.djnavarro.net) and released under a [CC-BY-SA 4.0](https://www.donneesquebec.ca/fr/licence/) license.
-
-
-## Example
-
-<img src="https://imgur.com/gallery/Hc0HW9t" style="display: block; margin: auto;" />
-
