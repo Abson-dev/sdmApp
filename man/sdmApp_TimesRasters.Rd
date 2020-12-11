@@ -2,7 +2,7 @@
 % Please edit documentation in R/sdmApp_TimesRasters.R
 \name{sdmApp_TimesRasters}
 \alias{sdmApp_TimesRasters}
-\title{Times two rasters}
+\title{Multiply the probability of occurrence map with the presence/absence map to get a presence map only.}
 \usage{
 sdmApp_TimesRasters(x, y)
 }
@@ -15,7 +15,7 @@ sdmApp_TimesRasters(x, y)
 Probability of occurence map with only presence
 }
 \description{
-Times two rasters
+Multiply the probability of occurrence map with the presence/absence map to get a presence map only.
 }
 \examples{
 \donttest{
