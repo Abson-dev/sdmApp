@@ -3,7 +3,8 @@
 
 <!--[![Build Status](https://travis-ci.com/Abson-dev/sdmApp.svg?branch=master)](https://travis-ci.com/Abson-dev/sdmApp)
 [![Travis build status](https://travis-ci.com/Abson-dev/sdmApp.svg?branch=master)](https://travis-ci.com/Abson-dev/sdmApp)-->
-[![R build status](https://github.com/github/Abson-dev/workflows/R-CMD-check/badge.svg)](https://github.com/github/Abson-dev/actions)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/sdmApp)](http://www.r-pkg.org/pkg/sdmApp)
 [![Coverage Status](https://coveralls.io/repos/github/Abson-dev/sdmApp/badge.svg?branch=master)](https://coveralls.io/github/Abson-dev/sdmApp?branch=master)
 [![License](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![CRAN version](https://www.r-pkg.org/badges/version/sdmApp)](https://CRAN.R-project.org/package=sdmApp)
