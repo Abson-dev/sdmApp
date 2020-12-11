@@ -40,9 +40,11 @@
 #' @import kernlab
 #'
 #' @examples
+#' \dontrun{
 #' #load the package
 #' library(sdmApp)
 #' sdmApp()
+#' }
 sdmApp<-function (maxRequestSize = 50, debug = FALSE, theme = "IHSN",
           ..., shiny.server = FALSE)
 {
