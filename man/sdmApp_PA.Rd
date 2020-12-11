@@ -16,7 +16,9 @@ a \code{ggplot object}
 Plot presence/absence map
 }
 \examples{
+\donttest{
 r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
 r <- r > 4000
 sdmApp_PA(r)
+}
 }
