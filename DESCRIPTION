@@ -18,8 +18,6 @@ Depends:
 Encoding: UTF-8
 LazyData: true
 Imports:
-    utils,
-    stats,
     shiny,
     sf,
     raster,
@@ -36,7 +34,6 @@ Imports:
     automap,
     blockCV,
     tidyverse,
-    ggpubr,
     CENFA,
     dismo,
     ggcorrplot,
@@ -45,11 +42,15 @@ Imports:
     rJava,
     rgdal,
     graphics,
-    rgeos
+    rgeos,
+    ggpubr
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     covr,
     rmarkdown,
-    testthat
+    testthat,
+    grDevices,
+    utils,
+    stats
 VignetteBuilder: knitr
