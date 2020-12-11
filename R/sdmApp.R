@@ -34,18 +34,15 @@
 #' @import automap
 #' @import blockCV
 #' @import tidyverse
-#' @import ggpubr
 #' @import CENFA
 #' @import rJava
 #' @import randomForest
 #' @import kernlab
 #'
 #' @examples
-#' \donttest{
 #' #load the package
 #' library(sdmApp)
 #' sdmApp()
-#' }
 sdmApp<-function (maxRequestSize = 50, debug = FALSE, theme = "IHSN",
           ..., shiny.server = FALSE)
 {
