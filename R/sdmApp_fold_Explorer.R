@@ -1,8 +1,8 @@
 #' Explore the generated folds and visualize the placement of folds and distribution of species data over folds.
 #'
-#' @param blocks A SpatialBlock object.
+#' @param blocks A \code{SpatialBlock} object.
 #' @param rasterLayer A raster object as background map for visualization.
-#' @param speciesData A simple features (sf) or \code{\link{SpatialPoints}} object containing species data (response variable).
+#' @param speciesData A simple features (sf) or \code{SpatialPoints} object containing species data (response variable).
 #' @param num A number of fold to assign as data test set.
 #'
 #' @return A map showing folds and the species data, that can be used to explore folds.
@@ -17,6 +17,8 @@
 #' @import sf
 #'
 #' @import stats
+#'
+#' @import blockCV
 #'
 #' @importFrom graphics plot
 #'@importFrom ggpubr ggarrange
