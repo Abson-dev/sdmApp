@@ -2,7 +2,7 @@
 % Please edit documentation in R/sdmApp_RasterPlot.R
 \name{sdmApp_RasterPlot}
 \alias{sdmApp_RasterPlot}
-\title{Plot a continous raster}
+\title{Plot a  raster}
 \usage{
 sdmApp_RasterPlot(x)
 }
@@ -13,7 +13,7 @@ sdmApp_RasterPlot(x)
 a \code{ggplot object}
 }
 \description{
-Plot a continous raster
+Plot a  raster
 }
 \examples{
 \donttest{
