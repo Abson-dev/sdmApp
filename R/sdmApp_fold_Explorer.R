@@ -1,9 +1,9 @@
-#' Explore the generated folds andvisualising the placement of folds and distribution of species data over folds.
+#' Explore the generated folds and visualize the placement of folds and distribution of species data over folds.
 #'
-#' @param blocks A SpatialBlock object.
-#' @param rasterLayer A raster object as background map for visualisation.
-#' @param speciesData A simple features (sf) or SpatialPoints object containing species data (response variable).
-#' @param num A number of fold to assign as data testset.
+#' @param blocks A \code{\link{SpatialBlock}} object.
+#' @param rasterLayer A raster object as background map for visualization.
+#' @param speciesData A simple features (sf) or \code{\link{SpatialPoints}} object containing species data (response variable).
+#' @param num A number of fold to assign as data test set.
 #'
 #' @return A map showing folds and the species data, that can be used to explore folds.
 #' @export
@@ -21,6 +21,7 @@
 #' @importFrom graphics plot
 #'@importFrom ggpubr ggarrange
 #' @examples
+#' \donttest{
 #' # load blockCV package data
 #' library(blockCV)
 #' awt <- raster::brick(system.file("extdata", "awt.grd", package = "blockCV"))
@@ -33,6 +34,7 @@
 #' rasterLayer = awt,theRange = 70000,k = 5,
 #' selection = "random",iteration = 100)
 #' sdmApp_fold_Explorer(sb,awt,pa_data,1)
+#' }
 sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
   if (is.null(rasterLayer)) {
     stop("A raster layer should be provided")
