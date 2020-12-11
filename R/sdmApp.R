@@ -7,12 +7,12 @@
 #'
 #' @param maxRequestSize (numeric) number defining the maximum allowed filesize (in megabytes) for uploaded files, defaults to 50MB
 #' @param debug logical if TRUE, set shiny-debugging options
-#' @param theme select stylesheet for the interface.
+#' @param theme select stylesheet for the interface. Supported choices are IHSN and journal.
 #
 #' @param ... arguments (e.g host) that are passed through runApp when starting the shiny application
-#' @param shiny.server Setting this parameter to TRUE will return the app in the form of an object rather than invoking it. This is useful for deploying sdcApp via shiny-server.
+#' @param shiny.server Setting this parameter to TRUE will return the app in the form of an object rather than invoking it. This is useful for deploying sdmApp via shiny-server.
 #'
-#' @return starts the interactive graphical user interface which may be used to perform the anonymisation process.
+#' @return starts the interactive graphical user interface.
 #' @export
 #' @import shiny
 #' @import raster
