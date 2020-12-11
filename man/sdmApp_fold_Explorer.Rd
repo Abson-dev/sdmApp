@@ -2,24 +2,24 @@
 % Please edit documentation in R/sdmApp_fold_Explorer.R
 \name{sdmApp_fold_Explorer}
 \alias{sdmApp_fold_Explorer}
-\title{Explore the generated folds andvisualising the placement of folds and distribution of species data over folds.}
+\title{Explore the generated folds and visualize the placement of folds and distribution of species data over folds.}
 \usage{
 sdmApp_fold_Explorer(blocks, rasterLayer, speciesData, num)
 }
 \arguments{
-\item{blocks}{A SpatialBlock object.}
+\item{blocks}{A \code{\link{SpatialBlock}} object.}
 
-\item{rasterLayer}{A raster object as background map for visualisation.}
+\item{rasterLayer}{A raster object as background map for visualization.}
 
-\item{speciesData}{A simple features (sf) or SpatialPoints object containing species data (response variable).}
+\item{speciesData}{A simple features (sf) or \code{\link{SpatialPoints}} object containing species data (response variable).}
 
-\item{num}{A number of fold to assign as data testset.}
+\item{num}{A number of fold to assign as data test set.}
 }
 \value{
 A map showing folds and the species data, that can be used to explore folds.
 }
 \description{
-Explore the generated folds andvisualising the placement of folds and distribution of species data over folds.
+Explore the generated folds and visualize the placement of folds and distribution of species data over folds.
 }
 \examples{
 \donttest{
