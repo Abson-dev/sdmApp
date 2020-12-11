@@ -30,7 +30,9 @@ starts the interactive graphical user interface which may be used to perform the
 starts the graphical user interface developed with shiny.
 }
 \examples{
+\donttest{
 #load the package
 library(sdmApp)
 sdmApp()
+}
 }
