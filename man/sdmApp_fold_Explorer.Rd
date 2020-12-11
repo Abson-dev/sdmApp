@@ -22,6 +22,7 @@ A map showing folds and the species data, that can be used to explore folds.
 Explore the generated folds andvisualising the placement of folds and distribution of species data over folds.
 }
 \examples{
+\donttest{
 # load blockCV package data
 library(blockCV)
 awt <- raster::brick(system.file("extdata", "awt.grd", package = "blockCV"))
@@ -34,6 +35,7 @@ sb <- spatialBlock(speciesData = pa_data,species = "Species",
 rasterLayer = awt,theRange = 70000,k = 5,
 selection = "random",iteration = 100)
 sdmApp_fold_Explorer(sb,awt,pa_data,1)
+}
 }
 \seealso{
 \code{\link{foldExplorer}}
