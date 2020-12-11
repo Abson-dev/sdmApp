@@ -1,6 +1,6 @@
 #' Explore the generated folds and visualize the placement of folds and distribution of species data over folds.
 #'
-#' @param blocks A \code{\link{SpatialBlock}} object.
+#' @param blocks A SpatialBlock object.
 #' @param rasterLayer A raster object as background map for visualization.
 #' @param speciesData A simple features (sf) or \code{\link{SpatialPoints}} object containing species data (response variable).
 #' @param num A number of fold to assign as data test set.
