@@ -65,5 +65,5 @@ The sdmApp sticker was made through R art kindly shared by [art.djnavarro.net](a
 
 ## Example
 
-<img src="https://i.imgur.com/KLKy1s0.gif" style="display: block; margin: auto;" />
+<img src="https://imgur.com/gallery/Hc0HW9t" style="display: block; margin: auto;" />
 
