@@ -7,12 +7,10 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
 #' r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
 #' r2 <- r > 4000
 #' z<-sdmApp_TimesRasters(r,r2)
 #' sdmApp_RasterPlot(z)
-#' }
 sdmApp_TimesRasters<-function(x,y){
   z<-x * y
   names(z)<-names(x)
