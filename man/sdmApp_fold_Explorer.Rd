@@ -7,11 +7,11 @@
 sdmApp_fold_Explorer(blocks, rasterLayer, speciesData, num)
 }
 \arguments{
-\item{blocks}{A SpatialBlock object.}
+\item{blocks}{A \code{SpatialBlock} object.}
 
 \item{rasterLayer}{A raster object as background map for visualization.}
 
-\item{speciesData}{A simple features (sf) or \code{\link{SpatialPoints}} object containing species data (response variable).}
+\item{speciesData}{A simple features (sf) or \code{SpatialPoints} object containing species data (response variable).}
 
 \item{num}{A number of fold to assign as data test set.}
 }
