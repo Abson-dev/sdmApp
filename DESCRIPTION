@@ -1,6 +1,6 @@
 Package: sdmApp
 Type: Package
-Title: A user-friendly application for species distribution modelling
+Title: A user-friendly application for species distribution modeling
 Version: 0.0.1
 Author: c(person("Aboubacar", "HEMA", email = "aboubacarhema94@gmail.com", c("aut", "cre")),
     person("Babacar", "NDAO", email = "babacar.ndao@cse.sn", role = "aut"),
@@ -9,7 +9,7 @@ Author: c(person("Aboubacar", "HEMA", email = "aboubacarhema94@gmail.com", c("au
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
 Description: sdmApp is a R package containing a shiny application that allows
               non-expert R users to easily model species distribution. It offers a reproducible 
-              worklow for species distribution modelling into a single and user friendly environment. sdmApp takes raster data (in format supported by the raster package) and species occurrence data (several format supported) as input argument. the sdmApp provides an interactive, graphical user interface (GUI).
+              workflow for species distribution modeling into a single and user friendly environment. sdmApp takes raster data (in format supported by the raster package) and species occurrence data (several format supported) as input argument. the sdmApp provides an interactive, graphical user interface (GUI).
 License: GPL-3
 URL: https://github.com/Abson-dev/sdmApp
 BugReports: https://github.com/Abson-dev/sdmApp/issues
@@ -44,6 +44,7 @@ Imports:
     graphics,
     rgeos,
     ggpubr
+Language: en-US
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,
