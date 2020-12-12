@@ -34,7 +34,7 @@ sdmApp is a R package containing a shiny application that allows non-expert R us
  
  
  ## Installation
-To install the package from GitHub use:
+To install the package from github use:
 
 ```r
 remotes::install_github("Abson-dev/sdmApp", dependencies = TRUE)
@@ -47,4 +47,4 @@ Or installing from CRAN (not yet available on CRAN):
 
 ## License
 
-The sdmApp sticker was made through R art kindly shared by [art.djnavarro.net](art.djnavarro.net) and released under a [CC-BY-SA 4.0](https://www.donneesquebec.ca/fr/licence/) license.
+The sdmApp sticker was made through R art kindly shared by this [link](https://art.djnavarro.net/) and released under a [CC-BY-SA 4.0](https://www.donneesquebec.ca/licence/) license.
