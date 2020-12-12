@@ -18,8 +18,10 @@ Probability of occurrence map with only presence
 Multiply the probability of occurrence map with the presence/absence map to get a presence map only.
 }
 \examples{
+\donttest{
 r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
 r2 <- r > 4000
 z<-sdmApp_TimesRasters(r,r2)
 sdmApp_RasterPlot(z)
+}
 }
