@@ -3,31 +3,25 @@ Package: sdmApp
 Title: A User-Friendly Application for Species Distribution
     Modeling
 Version: 0.0.1
-Author: c( 
-    person(given = "Aboubacar",
-           family = "HEMA",
-           role = c("aut", "cre"),
-           email = "aboubacarhema94@gmail.com"),
-    person(given = "Babacar",
-           family = "NDAO",
-           role = "ctb",
-           email = "babacar.ndao@cse.sn"),
-    person(given = "Louise",
-           family = "LEROUX",
-           role = "aut",
-           email = "louise.leroux@cirad.fr"),
-    person(given = "Abdoul Aziz",
-           family = "DIOUF",
-           role = "ctb",
-           email = "aziz.diouf@cse.sn"))
+Authors@R: c(person(given = "Aboubacar", family = "HEMA", role =
+    c("aut", "cre"), email = "aboubacarhema94@gmail.com"), person(given =
+    "Babacar", family = "NDAO", role = "ctb", email =
+    "babacar.ndao@cse.sn"), person(given = "Louise", family = "LEROUX",
+    role = "aut", email = "louise.leroux@cirad.fr"), person(given =
+    "Abdoul Aziz", family = "DIOUF", role = "ctb", email =
+    "aziz.diouf@cse.sn"))
+Author: Aboubacar HEMA [aut, cre],
+  Babacar NDAO [ctb],
+  Louise LEROUX [aut],
+  Abdoul Aziz DIOUF [ctb]
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
 Description: This package is containing a shiny application
     that allows non-expert R users to easily model species distribution.
     It offers a reproducible workflow for species distribution modeling
-    into a single and user friendly environment. sdmApp takes 'raster' data
-    (in format supported by the raster package) and species occurrence
-    data (several format supported) as input argument. The 'sdmApp' provides
-    an interactive, graphical user interface (GUI).
+    into a single and user friendly environment. sdmApp takes 'raster'
+    data (in format supported by the raster package) and species
+    occurrence data (several format supported) as input argument. The
+    'sdmApp' provides an interactive, graphical user interface (GUI).
 License: GPL-3
 URL: https://github.com/Abson-dev/sdmApp
 BugReports: https://github.com/Abson-dev/sdmApp/issues
