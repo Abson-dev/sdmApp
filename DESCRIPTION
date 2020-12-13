@@ -38,7 +38,10 @@ Imports:
     shiny,
     shinyBS,
     shinyFiles,
-    SSDM
+    SSDM,
+    ggcorrplot,
+    ggplot2,
+    ggpubr
 Suggests: 
     covr,
     grDevices,
@@ -47,9 +50,6 @@ Suggests:
     stats,
     testthat,
     utils,
-    ggcorrplot,
-    ggplot2,
-    ggpubr,
     graphics,
     haven,
     tidyverse,
