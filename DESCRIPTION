@@ -17,11 +17,6 @@ Author: Aboubacar HEMA [aut, cre],
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
 Description: This package is containing a shiny application
     that allows non-expert R users to easily model species distribution.
-    It offers a reproducible workflow for species distribution modeling
-    into a single and user friendly environment. sdmApp takes 'raster'
-    data (in format supported by the raster package) and species
-    occurrence data (several format supported) as input argument. The
-    'sdmApp' provides an interactive, graphical user interface (GUI).
 License: GPL-3
 URL: https://github.com/Abson-dev/sdmApp
 BugReports: https://github.com/Abson-dev/sdmApp/issues
@@ -32,28 +27,18 @@ Imports:
     biomod2,
     blockCV,
     CENFA,
-    data.table,
     dismo,
     DT,
-    ggcorrplot,
-    ggplot2,
-    ggpubr,
-    graphics,
-    haven,
     kernlab,
     randomForest,
     raster,
     readxl,
-    rgdal,
-    rgeos,
     rhandsontable,
-    rJava,
     sf,
     shiny,
     shinyBS,
     shinyFiles,
-    SSDM,
-    tidyverse
+    SSDM
 Suggests: 
     covr,
     grDevices,
@@ -61,7 +46,16 @@ Suggests:
     rmarkdown,
     stats,
     testthat,
-    utils
+    utils,
+    ggcorrplot,
+    ggplot2,
+    ggpubr,
+    graphics,
+    haven,
+    tidyverse,
+    data.table,
+    rgdal,
+    rgeos
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
