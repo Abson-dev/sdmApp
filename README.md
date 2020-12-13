@@ -38,6 +38,8 @@ To install the package from github use:
 
 ```r
 remotes::install_github("Abson-dev/sdmApp", dependencies = TRUE)
+library(sdmApp)
+sdmApp()
 ```
 Or installing from CRAN (not yet available on CRAN):
 
