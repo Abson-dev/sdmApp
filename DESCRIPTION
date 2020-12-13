@@ -15,7 +15,7 @@ Author: Aboubacar HEMA [aut, cre],
   Louise LEROUX [aut],
   Abdoul Aziz DIOUF [ctb]
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
-Description: This package is containing a shiny application
+Description: It is containing a shiny application
     that allows non-expert R users to easily model species distribution.
 License: GPL-3
 URL: https://github.com/Abson-dev/sdmApp
