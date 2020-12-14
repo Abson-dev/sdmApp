@@ -41,7 +41,9 @@ Imports:
     SSDM,
     ggcorrplot,
     ggplot2,
-    ggpubr
+    ggpubr,
+    tidyverse,
+    rJava
 Suggests: 
     covr,
     grDevices,
@@ -52,7 +54,6 @@ Suggests:
     utils,
     graphics,
     haven,
-    tidyverse,
     data.table,
     rgdal,
     rgeos
