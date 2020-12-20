@@ -40,7 +40,7 @@ remotes::install_github("Abson-dev/sdmApp", dependencies = TRUE)
 library(sdmApp)
 sdmApp()
 ```
-<img src="inst/docs/sdmApp.png"  width="120" />
+<img src="inst/docs/sdmApp.PNG" />
 
 
 Or installing from *CRAN* (not yet available on *CRAN*):
