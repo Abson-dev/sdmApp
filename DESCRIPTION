@@ -1,8 +1,7 @@
-Type: Package
 Package: sdmApp
-Title: A User-Friendly Application for Species Distribution
-    Modeling
-Version: 0.0.2
+Title: "A User-Friendly Application for Species Distribution
+    Modeling""
+Version: 0.0.1
 Authors@R: c(person(given = "Aboubacar", family = "HEMA", role =
     c("aut", "cre"), email = "aboubacarhema94@gmail.com"), person(given =
     "Babacar", family = "NDAO", role = "ctb", email =
@@ -12,17 +11,16 @@ Authors@R: c(person(given = "Aboubacar", family = "HEMA", role =
     "aziz.diouf@cse.sn"))
 Author: Aboubacar HEMA [aut, cre],
   Babacar NDAO [ctb],
-  Louise LEROUX [aut],
+  Louise LEROUX [ctb],
   Abdoul Aziz DIOUF [ctb]
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
-Description: It is containing a shiny application
-    that allows non-expert R users to easily model species distribution.
+Description: 'sdmApp' is a 'R' 'package' containing a 'Shiny' application that allows non-expert 'R' users to easily model species distribution. It offers a reproducible work flow for species distribution modeling into a single and user friendly environment. 'sdmApp' takes 'Raster' data (in format supported by the 'Raster package') and species occurrence data (several format supported) as input argument. This 'package' provides an interactive graphical user interface (GUI).
 License: GPL-3
 URL: https://github.com/Abson-dev/sdmApp
 BugReports: https://github.com/Abson-dev/sdmApp/issues
-Depends:
-    R (>= 3.5.0)
 Imports:
+    raster,
+    sp,
     automap,
     biomod2,
     blockCV,
@@ -31,7 +29,6 @@ Imports:
     DT,
     kernlab,
     randomForest,
-    raster,
     readxl,
     rhandsontable,
     sf,
@@ -42,7 +39,11 @@ Imports:
     ggcorrplot,
     ggplot2,
     ggpubr,
+    haven,
     tidyverse,
+    data.table,
+    rgdal,
+    rgeos,
     rJava
 Suggests: 
     covr,
@@ -52,14 +53,11 @@ Suggests:
     stats,
     testthat,
     utils,
-    graphics,
-    haven,
-    data.table,
-    rgdal,
-    rgeos
-VignetteBuilder: 
-    knitr
+    graphics
+VignetteBuilder: knitr
 Encoding: UTF-8
 Language: en-US
 LazyData: true
 RoxygenNote: 7.1.1
+
+
