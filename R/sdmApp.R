@@ -1,8 +1,3 @@
-
-
-
-
-
 #' starts the graphical user interface developed with shiny.
 #'
 #' @param maxRequestSize (numeric) number defining the maximum allowed file size (in megabytes) for uploaded files, defaults to 50MB
@@ -40,11 +35,9 @@
 #' @import kernlab
 #'
 #' @examples
-#' \donttest{
 #' #load the package
 #' library(sdmApp)
 #' sdmApp()
-#' }
 sdmApp<-function (maxRequestSize = 50, debug = FALSE, theme = "IHSN",
           ..., shiny.server = FALSE)
 {
