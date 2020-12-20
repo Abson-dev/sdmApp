@@ -35,9 +35,11 @@
 #' @import kernlab
 #'
 #' @examples
+#' if(interactive()){
 #' #load the package
 #' library(sdmApp)
 #' sdmApp()
+#' }
 sdmApp<-function (maxRequestSize = 50, debug = FALSE, theme = "IHSN",
           ..., shiny.server = FALSE)
 {
