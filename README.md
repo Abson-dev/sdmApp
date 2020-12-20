@@ -17,7 +17,8 @@
 <!--[![DOI](https://zenodo.org/badge/116337503.svg)](https://zenodo.org/badge/latestdoi/116337503) -->
 
 
-sdmApp is a R package containing a shiny application that allows non-expert R users to easily model species distribution. It offers a reproducible workflow for species distribution modeling into a single and user friendly environment. sdmApp takes raster data (in format supported by the raster package) and species occurrence data (several format supported) as input argument. The sdmApp provides an interactive, graphical user interface (GUI). This document will give an overview of the main functionalities of the graphical user interface. The main features of the GUI is:
+'sdmApp' is a 'R' 'package' containing a 'Shiny' application that allows non-expert 'R' users to easily model species distribution. It offers a reproducible work flow for species distribution modeling into a single and user friendly environment. 'sdmApp' takes 'Raster' data (in format supported by the 'Raster package') and species occurrence data (several format supported) as input argument. This 'package' provides an interactive graphical user interface (GUI).
+ This document will give an overview of the main functionalities of the graphical user interface. The main features of the GUI is:
 
 * Uploading data (raster and species occurrence files)
 * View correlation between raster
