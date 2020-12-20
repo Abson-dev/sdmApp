@@ -43,11 +43,7 @@ sdmApp()
 <img src="inst/docs/sdmApp.PNG" />
 
 
-Or installing from *CRAN* (not yet available on *CRAN*):
-
-```r
-#install.packages("sdmApp", dependencies = TRUE)
-```
+<img src="inst/docs/export1.PNG" />
 
 ## License
 
