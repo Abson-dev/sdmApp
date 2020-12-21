@@ -225,6 +225,7 @@ shinyServer(function(session, input, output) {
             map = data$Env[[i]]
           }
           a =try(eval(parse(text = string_code())))
+          load.occ$plot<-a
           if(inherits(a, 'try-error')){
             output$Envbugplot <- renderUI(p('Can not plot this raster! Please verify it and try again.'))
           }
@@ -234,36 +235,8 @@ shinyServer(function(session, input, output) {
           }
         }
       })
-      ## a plot function
-      plotInput <- reactive({
-        if(!is.null(input$layer)){
-          i = as.numeric(which(as.list(names(data$Env)) == input$layer))
-          if(data$Env[[i]]@data@isfactor) {
-            map = !as.factor(data$Env[[i]])
-          } else {
-            map = data$Env[[i]]
-            #a =eval(parse(text = string_code()))
-            map
-          }
-        }
-      })
-        # downloadHandler contains 2 arguments as functions, namely filename, content
-        output$down <- downloadHandler(
-          filename =  function() {
-            paste(input$layer, input$plot_type, sep=".")
-          },
-          # content is a function with argument file. content writes the plot to the device
-          content = function(file) {
-            if(input$plot_type == "png")
-              grDevices::png(file) # open the png device
-            else
-              grDevices::pdf(file) # open the pdf device
-            #sdmApp::sdmApp_RasterPlot(map)
-            plot(plotInput())
-            dev.off()  # turn the device off
 
-          }
-          )
+
     }
     updateTabItems(session, "actions", selected = "newdata")
   })
@@ -471,5 +444,14 @@ shinyServer(function(session, input, output) {
     return(p1)
   }
 
-
+  ## a plot function
+  plotInput <- function(){
+      a <- load.occ$plot
+      if(inherits(a, 'try-error')){
+        return(NULL)
+      }
+      else{
+        return(a)
+      }
+    }
 })
