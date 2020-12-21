@@ -49,7 +49,24 @@ output$download_enfa_scatter <- downloadHandler(
   }
 )
 
-
+# downloadHandler contains 2 arguments as functions, namely filename, content
+output$down <- downloadHandler(
+  filename =  function() {
+    paste(input$layer, input$plot_type, sep=".")
+  },
+  # content is a function with argument file. content writes the plot to the device
+  content = function(file) {
+    if(input$plot_type == "png"){
+      grDevices::png(file) # open the png device
+      print(plotInput())
+      dev.off()}
+    else{
+      grDevices::pdf(file) # open the pdf device
+      print(plotInput())
+      dev.off()  # turn the device off
+    }
+  }
+)
 
 output$download_Bioclim <- downloadHandler(
   filename =  function() {
