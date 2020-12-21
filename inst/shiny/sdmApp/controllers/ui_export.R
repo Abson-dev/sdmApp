@@ -38,7 +38,8 @@ output$download_cor_plot <- downloadHandler(
 
 output$download_enfa_scatter <- downloadHandler(
   filename =  function() {
-    paste("ENFA", Sys.Date(), sep=".png")
+    #paste0("ENFA", Sys.Date())
+    'ENFA.png'
   },
   # content is a function with argument file. content writes the plot to the device
   content = function(file) {
