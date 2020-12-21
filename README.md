@@ -47,6 +47,25 @@ sdmApp()
 
 <img src="inst/docs/export2.PNG" />
 
+<img src="inst/docs/export3.PNG" />
+
+<img src="inst/docs/export4.PNG" />
+
+
+<img src="inst/docs/export5.PNG" />
+
+<img src="inst/docs/export6.PNG" />
+
+
+<img src="inst/docs/export7.PNG" />
+
+<img src="inst/docs/export8.PNG" />
+
+
+<img src="inst/docs/export9.PNG" />
+
+<img src="inst/docs/export10.PNG" />
+
 ## License
 
 The *sdmApp* sticker was made through *R* art kindly shared by this [link](https://art.djnavarro.net/) and released under a [CC-BY-SA 4.0](https://www.donneesquebec.ca/licence/) license.
