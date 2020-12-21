@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sdmApp • sdmApp</title>
+<title>sdmApp package: A user-friendly application for species distribution modeling • sdmApp</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="sdmApp">
+<script src="../pkgdown.js"></script><meta property="og:title" content="sdmApp package: A user-friendly application for species distribution modeling">
 <meta property="og:description" content="sdmApp">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -70,8 +70,10 @@
       </header><script src="sdmApp_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>sdmApp</h1>
+      <h1 data-toc-skip>sdmApp package: A user-friendly application for species distribution modeling</h1>
+                        <h4 class="author">Aboubacar HEMA, Babacar NDAO, Louise LEROUX, Abdoul Aziz DIOUF</h4>
             
+            <h4 class="date">2020-12-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Abson-dev/sdmApp/blob/master/vignettes/sdmApp.Rmd"><code>vignettes/sdmApp.Rmd</code></a></small>
       <div class="hidden name"><code>sdmApp.Rmd</code></div>
@@ -80,13 +82,61 @@
 
     
     
+<div id="introduction-and-main-features" class="section level1">
+<h1 class="hasAnchor">
+<a href="#introduction-and-main-features" class="anchor"></a>Introduction and Main Features</h1>
+<p><em>sdmApp</em> is a <em>R package</em> containing a <em>Shiny</em> application that allows non-expert <em>R</em> users to easily model species distribution. It offers a reproducible work flow for species distribution modeling into a single and user friendly environment. <em>sdmApp</em> takes <em>Raster</em> data (in format supported by the <em>Raster package</em>) and species occurrence data (several format supported) as input argument. This <em>package</em> provides an interactive graphical user interface (<em>GUI</em>). This document will give an overview of the main functionalities of the graphical user interface. The main features of the <em>GUI</em> is:</p>
+<ul>
+<li><p>Uploading data (<em>raster</em> and species occurrence files)</p></li>
+<li><p>View correlation between <em>raster</em></p></li>
+<li><p>Use <a href="https://CRAN.R-project.org/package=CENFA">CENFA</a> to select species predictors</p></li>
+<li><p>Apply a spatial blocking for cross-validation based on the <a href="https://CRAN.R-project.org/package=blockCV">blockCV</a> package</p></li>
+<li><p>Apply species distribution models with or without a spatial blocking strategy</p></li>
+<li><p>Export results</p></li>
+<li><p>Keep reproduce (<em>R</em> code) by being able do download the underlying code from <em>sdmApp</em>.</p></li>
+</ul>
+<p>The <em>GUI</em> is build around 5 main windows, which can be selected from the navigation bar at the top of the screen. Initially, some of these windows will be empty and their content changes once data (both <em>raster</em> and species occurrence files) have been uploaded.</p>
+</div>
+<div id="installation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h1>
+<p>The <strong>sdmApp</strong> is available in GitHub and it will be available in <em>CRAN</em> soon. It is recommended to install the dependencies of the package. To install the package from GitHub use:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Abson-dev/sdmApp">sdmApp</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"Abson-dev/sdmApp"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># loading the package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Abson-dev/sdmApp">sdmApp</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Graphical User Interface (GUI)</span>
+<span class="fu"><a href="../reference/sdmApp.html">sdmApp</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="references" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References:</h2>
+<ul>
+<li><p>Bahn, V., &amp; McGill, B. J. (2012). Testing the predictive performance of distribution models. Oikos, 122(3), 321–331.</p></li>
+<li><p>Hiemstra, P. H., Pebesma, E. J., Twenhöfel, C. J., &amp; Heuvelink, G. B. (2009). Real-time automatic interpolation of ambient gamma dose rates from the Dutch radioactivity monitoring network. Computers &amp; Geosciences, 35(8), 1711–1721.</p></li>
+<li><p>Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009). The elements of statistical learning: Data Mining, Inference, and Prediction (2nd ed., Vol. 1). Springer series in statistics New York.</p></li>
+<li><p>Leta, S., Fetene, E., Mulatu, T., Amenu, K., Jaleta, M.B., Beyene, T.J., Negussie, H., Revie, C.W., 2019. Modeling the global distribution of Culicoides imicola: an Ensemble approach. Sci. Rep. 9. <a href="https://doi.org/10.1038/s41598-019-50765-1">doi: 10.1038/s41598-019-50765-1</a></p></li>
+<li><p>Luo, D., Silva, D.P., De Marco Júnior, P., Pimenta, M., Caldas, M.M., 2020. Model approaches to estimate spatial distribution of bee species richness and soybean production in the Brazilian Cerrado during 2000 to 2015. Sci. Total Environ. 737, 139674. <a href="https://doi.org/https://doi.org/10.1016/j.scitotenv.2020.139674">doi: 10.1016/j.scitotenv.2020.139674</a></p></li>
+<li><p>Mudereri, B.T., Abdel-Rahman, E.M., Dube, T., Landmann, T., Khan, Z., Kimathi, E., Owino, R., Niassy, S., 2020. Multi-source spatial data-based invasion risk modeling of Striga ( Striga asiatica ) in Zimbabwe. GIScience Remote Sens. 1–19. <a href="https://doi.org/10.1080/15481603.2020.1744250">doi: 10.1080/15481603.2020.1744250</a></p></li>
+<li><p>O’Sullivan, D., &amp; Unwin, D. J. (2010). Geographic Information Analysis (2nd ed.). John Wiley &amp; Sons.</p></li>
+<li><p>Phillips, S. J., Anderson, R. P., Dudík, M., Schapire, R. E., &amp; Blair, M. E. (2017). Opening the black box: an open-source release of Maxent. Ecography.</p></li>
+<li><p>Roberts, D.R., Bahn, V., Ciuti, S., Boyce, M.S., Elith, J., Guillera-Arroita, G., Hauenstein, S., Lahoz-Monfort, J.J., Schröder, B., Thuiller, W., others, 2017. Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. Ecography. 40: 913-929.</p></li>
+<li><p>Schindler, S., von Wehrden, H., Poirazidis, K., Hochachka, W.M., Wrbka, T., Kati, V., 2015. Performance of methods to select landscape metrics for modelling species richness. Ecol. Modell. 295, 107–112.<a href="https://doi.org/10.1016/J.ECOLMODEL.2014.05.012">doi: 10.1016/J.ECOLMODEL.2014.05.012</a></p></li>
+<li><p>Simensen, T., Horvath, P., Vollering, J., Erikstad, L., Halvorsen, R., Bryn, A., 2020. Composite landscape predictors improve distribution models of ecosystem types. Divers. Distrib. 26, 928–943. <a href="https://doi.org/10.1111/ddi.13060">doi: 10.1111/ddi.13060</a></p></li>
+<li><p>Telford, R. J., &amp; Birks, H. J. B. (2009). Evaluation of transfer functions in spatially structured environments. Quaternary Science Reviews, 28(13), 1309–1316.</p></li>
+<li><p>Thuiller, W., Georges, D., Engler, R., &amp; Breiner, F. (2017). biomod2: Ensemble Platform for Species Distribution Modeling. R package version 3.3-7. <a href="https://CRAN.R-project.org/package=biomod2" class="uri">https://CRAN.R-project.org/package=biomod2</a>.</p></li>
+<li><p>Valavi R, Elith J, Lahoz-Monfort JJ, Guillera-Arroita G. <strong>blockCV: An R package for generating spatially or environmentally separated folds for k-fold cross-validation of species distribution models</strong>. <em>Methods Ecol Evol.</em> 2019; 10:225–232. <a href="https://doi.org/10.1111/2041-210X.13107">doi: 10.1111/2041-210X.13107</a></p></li>
+</ul>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
