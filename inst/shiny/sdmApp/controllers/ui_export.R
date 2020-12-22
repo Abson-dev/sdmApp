@@ -68,6 +68,43 @@ output$down <- downloadHandler(
   }
 )
 
+output$download_barchart <- downloadHandler(
+  filename =  function() {
+    'barchart.png'
+  },
+  # content is a function with argument file. content writes the plot to the device
+  content = function(file) {
+    grDevices::png(file)
+    print(plotInput_barchart())
+    dev.off()  # turn the device off
+  }
+)
+
+output$download_mapplot <- downloadHandler(
+  filename =  function() {
+    'barchart.png'
+  },
+  # content is a function with argument file. content writes the plot to the device
+  content = function(file) {
+    grDevices::png(file)
+    print(plotInput_mapplot())
+    dev.off()  # turn the device off
+  }
+)
+
+output$download_variogram <- downloadHandler(
+  filename =  function() {
+    paste0("variogram", input$vario_var, ".png")
+  },
+  # content is a function with argument file. content writes the plot to the device
+  content = function(file) {
+    grDevices::png(file)
+    print(plotInput_variogram())
+    dev.off()  # turn the device off
+  }
+)
+
+######################################""
 output$download_Bioclim <- downloadHandler(
   filename =  function() {
     paste("Bioclim_N_Blocking", input$plot_type_Bioclim, sep=".")
