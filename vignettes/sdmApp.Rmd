@@ -9,6 +9,7 @@ vignette: >
   %\VignetteIndexEntry{A user-friendly application for species distribution modeling}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  
 ---
 
 # Introduction and Main Features
@@ -44,8 +45,13 @@ library(sdmApp)
 sdmApp()
 ```
 
+# Package data
 
-## References:
+The package contains the raw format of the following data:
+
+* 
+
+# References:
 - Bahn, V., & McGill, B. J. (2012). Testing the predictive performance of distribution models. Oikos, 122(3), 321–331.
    
 - Hiemstra, P. H., Pebesma, E. J., Twenhöfel, C. J., & Heuvelink, G. B. (2009). Real-time automatic interpolation of ambient gamma dose rates from the Dutch radioactivity monitoring network. Computers & Geosciences, 35(8), 1711–1721.
