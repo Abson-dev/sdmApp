@@ -14,6 +14,12 @@
 # })
 output$ui_spatial_auto_range<-renderUI({
   observeEvent(input$sp_auto,{
+    validate(
+      need(length(input$var_auto) > 0, 'Choose specie predictors first !')
+    )
+
+    data$var_auto<-raster::subset(data$Env,input$var_auto)
+
         output$tableRange <- DT::renderDataTable({
               datatable(tableRange(),
               rownames = FALSE,
@@ -24,18 +30,21 @@ output$ui_spatial_auto_range<-renderUI({
        observeEvent(input$vario_var,{
               output$variogram<-renderPlot({
                   sac<-sac()
-                  vect<-names(data$Env)
+                  vect<-names(data$var_auto)
+                  data$variogram<-plot(sac$variograms[[which(vect==input$vario_var)]])
                   plot(sac$variograms[[which(vect==input$vario_var)]])
                                         })
                   })
 
                 output$barchart <- renderPlot({
                   sac<-sac()
+                  data$barchar<-sac$plots$barchart
                   sac$plots$barchart
                 })
 
                 output$mapplot <- renderPlot({
                   sac<-sac()
+                  data$mapplot<-sac$plots$mapplot
                   sac$plots$mapplot
                 })
         })
@@ -43,6 +52,8 @@ output$ui_spatial_auto_range<-renderUI({
            mainPanel(width = 8, tabsetPanel(type = "tabs",
                                             tabPanel("Apply",
                                                      p('Spatial autocorrelation ranges in input environnemental variables '),
+                                                     selectInput('var_auto', 'Please select the specie predictors', names(data$Env), multiple = TRUE, selectize = TRUE),
+                                                     p('The spatial blocking procedure can take a long time depending on the number of input variables'),
                                                      myActionButton("sp_auto",label=("Apply"), "primary")),
                                             tabPanel("Barchart",
                                                      p('Spatial autocorrelation ranges in input environnemental variables '),
