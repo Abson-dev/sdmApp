@@ -417,13 +417,13 @@ shinyServer(function(session, input, output) {
 
   sac<-reactive({
     a = try(withProgress(message = 'Spatial Autorange',
-                         blockCV::spatialAutoRange(rasterLayer = data$Env,
+                         blockCV::spatialAutoRange(rasterLayer = data$var_auto,
                                                    doParallel = T,
                                                    plotVariograms = TRUE,
                                                    showPlots = FALSE)))
     load.occ$sac<-a
     load.occ$sac
-  })
+    })
 
   Cor_plotInput <- function(){
     p1 =   ggcorrplot::ggcorrplot(mat(),ggtheme = ggplot2::theme_gray,
@@ -453,5 +453,35 @@ shinyServer(function(session, input, output) {
       else{
         return(a)
       }
+  }
+
+  plotInput_variogram <- function(){
+    a <- data$variogram
+    if(inherits(a, 'try-error')){
+      return(NULL)
     }
+    else{
+      return(a)
+    }
+  }
+
+  plotInput_barchart <- function(){
+    a <- data$barchart
+    if(inherits(a, 'try-error')){
+      return(NULL)
+    }
+    else{
+      return(a)
+    }
+  }
+
+  plotInput_mapplot <- function(){
+    a <- data$mapplot
+    if(inherits(a, 'try-error')){
+      return(NULL)
+    }
+    else{
+      return(a)
+    }
+  }
 })
