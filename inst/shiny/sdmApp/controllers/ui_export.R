@@ -82,7 +82,7 @@ output$download_barchart <- downloadHandler(
 
 output$download_mapplot <- downloadHandler(
   filename =  function() {
-    'barchart.png'
+    'mapplot.png'
   },
   # content is a function with argument file. content writes the plot to the device
   content = function(file) {
