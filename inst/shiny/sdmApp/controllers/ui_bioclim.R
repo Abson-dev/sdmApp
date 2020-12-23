@@ -1,39 +1,6 @@
 #### bioclim contents
 
 output$ui_bioclim<-renderUI({
-
-  # Specdata<-reactive({
-  #   dsf<-load.occ$select
-  #   dsf<-dsf %>% dplyr::rename(lon=load.occ$lon,lat=load.occ$lat)
-  #   dsf[,1]<-as.numeric(unlist(dsf[,1]))
-  #   dsf[,2]<-as.numeric(unlist(dsf[,2]))
-  #   dsf[,3]<-as.numeric(unlist(dsf[,3]))
-  #   dsf
-  # })
-  #
-  # Specdata_Presence<-reactive({
-  #   dsf<-Specdata()
-  #   dsf<-dsf[dsf[,ncol(dsf)] == 1,]
-  #   sp::coordinates(dsf) <-~lon+lat
-  #   sp::proj4string(dsf) <-raster::crs(data$Env)
-  #   dsf
-  # })
-  #
-  # glc<-reactive({
-  #   GLcenfa(x = data$Env)
-  # })
-  #
-  # mod.enfa<-reactive({
-  #   pr<-Specdata_Presence()
-  #   pr@data$load.occ$spec_select<-as.numeric(pr@data$load.occ$spec_select)
-  #   CENFA::enfa(x = data$Env, s.dat = pr, field = load.occ$spec_select)
-  # })
-  # enfa_plot<-reactive({
-  #   glc <- glc()
-  #
-  #   mod.enfa <- mod.enfa()
-  #   CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
-  # })
   output$enfa_var_bioclim<-renderPlot({
     glc <- glc()
     mod.enfa <- mod.enfa()
@@ -87,10 +54,14 @@ output$ui_bioclim<-renderUI({
         load.occ$Bioclim <- map
       }
       output$proba_occ_Bioclim<-renderPlot({
-        if(title_probaplot_Bioclim=='Occurence map (Presence/Absence)'){sdmApp::sdmApp_PA(map)}
+        if(title_probaplot_Bioclim=='Occurence map (Presence/Absence)'){
+          model$bioclim <- sdmApp::sdmApp_PA(map)
+          model$bioclim
+          }
         else{
           #if(title_probaplot_Bioclim=='Occurence map (Presence)'){sdmApp::sdmApp_RasterPlot(map)}
-          sdmApp::sdmApp_RasterPlot(map)
+          model$bioclim <- sdmApp::sdmApp_RasterPlot(map)
+          model$bioclim
           }
 
       })
@@ -103,11 +74,16 @@ output$ui_bioclim<-renderUI({
       if(input$model_ev_Bioclim == 'FPR') {ev<-'FPR'}
       if(input$model_ev_Bioclim == 'prevalence') {ev<-'prevalence'}
       output$eval_Bioclim<-renderPlot({
-        if(ev=='density'){density(evaluate_model[[which.max(auc)]])}
+        if(ev=='density'){
+          data$ev<-density(evaluate_model[[which.max(auc)]])
+          data$ev}
         else{
-          if(ev=='boxplot'){boxplot(evaluate_model[[which.max(auc)]], col=c('red', 'green'),xlab=load.occ$spec_select)}
+          if(ev=='boxplot'){
+            data$ev<-boxplot(evaluate_model[[which.max(auc)]], col=c('red', 'green'),xlab=load.occ$spec_select)
+            data$ev}
           else{
-            plot(evaluate_model[[which.max(auc)]],ev)
+            data$ev<-plot(evaluate_model[[which.max(auc)]],ev)
+            data$ev
           }
         }
 
