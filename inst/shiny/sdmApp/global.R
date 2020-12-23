@@ -145,3 +145,4 @@ load.var <- reactiveValues(factors = c(), formats = c(), norm = TRUE,  vars = li
 working.directory <- system.file("extdata", package = "sdmApp")
 
 load.occ <- reactiveValues()
+model <- reactiveValues()
