@@ -484,4 +484,34 @@ shinyServer(function(session, input, output) {
       return(a)
     }
   }
+
+  plotInput_bioclim <- function(){
+    a <- model$bioclim
+    if(inherits(a, 'try-error')){
+      return(NULL)
+    }
+    else{
+      return(a)
+    }
+  }
+
+  map_bioclim <- function(){
+    a <- load.occ$Bioclim
+    if(inherits(a, 'try-error')){
+      return(NULL)
+    }
+    else{
+      return(a)
+    }
+  }
+
+  ev_bioclim <- function(){
+    a <- data$ev
+    if(inherits(a, 'try-error')){
+      return(NULL)
+    }
+    else{
+      return(a)
+    }
+  }
 })
