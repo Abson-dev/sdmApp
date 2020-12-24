@@ -107,32 +107,32 @@ output$download_variogram <- downloadHandler(
 ######################################""
 output$download_Bioclim <- downloadHandler(
   filename =  function() {
-    paste0("Bioclim_N_Blocking", input$plot_type_Bioclim,".png")
+    paste0("Bioclim_N_Blocking",".png")
   },
   # content is a function with argument file. content writes the plot to the device
   content = function(file) {
-    if(input$plot_type_Bioclim == "png"){
+    #if(input$plot_type_Bioclim == "png"){
       grDevices::png(file)
       print(plotInput_bioclim())
       dev.off()  # turn the device off
-    }
+    #}
 
-    if(input$plot_type_Bioclim == "pdf"){
-      grDevices::pdf(file)
-      print(plotInput_bioclim())
-      dev.off()  # turn the device off
-    }
+    # if(input$plot_type_Bioclim == "pdf"){
+    #   grDevices::pdf(file)
+    #   print(plotInput_bioclim())
+    #   dev.off()  # turn the device off
+    # }
 
-    if(input$plot_type_Bioclim == "tif"){
-      #r <- raster(system.file("external/test.grd", package="raster"))
-      res <- writeRaster(map_bioclim(), filename=file, format="GTiff", overwrite=TRUE)
-
-      # Show the corresponding output filename
-      print(res@file@name)
-
-      # Rename it to the correct filename
-      file.rename(res@file@name, file)
-    }
+    # if(input$plot_type_Bioclim == "tif"){
+    #   #r <- raster(system.file("external/test.grd", package="raster"))
+    #   res <- writeRaster(map_bioclim(), filename=file, format="GTiff", overwrite=TRUE)
+    #
+    #   # Show the corresponding output filename
+    #   print(res@file@name)
+    #
+    #   # Rename it to the correct filename
+    #   file.rename(res@file@name, file)
+    # }
   }
 )
 
