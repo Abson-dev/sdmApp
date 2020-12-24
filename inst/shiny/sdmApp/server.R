@@ -440,7 +440,7 @@ shinyServer(function(session, input, output) {
     glc <- glc()
 
     mod.enfa <- mod.enfa()
-    p1=CENFA::scatter(x = mod.enfa, y = glc,n=nlayers(data$Env),p=1)
+    p1=CENFA::scatter(x = mod.enfa,yax=as.numeric(input$number_spec),y = glc,n=nlayers(data$Env),p=1)
     return(p1)
   }
 
@@ -486,7 +486,7 @@ shinyServer(function(session, input, output) {
   }
 
   plotInput_bioclim <- function(){
-    a <- model$bioclim
+    a = model$bioclim
     if(inherits(a, 'try-error')){
       return(NULL)
     }
