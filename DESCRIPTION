@@ -14,7 +14,7 @@ Author: Aboubacar HEMA [aut, cre],
   Louise LEROUX [aut],
   Abdoul Aziz DIOUF [ctb]
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
-Description: 'sdmApp' is a 'R' 'package' containing a 'Shiny' 
+Description: This 'package' contains a 'Shiny' 
     application that allows non-expert 'R' users to easily model
     species distribution. It offers a reproducible work flow for
     species distribution modeling into a single and user friendly environment.
