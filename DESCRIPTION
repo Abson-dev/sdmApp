@@ -1,6 +1,6 @@
 Package: sdmApp
-Title: "A User-Friendly Application for Species Distribution
-    Modeling."
+Title: A User-Friendly Application for Species Distribution
+    Modeling
 Version: 0.0.1
 Authors@R: c(person(given = "Aboubacar", family = "HEMA", role =
     c("aut", "cre"), email = "aboubacarhema94@gmail.com"), person(given =
@@ -11,7 +11,7 @@ Authors@R: c(person(given = "Aboubacar", family = "HEMA", role =
     "aziz.diouf@cse.sn"))
 Author: Aboubacar HEMA [aut, cre],
   Babacar NDAO [ctb],
-  Louise LEROUX [ctb],
+  Louise LEROUX [aut],
   Abdoul Aziz DIOUF [ctb]
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
 Description: 'sdmApp' is a 'R' 'package' containing a 'Shiny' 
