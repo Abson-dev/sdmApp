@@ -8,7 +8,7 @@
 [![CRAN version](https://www.r-pkg.org/badges/version/sdmApp)](https://CRAN.R-project.org/package=sdmApp)
 ![Github](https://img.shields.io/badge/Github-0.0.1-green.svg)
 [![Last-change date](https://img.shields.io/github/last-commit/Abson-dev/sdmApp.svg)](https://github.com/Abson-dev/sdmApp/commits/master)
-[![Downloads](http://cranlogs.r-pkg.org/badges/sdmApp)](https://CRAN.R-project.org/package=sdmApp)
+[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/sdmApp)](https://www.rpackages.io/package/sdmApp)
 [![total](http://cranlogs.r-pkg.org/badges/grand-total/sdmApp)](https://www.rpackages.io/package/sdmApp)
 [![GitHub Issues](https://img.shields.io/github/issues/Abson-dev/sdmApp.svg
 )](https://github.com/Abson-dev/sdmApp/issues)
