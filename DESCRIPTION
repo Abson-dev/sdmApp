@@ -14,13 +14,13 @@ Author: Aboubacar HEMA [aut, cre],
   Louise LEROUX [aut],
   Abdoul Aziz DIOUF [ctb]
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
-Description: This 'package' contains a 'Shiny' 
+Description: A 'shiny' 
     application that allows non-expert 'R' users to easily model
     species distribution. It offers a reproducible work flow for
     species distribution modeling into a single and user friendly environment.
-    'sdmApp' takes 'Raster' data (in format supported by the 'Raster package') 
+    'sdmApp' takes 'raster' data (in format supported by the 'raster package') 
     and species occurrence data (several format supported) as input argument.
-    This 'package' provides an interactive graphical user interface (GUI).
+    It provides an interactive graphical user interface (GUI).
 License: GPL-3
 URL: https://github.com/Abson-dev/sdmApp
 BugReports: https://github.com/Abson-dev/sdmApp/issues
