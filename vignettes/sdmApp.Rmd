@@ -47,9 +47,67 @@ sdmApp()
 
 # Package data
 
-The package contains the raw format of the following data:
+## Environmental Variables
 
-* 
+These are a suite of 34 variables
+relating to  **bioclimatic drivers**, **soil properties**, **water productivity**, **vegetation phenology and productivity**, **watersheds topography**. We preprocessed the environmental
+variables by setting them on the same projection system **(WGS 84, UTM, Zone 28N)**, cropping
+them with the same extent and resampling them at the same spatial resolution of **250 m**.
+
+### Bioclimatic variables
+
+Bioclimatic variables are derived from the monthly temperature and
+rainfall values in order to generate more biologically meaningful variables. They represent annual
+trends (e.g., mean annual temperature, annual precipitation) seasonality (e.g., annual range in
+temperature and precipitation) and extreme or limiting environmental factors (e.g., temperature of
+the coldest and warmest month, and precipitation of the wet and dry quarters (1/4 of the year)).
+The bioclimatic variables we used was extracted from the worldclim database version 2
+(http://www.worldclim.com/). They are the average for the years 1970-2000 (Fick &amp; Hijmans,
+2017) .
+
+### Soil properties
+
+We used 7 variables of soil properties from the ISRIC - World Soil Information
+portal (https://www.isric.org/projects/soil-property-maps-africa-250-m-resolution). The dataset
+results from the “Mapping soil properties of Africa at 250 m Resolution” produced from the
+Africa Soil Information Service (AfSIS) project. Over 85 thousand samples (over 28 thousand
+sampling locations), covering the Period 1950–2012, were used for spatial predictions of soil
+properties (Hengl et al., 2015) .
+
+### Water productivity
+
+Two variables of water productivity were retrieved from the FAO WaPOR
+database (https://wapor.apps.fao.org/home/1) i.e the Food and Agriculture Organization of the
+United Nations (FAO) portal to monitor Water Productivity through Open access of Remotely
+sensed derived data The Net biomass water productivity (NBWP) expresses the quantity of
+output (total biomass production) in relation to the volume of water beneficially consumed
+(through canopy transpiration) in the year, and thus net of soil evaporation. The actual
+evapotranspiration and interception (AETI) represents the sum of the soil evaporation (E),
+the canopy transpiration (T) and the interception (I) i.e the rainfall intercepted by the leaves
+of the plants that will be directly evaporated from their surface (FAO, 2020) . NBWP and
+AETI are also agrometeorological variables particularly useful in monitoring how effectively
+vegetation uses water to develop biomass (NBWP) and for analyzing the soil-air interface and
+plant functioning (AETI – WMO, 2012)
+
+### Vegetation phenology and productivity
+
+AFS were described as lanscapes with interactions
+between crops, trees and crop practices. That is why we integrated two phenological metrics
+related to the season of crop in order to take into account interactions with species distribution.
+We derived the phenological metrics from normalized difference vegetation index (NDVI) time
+series such as 16-day MODIS NDVI time series (MOD13Q1) using timesat software (Eklundh &amp;
+Jönsson, 2011).
+
+### Watersheds topography
+
+Topographic variables were derived from the Soil &amp; Water
+Assessment Tool (SWAT) using the 30 m NASA SRTM digital elevation model
+(https://dwtkns.com/srtm30m/). SWAT is a small watershed to river basin-scale model used to
+simulate the quality and quantity of surface and ground water and predict the environmental
+impact of land use, land management practices, and climate change (https://swat.tamu.edu/). We
+used the watershed delineator of SWAT which allows to delineate sub-watersheds within the
+study area (Winchell et al., 2010) . We extracted 69 sub-basins in a vector file format with their
+attribute table including topographic variables values.
 
 # References:
 - Bahn, V., & McGill, B. J. (2012). Testing the predictive performance of distribution models. Oikos, 122(3), 321–331.
@@ -80,4 +138,4 @@ The package contains the raw format of the following data:
 
 - Thuiller, W., Georges, D., Engler, R., & Breiner, F. (2017). biomod2: Ensemble Platform for Species Distribution Modeling. R package version 3.3-7. https://CRAN.R-project.org/package=biomod2.
 
-- Valavi R, Elith J, Lahoz-Monfort JJ, Guillera-Arroita G. **blockCV: An R package for generating spatially or environmentally separated folds for k-fold cross-validation of species distribution models**. *Methods Ecol Evol.* 2019; 10:225–232. [doi: 10.1111/2041-210X.13107](https://doi.org/10.1111/2041-210X.13107)
+- Valavi R, Elith J, Lahoz-Monfort JJ, Guillera-Arroita G. blockCV: An R package for generating spatially or environmentally separated folds for k-fold cross-validation of species distribution models. *Methods Ecol Evol.* 2019; 10:225–232. [doi: 10.1111/2041-210X.13107](https://doi.org/10.1111/2041-210X.13107)
