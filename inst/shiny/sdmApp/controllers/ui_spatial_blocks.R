@@ -26,7 +26,7 @@ output$ui_spatial_blocks<-renderUI({
     a = try(withProgress(message = 'Spatial blocking',
                          blockCV::spatialBlock(speciesData = sp_pa_data(),
                                       species = load.occ$spec_select,
-                                      rasterLayer = data$Env,
+                                      rasterLayer = data$var_auto,
                                       theRange = range(), #load.occ$range, # size of the blocks
                                       k = load.occ$k,
                                       showBlocks = TRUE,
