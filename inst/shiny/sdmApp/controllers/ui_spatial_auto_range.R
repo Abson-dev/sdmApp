@@ -68,7 +68,7 @@ output$ui_spatial_auto_range<-renderUI({
                                                      downloadButton('download_tableRange','Download'),
                                                      DT::dataTableOutput("tableRange")),
                                             tabPanel("Variogram",
-                                                     selectInput('vario_var', 'Please select the predictor to see variogram corresponding', names(data$Env), multiple = FALSE, selectize = TRUE),
+                                                     selectInput('vario_var', 'Please select the predictor to see variogram corresponding', names(data$var_auto), multiple = FALSE, selectize = TRUE),
                                                      downloadButton('download_variogram','Download'),
                                                      plotOutput("variogram"))
 
