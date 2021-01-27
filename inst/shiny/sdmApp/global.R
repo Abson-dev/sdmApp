@@ -19,13 +19,14 @@ library(ggcorrplot)
 library(blockCV)
 #library(tidyverse)
 #library(ggpubr)
+library(cowplot)
 library(CENFA)
 library(randomForest)
 library(kernlab)
 library(dplyr)
 library(sp)
 library(rJava)
-
+library(stringr)
 if (!getShinyOption("sdmAppInvoked", FALSE)) {### Beginning required code for deployment
   .startdir <- .guitheme <- .guijsfile <- NULL
   # maxRequestSize <- 50
