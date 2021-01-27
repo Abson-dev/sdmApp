@@ -25,7 +25,7 @@ output$ui_preparation_main <- renderUI({
 
 output$ui_preparation_sidebar_left <- renderUI({
   output$ui_sel_preparation_btns <- renderUI({
-    cc1 <- c("Summarise")
+    cc1 <- c("Summary")
     cc2 <- c("Correlation", "ENFA", "Spatial autocorrelation", "Spatial blocking")
     df <- data.frame(lab=c(cc1,cc2), header=NA)
     df$header[1] <- "View"
