@@ -68,7 +68,7 @@ output$ui_correlation <- renderUI({
       a
       }
   })
-  fluidRow(column(12, h4("Correlation between rasters"), align="center"),
+  fluidRow(column(12, h4("Correlation between environmental variables"), align="center"),
            mainPanel(width = 8, tabsetPanel(type = "tabs",
                                             tabPanel("Correlation matrix",
                                                      downloadButton('download_cor_mat', 'Download'),
