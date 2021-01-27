@@ -47,6 +47,11 @@ sdmApp()
 
 # Package data
 
+## Occurence data
+
+It is a dataset of 9258 trees georeferenced encompassing 3 (*Faidherbia albida*,*Balanites aegyptiaca* and *Anogeissus leiocarpus*)
+ species (Ndao et al., 2019).
+
 ## Environmental Variables
 
 These are a suite of 34 variables
