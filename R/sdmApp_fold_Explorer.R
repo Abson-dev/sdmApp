@@ -21,7 +21,6 @@
 #' @import blockCV
 #'
 #' @importFrom graphics plot
-#'@importFrom ggpubr ggarrange
 #' @examples
 #' # load blockCV package data
 #' library(blockCV)
@@ -124,5 +123,5 @@ sdmApp_fold_Explorer<-function (blocks, rasterLayer, speciesData, num) {
         ggplot2::ggtitle("Testing set") + ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10))
     }
   }
-  ggpubr::ggarrange(ptr, pts,common.legend = TRUE)
+  cowplot::plot_grid(ptr, pts)
 }
