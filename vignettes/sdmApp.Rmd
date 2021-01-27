@@ -28,11 +28,22 @@ vignette: >
  The *GUI* is build around 5 main windows, which can be selected from the navigation bar at the top of the screen. Initially, some of these windows will be empty and their content changes once data (both *raster* and species occurrence files) have been uploaded.
  
 # Installation 
-The **sdmApp** is available in GitHub and it will be available in *CRAN* soon. It is recommended to install the dependencies of the package. To install the package from GitHub use:
+
+The **sdmApp** is available both GitHub and **CRAN** . It is recommended to install the dependencies of the package.
+
+To install the package from GitHub use:
+
 ```{r eval=FALSE}
 remotes::install_github("Abson-dev/sdmApp", dependencies = TRUE)
 
 ```
+
+Or installing from CRAN:
+
+```{r eval=FALSE}
+install.packages("sdmApp", dependencies = TRUE)
+```
+
 
 
 ```{r eval=FALSE}
@@ -127,6 +138,8 @@ attribute table including topographic variables values.
 - Luo, D., Silva, D.P., De Marco Júnior, P., Pimenta, M., Caldas, M.M., 2020. Model approaches to estimate spatial distribution of bee species richness and soybean production in the Brazilian Cerrado during 2000 to 2015. Sci. Total Environ. 737, 139674. [doi: 10.1016/j.scitotenv.2020.139674](https://doi.org/https://doi.org/10.1016/j.scitotenv.2020.139674)
 
 - Mudereri, B.T., Abdel-Rahman, E.M., Dube, T., Landmann, T., Khan, Z., Kimathi, E., Owino, R., Niassy, S., 2020. Multi-source spatial data-based invasion risk modeling of Striga ( Striga asiatica ) in Zimbabwe. GIScience Remote Sens. 1–19. [doi: 10.1080/15481603.2020.1744250](https://doi.org/10.1080/15481603.2020.1744250)
+
+- Ndao B., Leroux, L., Diouf, A.A., Soti, V., Sambou, B., 2019, A remote sensing based approach for optimizing sampling strategies in crop monitoring and crop yield estimation studies, in: Wade, S. (Ed.), Earth Observations and Geospatial Science in Service of Sustainable Development Goals, Southern Space Studies, Springer Nature Switzerland AG 2019, pp. 25–36,  [doi: 10.1007/978-3-030-16016-6_3](https://doi.org/10.1007/978-3-030-16016-6_3) 
 
 - O’Sullivan, D., & Unwin, D. J. (2010). Geographic Information Analysis (2nd ed.). John Wiley & Sons.
 
