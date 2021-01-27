@@ -85,10 +85,10 @@ output$ui_view_species_data <- renderUI({
   txt_rasters_info<-paste0("You have" ,code(raster::nlayers(data$Env)),"layers.The extent is xmin=",code(raster::extent(data$Env)@xmin),",xmax=",code(raster::extent(data$Env)@xmax),",ymin=",code(raster::extent(data$Env)@ymin),",ymax=",code(raster::extent(data$Env)@ymax))
   fluidRow(
     mainPanel(width = 8, tabsetPanel(type = "tabs",
-                                     tabPanel("Layers summary",
+                                     tabPanel("Environmental data summary",
                                               p(HTML(txt_rasters_info)),
                                               dataTableOutput("sumlayers")),
-                                     tabPanel("Occurence data",
+                                     tabPanel("Occurence data summary",
                                               p(HTML(txt_species_data)),
                                               dataTableOutput("occ_data_select")
                                      ),
