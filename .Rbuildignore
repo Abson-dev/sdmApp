@@ -7,3 +7,6 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^codecov\.yml$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
