@@ -19,7 +19,6 @@
 #' @import shinyBS
 #' @import data.table
 #' @import ggplot2
-#' @import biomod2
 #' @import dismo
 #' @import DT
 #' @import readxl
@@ -28,7 +27,6 @@
 #' @import SSDM
 #' @import automap
 #' @import blockCV
-#' @import tidyverse
 #' @import CENFA
 #' @import rJava
 #' @import randomForest
