@@ -203,7 +203,7 @@ shinyServer(function(session, input, output) {
                                 "panel.grid.minor = element_blank(),\n    ",
                               ")", sep = ""), sep = "")
         }
-        p <- str_replace_all(p, c(`input\\$lab_x` = as.character(input$lab_x),
+        p <- stringr::str_replace_all(p, c(`input\\$lab_x` = as.character(input$lab_x),
                                   `input\\$lab_y` = as.character(input$lab_y),
                                   `input\\$title` = as.character(input$title),
                                   `input\\$palet` = as.character(input$palet),
@@ -213,7 +213,7 @@ shinyServer(function(session, input, output) {
                                   `input\\$leg_ttl` = as.character(input$leg_ttl),
                                   `input\\$pos_leg` = as.character(input$pos_leg))
         )
-        p <- str_replace_all(p, ",\n    \\)", "\n  \\)")
+        p <- stringr::str_replace_all(p, ",\n    \\)", "\n  \\)")
         p
       })
       output$env <- renderPlot(width = width, height = height,{
