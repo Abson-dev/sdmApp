@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     fig_caption: yes
+    toc: true
 vignette: >
   %\VignetteIndexEntry{A user-friendly application for species distribution modeling}
   %\VignetteEngine{knitr::rmarkdown}
