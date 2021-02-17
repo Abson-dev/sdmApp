@@ -73,7 +73,7 @@
       <h1 data-toc-skip>sdmApp package: A user-friendly application for species distribution modeling</h1>
                         <h4 class="author">Aboubacar HEMA, Babacar NDAO, Louise LEROUX, Abdoul Aziz DIOUF</h4>
             
-            <h4 class="date">2021-01-27</h4>
+            <h4 class="date">2021-02-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Abson-dev/sdmApp/blob/master/vignettes/sdmApp.Rmd"><code>vignettes/sdmApp.Rmd</code></a></small>
       <div class="hidden name"><code>sdmApp.Rmd</code></div>
@@ -100,23 +100,58 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>The <strong>sdmApp</strong> is available in GitHub and it will be available in <em>CRAN</em> soon. It is recommended to install the dependencies of the package. To install the package from GitHub use:</p>
+<p>The <strong>sdmApp</strong> is available both GitHub and <strong>CRAN</strong> . It is recommended to install the dependencies of the package.</p>
+<p>To install the package from GitHub use:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"Abson-dev/sdmApp"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>Or installing from CRAN:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"sdmApp"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># loading the package</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Abson-dev/sdmApp">sdmApp</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Graphical User Interface (GUI)</span>
 <span class="fu"><a href="../reference/sdmApp.html">sdmApp</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="package-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#package-data" class="anchor"></a>Package data</h1>
-<p>The package contains the raw format of the following data:</p>
-<ul>
-<li>
-</ul>
+<div id="occurence-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#occurence-data" class="anchor"></a>Occurence data</h2>
+<p>It is a dataset of 9258 trees georeferenced encompassing 3 (<em>Faidherbia albida</em>,<em>Balanites aegyptiaca</em> and <em>Anogeissus leiocarpus</em>) species (Ndao et al., 2019).</p>
+</div>
+<div id="environmental-variables" class="section level2">
+<h2 class="hasAnchor">
+<a href="#environmental-variables" class="anchor"></a>Environmental Variables</h2>
+<p>These are a suite of 34 variables relating to <strong>bioclimatic drivers</strong>, <strong>soil properties</strong>, <strong>water productivity</strong>, <strong>vegetation phenology and productivity</strong>, <strong>watersheds topography</strong>. We preprocessed the environmental variables by setting them on the same projection system <strong>(WGS 84, UTM, Zone 28N)</strong>, cropping them with the same extent and resampling them at the same spatial resolution of <strong>250 m</strong>.</p>
+<div id="bioclimatic-variables" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bioclimatic-variables" class="anchor"></a>Bioclimatic variables</h3>
+<p>Bioclimatic variables are derived from the monthly temperature and rainfall values in order to generate more biologically meaningful variables. They represent annual trends (e.g., mean annual temperature, annual precipitation) seasonality (e.g., annual range in temperature and precipitation) and extreme or limiting environmental factors (e.g., temperature of the coldest and warmest month, and precipitation of the wet and dry quarters (1/4 of the year)). The bioclimatic variables we used was extracted from the worldclim database version 2 (<a href="http://www.worldclim.com/" class="uri">http://www.worldclim.com/</a>). They are the average for the years 1970-2000 (Fick &amp; Hijmans, 2017) .</p>
+</div>
+<div id="soil-properties" class="section level3">
+<h3 class="hasAnchor">
+<a href="#soil-properties" class="anchor"></a>Soil properties</h3>
+<p>We used 7 variables of soil properties from the ISRIC - World Soil Information portal (<a href="https://www.isric.org/projects/soil-property-maps-africa-250-m-resolution" class="uri">https://www.isric.org/projects/soil-property-maps-africa-250-m-resolution</a>). The dataset results from the “Mapping soil properties of Africa at 250 m Resolution” produced from the Africa Soil Information Service (AfSIS) project. Over 85 thousand samples (over 28 thousand sampling locations), covering the Period 1950–2012, were used for spatial predictions of soil properties (Hengl et al., 2015) .</p>
+</div>
+<div id="water-productivity" class="section level3">
+<h3 class="hasAnchor">
+<a href="#water-productivity" class="anchor"></a>Water productivity</h3>
+<p>Two variables of water productivity were retrieved from the FAO WaPOR database (<a href="https://wapor.apps.fao.org/home/1" class="uri">https://wapor.apps.fao.org/home/1</a>) i.e the Food and Agriculture Organization of the United Nations (FAO) portal to monitor Water Productivity through Open access of Remotely sensed derived data The Net biomass water productivity (NBWP) expresses the quantity of output (total biomass production) in relation to the volume of water beneficially consumed (through canopy transpiration) in the year, and thus net of soil evaporation. The actual evapotranspiration and interception (AETI) represents the sum of the soil evaporation (E), the canopy transpiration (T) and the interception (I) i.e the rainfall intercepted by the leaves of the plants that will be directly evaporated from their surface (FAO, 2020) . NBWP and AETI are also agrometeorological variables particularly useful in monitoring how effectively vegetation uses water to develop biomass (NBWP) and for analyzing the soil-air interface and plant functioning (AETI – WMO, 2012)</p>
+</div>
+<div id="vegetation-phenology-and-productivity" class="section level3">
+<h3 class="hasAnchor">
+<a href="#vegetation-phenology-and-productivity" class="anchor"></a>Vegetation phenology and productivity</h3>
+<p>AFS were described as lanscapes with interactions between crops, trees and crop practices. That is why we integrated two phenological metrics related to the season of crop in order to take into account interactions with species distribution. We derived the phenological metrics from normalized difference vegetation index (NDVI) time series such as 16-day MODIS NDVI time series (MOD13Q1) using timesat software (Eklundh &amp; Jönsson, 2011).</p>
+</div>
+<div id="watersheds-topography" class="section level3">
+<h3 class="hasAnchor">
+<a href="#watersheds-topography" class="anchor"></a>Watersheds topography</h3>
+<p>Topographic variables were derived from the Soil &amp; Water Assessment Tool (SWAT) using the 30 m NASA SRTM digital elevation model (<a href="https://dwtkns.com/srtm30m/" class="uri">https://dwtkns.com/srtm30m/</a>). SWAT is a small watershed to river basin-scale model used to simulate the quality and quantity of surface and ground water and predict the environmental impact of land use, land management practices, and climate change (<a href="https://swat.tamu.edu/" class="uri">https://swat.tamu.edu/</a>). We used the watershed delineator of SWAT which allows to delineate sub-watersheds within the study area (Winchell et al., 2010) . We extracted 69 sub-basins in a vector file format with their attribute table including topographic variables values.</p>
+</div>
+</div>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
@@ -128,6 +163,7 @@
 <li><p>Leta, S., Fetene, E., Mulatu, T., Amenu, K., Jaleta, M.B., Beyene, T.J., Negussie, H., Revie, C.W., 2019. Modeling the global distribution of Culicoides imicola: an Ensemble approach. Sci. Rep. 9. <a href="https://doi.org/10.1038/s41598-019-50765-1">doi: 10.1038/s41598-019-50765-1</a></p></li>
 <li><p>Luo, D., Silva, D.P., De Marco Júnior, P., Pimenta, M., Caldas, M.M., 2020. Model approaches to estimate spatial distribution of bee species richness and soybean production in the Brazilian Cerrado during 2000 to 2015. Sci. Total Environ. 737, 139674. <a href="https://doi.org/https://doi.org/10.1016/j.scitotenv.2020.139674">doi: 10.1016/j.scitotenv.2020.139674</a></p></li>
 <li><p>Mudereri, B.T., Abdel-Rahman, E.M., Dube, T., Landmann, T., Khan, Z., Kimathi, E., Owino, R., Niassy, S., 2020. Multi-source spatial data-based invasion risk modeling of Striga ( Striga asiatica ) in Zimbabwe. GIScience Remote Sens. 1–19. <a href="https://doi.org/10.1080/15481603.2020.1744250">doi: 10.1080/15481603.2020.1744250</a></p></li>
+<li><p>Ndao B., Leroux, L., Diouf, A.A., Soti, V., Sambou, B., 2019, A remote sensing based approach for optimizing sampling strategies in crop monitoring and crop yield estimation studies, in: Wade, S. (Ed.), Earth Observations and Geospatial Science in Service of Sustainable Development Goals, Southern Space Studies, Springer Nature Switzerland AG 2019, pp. 25–36, <a href="https://doi.org/10.1007/978-3-030-16016-6_3">doi: 10.1007/978-3-030-16016-6_3</a></p></li>
 <li><p>O’Sullivan, D., &amp; Unwin, D. J. (2010). Geographic Information Analysis (2nd ed.). John Wiley &amp; Sons.</p></li>
 <li><p>Phillips, S. J., Anderson, R. P., Dudík, M., Schapire, R. E., &amp; Blair, M. E. (2017). Opening the black box: an open-source release of Maxent. Ecography.</p></li>
 <li><p>Roberts, D.R., Bahn, V., Ciuti, S., Boyce, M.S., Elith, J., Guillera-Arroita, G., Hauenstein, S., Lahoz-Monfort, J.J., Schröder, B., Thuiller, W., others, 2017. Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. Ecography. 40: 913-929.</p></li>
@@ -135,7 +171,7 @@
 <li><p>Simensen, T., Horvath, P., Vollering, J., Erikstad, L., Halvorsen, R., Bryn, A., 2020. Composite landscape predictors improve distribution models of ecosystem types. Divers. Distrib. 26, 928–943. <a href="https://doi.org/10.1111/ddi.13060">doi: 10.1111/ddi.13060</a></p></li>
 <li><p>Telford, R. J., &amp; Birks, H. J. B. (2009). Evaluation of transfer functions in spatially structured environments. Quaternary Science Reviews, 28(13), 1309–1316.</p></li>
 <li><p>Thuiller, W., Georges, D., Engler, R., &amp; Breiner, F. (2017). biomod2: Ensemble Platform for Species Distribution Modeling. R package version 3.3-7. <a href="https://CRAN.R-project.org/package=biomod2" class="uri">https://CRAN.R-project.org/package=biomod2</a>.</p></li>
-<li><p>Valavi R, Elith J, Lahoz-Monfort JJ, Guillera-Arroita G. <strong>blockCV: An R package for generating spatially or environmentally separated folds for k-fold cross-validation of species distribution models</strong>. <em>Methods Ecol Evol.</em> 2019; 10:225–232. <a href="https://doi.org/10.1111/2041-210X.13107">doi: 10.1111/2041-210X.13107</a></p></li>
+<li><p>Valavi R, Elith J, Lahoz-Monfort JJ, Guillera-Arroita G. blockCV: An R package for generating spatially or environmentally separated folds for k-fold cross-validation of species distribution models. <em>Methods Ecol Evol.</em> 2019; 10:225–232. <a href="https://doi.org/10.1111/2041-210X.13107">doi: 10.1111/2041-210X.13107</a></p></li>
 </ul>
 </div>
   </div>
