@@ -3,16 +3,16 @@ Title: A User-Friendly Application for Species Distribution
     Modeling
 Version: 0.0.2
 Authors@R: c(person(given = "Aboubacar", family = "HEMA", role =
-    c("aut", "cre"),comment = c(ORCID = "https://orcid.org/0000-0001-9756-7270"), email = "aboubacarhema94@gmail.com"), person(given =
-    "Babacar", family = "NDAO", role = "aut",comment = c(ORCID = "https://orcid.org/0000-0001-9848-7459"), email =
+    c("aut", "cre"), email = "aboubacarhema94@gmail.com"), person(given =
+    "Babacar", family = "NDAO", role = "aut", email =
     "babacar.ndao@cse.sn"), person(given = "Louise", family = "LEROUX",
-    role = "aut",comment = c(ORCID = "https://orcid.org/0000-0002-7631-2399"), email = "louise.leroux@cirad.fr"), person(given =
-    "Abdoul Aziz", family = "DIOUF", role = "aut",comment = c(ORCID = "https://orcid.org/0000-0002-2918-6211"), email =
+    role = "aut", email = "louise.leroux@cirad.fr"), person(given =
+    "Abdoul Aziz", family = "DIOUF", role = "aut", email =
     "aziz.diouf@cse.sn"))
 Author: Aboubacar HEMA [aut, cre],
-  Babacar NDAO [ctb],
+  Babacar NDAO [aut],
   Louise LEROUX [aut],
-  Abdoul Aziz DIOUF [ctb]
+  Abdoul Aziz DIOUF [aut]
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
 Description: A 'shiny' 
     application that allows non-expert 'R' users to easily model
