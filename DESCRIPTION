@@ -10,9 +10,9 @@ Authors@R: c(person(given = "Aboubacar", family = "HEMA", role =
     "Abdoul Aziz", family = "DIOUF", role = "aut",comment = c(ORCID = "https://orcid.org/0000-0002-2918-6211"), email =
     "aziz.diouf@cse.sn"))
 Author: Aboubacar HEMA [aut, cre],
-  Babacar NDAO [aut],
+  Babacar NDAO [ctb],
   Louise LEROUX [aut],
-  Abdoul Aziz DIOUF [aut]
+  Abdoul Aziz DIOUF [ctb]
 Maintainer: Aboubacar HEMA <aboubacarhema94@gmail.com>
 Description: A 'shiny' 
     application that allows non-expert 'R' users to easily model
@@ -49,8 +49,7 @@ Imports:
     tidyr (>= 1.1.2),
     data.table,
     rgeos (>= 0.3-8),
-    rJava (>= 0.9-13),
-    future.apply
+    rJava (>= 0.9-13)
 Suggests: 
     covr,
     grDevices,
@@ -59,7 +58,9 @@ Suggests:
     stats,
     testthat,
     utils,
-    rgdal
+    rgdal (>= 1.5-8),
+    automap (>= 1.0-14),
+    future.apply
 VignetteBuilder: knitr, rmarkdown
 Encoding: UTF-8
 Language: en-US
