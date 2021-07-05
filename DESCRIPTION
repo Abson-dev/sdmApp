@@ -28,6 +28,18 @@ Depends: R (>= 3.5.0)
 Imports:
     raster (>= 2.6.7),
     sp (>= 1.2.0),
+    shiny (>= 0.12.2)
+Suggests: 
+    covr,
+    grDevices,
+    knitr,
+    rmarkdown,
+    stats,
+    testthat,
+    utils,
+    rgdal (>= 1.5-8),
+    automap (>= 1.0-14),
+    future.apply,
     blockCV (>= 2.1.1),
     CENFA (>= 1.1.0),
     dismo (>= 1.0.12),
@@ -37,7 +49,6 @@ Imports:
     readxl (>= 1.3.1),
     rhandsontable (>= 0.3.7),
     sf,
-    shiny (>= 0.12.2),
     shinyBS (>= 0.61),
     shinyFiles (>= 0.7.0),
     SSDM (>= 0.2.8),
@@ -50,17 +61,6 @@ Imports:
     data.table,
     rgeos (>= 0.3-8),
     rJava (>= 0.9-13)
-Suggests: 
-    covr,
-    grDevices,
-    knitr,
-    rmarkdown,
-    stats,
-    testthat,
-    utils,
-    rgdal (>= 1.5-8),
-    automap (>= 1.0-14),
-    future.apply
 VignetteBuilder: knitr, rmarkdown
 Encoding: UTF-8
 Language: en-US
