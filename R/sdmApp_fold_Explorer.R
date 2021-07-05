@@ -8,7 +8,6 @@
 #' @return A map showing folds and the species data, that can be used to explore folds.
 #' @export
 #'
-#' @seealso \code{\link{foldExplorer}}
 #'
 #' @import raster
 #'
