@@ -20,7 +20,7 @@ library(blockCV)
 #library(tidyverse)
 #library(ggpubr)
 library(cowplot)
-library(CENFA)
+#library(CENFA)
 library(randomForest)
 library(kernlab)
 library(dplyr)
@@ -71,7 +71,7 @@ Specdata_Presence<-reactive({
 })
 
 glc<-reactive({
-  GLcenfa(x = data$Env)
+  CENFA::GLcenfa(x = data$Env)
 })
 
 mod.enfa<-reactive({
