@@ -35,6 +35,3 @@ rasterLayer = awt,theRange = 70000,k = 5,
 selection = "random",iteration = 100)
 sdmApp_fold_Explorer(sb,awt,pa_data,1)
 }
-\seealso{
-\code{\link{foldExplorer}}
-}
