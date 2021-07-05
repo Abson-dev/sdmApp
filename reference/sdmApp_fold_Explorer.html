@@ -146,30 +146,22 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A map showing folds and the species data, that can be used to explore folds.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/blockCV/man/foldExplorer.html'>foldExplorer</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load blockCV package data</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/rvalavi/blockCV'>blockCV</a></span><span class='op'>)</span>
-<span class='va'>awt</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/brick.html'>brick</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"awt.grd"</span>, package <span class='op'>=</span> <span class='st'>"blockCV"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Discarded datum Unknown based on GRS80 ellipsoid in Proj4 definition</span></div><div class='input'><span class='co'>#import presence-absence species data</span>
+</div><div class='output co'>#&gt; <span class='error'>Error: package or namespace load failed for ‘blockCV’ in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]):</span>
+#&gt; <span class='error'> there is no package called ‘sf’</span></div><div class='input'><span class='va'>awt</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/brick.html'>brick</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"awt.grd"</span>, package <span class='op'>=</span> <span class='st'>"blockCV"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>#import presence-absence species data</span>
 <span class='va'>PA</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"PA.csv"</span>, package <span class='op'>=</span> <span class='st'>"blockCV"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'>#make a sf object from data.frame</span>
-<span class='va'>pa_data</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='va'>PA</span>, coords <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span>, crs <span class='op'>=</span> <span class='fu'>raster</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/projection.html'>crs</a></span><span class='op'>(</span><span class='va'>awt</span><span class='op'>)</span><span class='op'>)</span>
-<span class='co'>#spatial blocking by specified range and random assignment</span>
+<span class='va'>pa_data</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'>st_as_sf</span><span class='op'>(</span><span class='va'>PA</span>, coords <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span>, crs <span class='op'>=</span> <span class='fu'>raster</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/projection.html'>crs</a></span><span class='op'>(</span><span class='va'>awt</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in loadNamespace(x): there is no package called ‘sf’</span></div><div class='input'><span class='co'>#spatial blocking by specified range and random assignment</span>
 <span class='va'>sb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/blockCV/man/spatialBlock.html'>spatialBlock</a></span><span class='op'>(</span>speciesData <span class='op'>=</span> <span class='va'>pa_data</span>,species <span class='op'>=</span> <span class='st'>"Species"</span>,
 rasterLayer <span class='op'>=</span> <span class='va'>awt</span>,theRange <span class='op'>=</span> <span class='fl'>70000</span>,k <span class='op'>=</span> <span class='fl'>5</span>,
 selection <span class='op'>=</span> <span class='st'>"random"</span>,iteration <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Discarded datum Unknown based on GRS80 ellipsoid in Proj4 definition</span></div><div class='output co'>#&gt; The best folds was in iteration 78:
-#&gt;   train_0 train_1 test_0 test_1
-#&gt; 1     115      95     23     21
-#&gt; 2     106     105     32     11
-#&gt; 3     110     106     28     10
-#&gt; 4     110     101     28     15
-#&gt; 5     111      57     27     59</div><div class='output co'>#&gt; <span class='warning'>Warning: Discarded datum Unknown based on GRS80 ellipsoid in Proj4 definition</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Discarded datum Unknown based on GRS80 ellipsoid in Proj4 definition</span></div><div class='img'><img src='sdmApp_fold_Explorer-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>sdmApp_fold_Explorer</span><span class='op'>(</span><span class='va'>sb</span>,<span class='va'>awt</span>,<span class='va'>pa_data</span>,<span class='fl'>1</span><span class='op'>)</span>
-</div><div class='img'><img src='sdmApp_fold_Explorer-2.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in spatialBlock(speciesData = pa_data, species = "Species", rasterLayer = awt,     theRange = 70000, k = 5, selection = "random", iteration = 100): could not find function "spatialBlock"</span></div><div class='input'><span class='fu'>sdmApp_fold_Explorer</span><span class='op'>(</span><span class='va'>sb</span>,<span class='va'>awt</span>,<span class='va'>pa_data</span>,<span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in sdmApp_fold_Explorer(sb, awt, pa_data, 1): object 'pa_data' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
