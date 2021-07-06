@@ -41,7 +41,6 @@ Suggests:
     automap (>= 1.0-14),
     future.apply,
     blockCV (>= 2.1.1),
-    CENFA (>= 1.1.0),
     dismo (>= 1.0.12),
     DT,
     kernlab (>= 0.9-29),
@@ -64,6 +63,9 @@ Suggests:
 VignetteBuilder: knitr, rmarkdown
 Encoding: UTF-8
 Language: en-US
-LazyData: true
+LazyLoad: yes
+LazyData: no
+ZipData: no
+BuildResaveData: no
 RoxygenNote: 7.1.1
 SystemRequirements:Java (>= 8)
