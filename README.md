@@ -75,6 +75,25 @@ sdmApp()
 
 ## Citation
 
+```r
+citation("sdmApp")
+```
+
+To cite package *sdmApp* in publications use:
+
+  HEMA A, NDAO B, LEROUX L, DIOUF A (2021). _sdmApp: A User-Friendly Application for
+  Species Distribution Modeling_. R package version 0.0.2,
+  <https://CRAN.R-project.org/package=sdmApp>.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {sdmApp: A User-Friendly Application for Species Distribution Modeling},
+    author = {Aboubacar HEMA and Babacar NDAO and Louise LEROUX and Abdoul Aziz DIOUF},
+    year = {2021},
+    note = {R package version 0.0.2},
+    url = {https://CRAN.R-project.org/package=sdmApp},
+  }
 
 
 ## License
