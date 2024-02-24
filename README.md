@@ -29,6 +29,7 @@
  
  
  ## Installation
+ 
 To install the *package* from *github* use:
 
 ```r
@@ -36,6 +37,15 @@ remotes::install_github("Abson-dev/sdmApp", dependencies = TRUE)
 library(sdmApp)
 sdmApp()
 ```
+To install the *package* from *CRAN* use:
+
+```r
+install.package("sdmApp", dependencies = TRUE)
+library(sdmApp)
+sdmApp()
+```
+
+
 <img src="inst/docs/sdmApp.PNG" />
 
 
