@@ -1,7 +1,7 @@
 # sdmApp <img src="inst/docs/Logo_sdmApp.png" align="right" width="120" />
  Species Distribution Models Application
  
- # `sdmApp`: Statistical Details
+# `sdmApp`: Statistical Details
 
 | Package                                                                                                                                                         | Status                                                                                                                                                                                       | Usage                                                                                                                                             | GitHub                                                                                                                                                         | Miscellaneous                                                                                                                                                   |
   |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -27,8 +27,16 @@
 
  The *GUI* is build around 5 main windows, which can be selected from the navigation bar at the top of the screen. Initially, some of these windows will be empty and their content changes once data (both *raster* and species occurrence files) have been uploaded.
  
+## Set working environment
  
- ## Installation
+*sdmApp* uses Maxent model which used the Java implementation. Therefore you need :
+
+- the **Java JDK** software is installed;
+- the package **rJava** is installed;
+- the file **maxent.jar** is copied in the correct folder.
+ 
+ 
+## Installation
  
 To install the *package* from *github* use:
 
