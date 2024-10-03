@@ -108,4 +108,7 @@ A BibTeX entry for LaTeX users is
 
 The *sdmApp* sticker was made through *R* art kindly shared by this [link](https://art.djnavarro.net/) and released under a [CC-BY-SA 4.0](https://www.donneesquebec.ca/licence/) license.
 
+## Guidelines for contributing
+
+I welcome contributions and suggestions for improving this package. Please do not hesitate to submit any issues you may encounter.
 
