@@ -1,7 +1,9 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 3.8.3
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   sdmApp: sdmApp.html
-last_built: 2021-07-07T08:52Z
-
+last_built: 2026-07-09T22:39Z
+urls:
+  reference: https://abson-dev.github.io/sdmApp/reference
+  article: https://abson-dev.github.io/sdmApp/articles
