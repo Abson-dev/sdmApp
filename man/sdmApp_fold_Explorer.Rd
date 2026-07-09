@@ -2,38 +2,41 @@
 % Please edit documentation in R/sdmApp_fold_Explorer.R
 \name{sdmApp_fold_Explorer}
 \alias{sdmApp_fold_Explorer}
-\title{Explore the generated folds and visualize the placement of folds and distribution of species data over folds.}
+\title{Explore spatial cross-validation folds}
 \usage{
 sdmApp_fold_Explorer(blocks, rasterLayer, speciesData, num)
 }
 \arguments{
-\item{blocks}{A \code{SpatialBlock} object.}
+\item{blocks}{A \code{SpatialBlock} object (from \pkg{blockCV}).}
 
-\item{rasterLayer}{A raster object as background map for visualization.}
+\item{rasterLayer}{A raster object used as the background map.}
 
-\item{speciesData}{A simple features (sf) or \code{SpatialPoints} object containing species data (response variable).}
+\item{speciesData}{A simple features (\code{sf}) or \code{SpatialPoints} object
+holding the species data (the response variable).}
 
-\item{num}{A number of fold to assign as data test set.}
+\item{num}{Integer. Index of the fold to display as the test set.}
 }
 \value{
-A map showing folds and the species data, that can be used to explore folds.
+A combined plot (via \code{\link[cowplot:plot_grid]{cowplot::plot_grid()}}) showing the
+training and testing sets for the selected fold.
 }
 \description{
-Explore the generated folds and visualize the placement of folds and distribution of species data over folds.
+Visualises the placement of a chosen fold and the distribution of the
+species data across training and testing sets, on top of a background
+raster. Useful for inspecting the folds produced by \pkg{blockCV}.
 }
 \examples{
 \dontrun{
-# load blockCV package data
 library(blockCV)
 awt <- raster::brick(system.file("extdata", "awt.grd", package = "blockCV"))
-#import presence-absence species data
 PA <- read.csv(system.file("extdata", "PA.csv", package = "blockCV"))
-#make a sf object from data.frame
 pa_data <- sf::st_as_sf(PA, coords = c("x", "y"), crs = raster::crs(awt))
-#spatial blocking by specified range and random assignment
-sb <- spatialBlock(speciesData = pa_data,species = "Species",
-rasterLayer = awt,theRange = 70000,k = 5,
-selection = "random",iteration = 100)
-sdmApp_fold_Explorer(sb,awt,pa_data,1)
+sb <- spatialBlock(speciesData = pa_data, species = "Species",
+                   rasterLayer = awt, theRange = 70000, k = 5,
+                   selection = "random", iteration = 100)
+sdmApp_fold_Explorer(sb, awt, pa_data, 1)
 }
+}
+\author{
+Aboubacar HEMA
 }

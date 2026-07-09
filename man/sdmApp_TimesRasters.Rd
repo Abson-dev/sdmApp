@@ -2,26 +2,35 @@
 % Please edit documentation in R/sdmApp_TimesRasters.R
 \name{sdmApp_TimesRasters}
 \alias{sdmApp_TimesRasters}
-\title{Multiply the probability of occurrence map with the presence/absence map to get a presence map only.}
+\title{Mask a probability-of-occurrence map with a presence/absence map}
 \usage{
 sdmApp_TimesRasters(x, y)
 }
 \arguments{
-\item{x}{Probability of occurrence map, a \code{Raster object}}
+\item{x}{Probability-of-occurrence map, a \link[raster:RasterLayer-class]{raster::RasterLayer}
+object.}
 
-\item{y}{Presence/Absence map, a \code{Raster object}}
+\item{y}{Presence/absence map, a \link[raster:RasterLayer-class]{raster::RasterLayer} object with
+the same extent and resolution as \code{x}.}
 }
 \value{
-Probability of occurrence map with only presence
+A \link[raster:RasterLayer-class]{raster::RasterLayer} object giving the
+probability of occurrence restricted to presence cells.
 }
 \description{
-Multiply the probability of occurrence map with the presence/absence map to get a presence map only.
+Multiplies a probability-of-occurrence raster by a presence/absence
+raster so that only cells predicted as presence keep their probability
+value; absence cells become zero. The name of the first raster is
+preserved on the result.
 }
 \examples{
-r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
-r2 <- r > raster::cellStats(r, stat='mean', na.rm=TRUE)
-r <- r/raster::maxValue(r)
-names(r) <- "propability of occurence"
-z<-sdmApp_TimesRasters(r,r2)
+r <- raster::raster(system.file("extdata", "AETI.tif", package = "sdmApp"))
+r2 <- r > raster::cellStats(r, stat = "mean", na.rm = TRUE)
+r <- r / raster::maxValue(r)
+names(r) <- "probability of occurrence"
+z <- sdmApp_TimesRasters(r, r2)
 sdmApp_RasterPlot(z)
+}
+\author{
+Aboubacar HEMA
 }
