@@ -2,21 +2,27 @@
 % Please edit documentation in R/sdmApp_PA.R
 \name{sdmApp_PA}
 \alias{sdmApp_PA}
-\title{Plot presence/absence map}
+\title{Plot a presence/absence map}
 \usage{
 sdmApp_PA(x)
 }
 \arguments{
-\item{x}{\code{Raster object}}
+\item{x}{A \link[raster:RasterLayer-class]{raster::RasterLayer} object holding presence (\code{TRUE},
+\code{1}) and absence (\code{FALSE}, \code{0}) values.}
 }
 \value{
-a \code{ggplot object}
+A \link[ggplot2:ggplot]{ggplot2::ggplot} object.
 }
 \description{
-Plot presence/absence map
+Turns a binary (presence/absence) raster into a \code{ggplot} map, sampling
+the layer on a regular grid so that large rasters can be displayed
+quickly.
 }
 \examples{
-r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
+r <- raster::raster(system.file("extdata", "AETI.tif", package = "sdmApp"))
 r <- r > 4000
 sdmApp_PA(r)
+}
+\author{
+Aboubacar HEMA
 }

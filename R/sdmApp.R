@@ -1,93 +1,126 @@
-#' starts the graphical user interface developed with shiny.
+#' Start the sdmApp graphical user interface
 #'
-#' @param maxRequestSize (numeric) number defining the maximum allowed file size (in megabytes) for uploaded files, defaults to 50MB
-#' @param debug logical if TRUE, set shiny-debugging options
-#' @param theme select style sheet for the interface.
-#
-#' @param ... arguments (e.g host) that are passed through \code{\link{runApp}} when starting the shiny application
-#' @param shiny.server Setting this parameter to TRUE will return the app in the form of an object rather than invoking it. This is useful for deploying sdmApp via shiny-server.
+#' Launches the 'shiny' application that lets non-expert R users model
+#' species distribution through a reproducible, point-and-click workflow.
 #'
-#' @return starts the interactive graphical user interface.
+#' The interface relies on a number of modelling engines (for example
+#' \pkg{SSDM}, \pkg{dismo}, \pkg{randomForest}, \pkg{kernlab} and
+#' \pkg{CENFA}). Those packages are listed under `Suggests` to keep the
+#' installation footprint small; [sdmApp()] checks that they are available
+#' and returns an informative error listing anything missing.
+#'
+#' @param maxRequestSize Numeric. Maximum allowed size, in megabytes, for
+#'   uploaded files. Defaults to 50.
+#' @param debug Logical. If `TRUE`, enable 'shiny' debugging options
+#'   (full stack trace and trace).
+#' @param theme Character. Style sheet for the interface. One of
+#'   `"IHSN"` (default), `"yeti"`, `"journal"` or `"flatly"`.
+#' @param ... Further arguments (for example `host` or `port`) passed to
+#'   [shiny::runApp()] when the application is launched.
+#' @param shiny.server Logical. If `TRUE`, return the application as a
+#'   [shiny::shinyApp()] object instead of launching it. Useful for
+#'   deploying `sdmApp` behind shiny-server.
+#'
+#' @return If `shiny.server = TRUE`, a [shiny::shinyApp()] object.
+#'   Otherwise the function is called for its side effect of starting the
+#'   interactive interface and returns the value of [shiny::runApp()]
+#'   invisibly.
+#'
+#' @author Aboubacar HEMA
+#'
+#' @importFrom shiny runApp shinyApp shinyOptions
 #' @export
-#' @import shiny
-#' @import raster
-#' @import sp
-#' @import sf
-#' @import grid
-#' @import rhandsontable
-#' @import haven
-#' @import shinyBS
-#' @import data.table
-#' @import ggplot2
-#' @import dismo
-#' @import DT
-#' @import readxl
-#' @import shinyFiles
-#' @import shinydashboard
-#' @import SSDM
-#' @import automap
-#' @import blockCV
-#' @import CENFA
-#' @import rJava
-#' @import randomForest
-#' @import kernlab
 #'
 #' @examples
-#' if(interactive()){
-#' #load the package
-#' library(sdmApp)
-#' sdmApp()
+#' if (interactive()) {
+#'   library(sdmApp)
+#'   sdmApp()
 #' }
-sdmApp<-function (maxRequestSize = 50, debug = FALSE, theme = "IHSN",
-          ..., shiny.server = FALSE)
-{
-  if (!shiny.server)
-    shiny::runApp(sdmApp(maxRequestSize, debug, theme, ..., shiny.server = TRUE))
+sdmApp <- function(maxRequestSize = 50, debug = FALSE, theme = "IHSN",
+                   ..., shiny.server = FALSE) {
+
   if (!is.numeric(maxRequestSize)) {
-    stop("argument 'maxRequestSize' must be numeric!\n")
+    stop("argument 'maxRequestSize' must be numeric.", call. = FALSE)
   }
   if (maxRequestSize < 1) {
     maxRequestSize <- 10
   }
-  appDir <- system.file("shiny", "sdmApp", package = "sdmApp")
-  #appDir <- "C:/Users/DELLDRAMOMO/Dropbox/Package/sdmApp/shiny/sdmApp"
-  if (appDir == "") {
-    stop("Could not find directory.",
-         call. = FALSE)
+  valid_themes <- c("yeti", "journal", "flatly", "IHSN")
+  if (!theme %in% valid_themes) {
+    stop("Invalid value for argument 'theme'. Use one of: ",
+         paste(valid_themes, collapse = ", "), ".", call. = FALSE)
   }
-  options(shiny.maxRequestSize = ceiling(maxRequestSize) *
-            1024^2)
+
+  .sdmApp_check_deps()
+
+  appDir <- system.file("shiny", "sdmApp", package = "sdmApp")
+  if (identical(appDir, "")) {
+    stop("Could not find the sdmApp Shiny directory. ",
+         "Try re-installing the 'sdmApp' package.", call. = FALSE)
+  }
+
+  options(shiny.maxRequestSize = ceiling(maxRequestSize) * 1024^2)
   options(shiny.fullstacktrace = debug)
   options(shiny.trace = debug)
+
   shiny::shinyOptions(.startdir = getwd())
   shiny::shinyOptions(.appDir = appDir)
-  if (!theme %in% c("yeti", "journal", "flatly",
-                    "IHSN")) {
-    stop("Invalid value for argument 'theme'\n")
-  }
-  if (theme == "yeti") {
-    shiny::shinyOptions(.guitheme = "bootswatch_yeti.css")
-    shiny::shinyOptions(.guijsfile = NULL)
-  }
-  if (theme == "journal") {
-    shiny::shinyOptions(.guitheme = "bootswatch_journal.css")
-    shiny::shinyOptions(.guijsfile = NULL)
-  }
-  if (theme == "flatly") {
-    shiny::shinyOptions(.guitheme = "bootswatch_flatly.css")
-    shiny::shinyOptions(.guijsfile = NULL)
-  }
-  if (theme == "IHSN") {
-    shiny::shinyOptions(.guitheme = "ihsn-root.css")
-    #shiny::shinyOptions(.guijsfile = "js/ihsn-style.js")
-  }
+
+  guitheme <- switch(
+    theme,
+    yeti    = "bootswatch_yeti.css",
+    journal = "bootswatch_journal.css",
+    flatly  = "bootswatch_flatly.css",
+    IHSN    = "ihsn-root.css"
+  )
+  shiny::shinyOptions(.guitheme = guitheme)
+  shiny::shinyOptions(.guijsfile = NULL)
+
   source_from_appdir <- function(filename) {
     source(file.path(appDir, filename), local = parent.frame(),
            chdir = TRUE)$value
   }
+
   shiny::shinyOptions(sdcAppInvoked = TRUE)
   source_from_appdir("global.R")
   shiny::shinyOptions(sdcAppInvoked = NULL)
-  shiny::shinyApp(ui = source_from_appdir("ui.R"), server = source_from_appdir("server.R"),
-                  options = list(launch.browser = TRUE, ...))
+
+  app <- shiny::shinyApp(
+    ui     = source_from_appdir("ui.R"),
+    server = source_from_appdir("server.R"),
+    options = list(launch.browser = TRUE, ...)
+  )
+
+  if (shiny.server) {
+    return(app)
+  }
+  invisible(shiny::runApp(app))
+}
+
+# Internal: verify that the suggested packages needed by the interface are
+# installed, and stop with an actionable message otherwise.
+.sdmApp_check_deps <- function() {
+  needed <- c(
+    "shinydashboard", "shinyBS", "shinyFiles", "rhandsontable", "DT",
+    "ggcorrplot", "data.table", "dplyr", "tidyr", "haven", "readxl",
+    "blockCV", "CENFA", "dismo", "SSDM", "randomForest", "kernlab",
+    "automap", "rJava"
+  )
+  installed <- vapply(needed, requireNamespace, logical(1), quietly = TRUE)
+  missing <- needed[!installed]
+  if (length(missing) > 0L) {
+    stop(
+      "The sdmApp interface needs the following package",
+      if (length(missing) > 1L) "s" else "",
+      " which ",
+      if (length(missing) > 1L) "are" else "is",
+      " not installed:\n  ",
+      paste(missing, collapse = ", "),
+      "\n\nInstall with:\n  install.packages(c(",
+      paste(sprintf('"%s"', missing), collapse = ", "),
+      "))",
+      call. = FALSE
+    )
+  }
+  invisible(TRUE)
 }

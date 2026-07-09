@@ -1,0 +1,36 @@
+url: https://abson-dev.github.io/sdmApp/
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#E91E63"
+
+home:
+  title: sdmApp
+  description: >
+    A user-friendly shiny application for reproducible species
+    distribution modeling.
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+
+reference:
+  - title: Launch the application
+    contents:
+      - sdmApp
+  - title: Mapping helpers
+    desc: Plot rasters and presence/absence surfaces.
+    contents:
+      - sdmApp_RasterPlot
+      - sdmApp_PA
+      - sdmApp_TimesRasters
+  - title: Cross-validation
+    contents:
+      - sdmApp_fold_Explorer
+
+articles:
+  - title: Get started
+    contents:
+      - sdmApp

@@ -2,20 +2,26 @@
 % Please edit documentation in R/sdmApp_RasterPlot.R
 \name{sdmApp_RasterPlot}
 \alias{sdmApp_RasterPlot}
-\title{Plot a  raster}
+\title{Plot a continuous raster}
 \usage{
 sdmApp_RasterPlot(x)
 }
 \arguments{
-\item{x}{\code{Raster object}}
+\item{x}{A \link[raster:RasterLayer-class]{raster::RasterLayer} object.}
 }
 \value{
-a \code{ggplot object}
+A \link[ggplot2:ggplot]{ggplot2::ggplot} object, or \code{NULL} if \code{x} is a base graphics
+raster (\code{grDevices::is.raster(x)} is \code{TRUE}).
 }
 \description{
-Plot a  raster
+Displays a continuous raster layer as a \code{ggplot} map using a terrain
+colour ramp. The layer is sampled on a regular grid so that large
+rasters render quickly.
 }
 \examples{
-r <- raster::raster(system.file("extdata","AETI.tif",package = "sdmApp"))
+r <- raster::raster(system.file("extdata", "AETI.tif", package = "sdmApp"))
 sdmApp_RasterPlot(r)
+}
+\author{
+Aboubacar HEMA
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/sdmApp.R
 \name{sdmApp}
 \alias{sdmApp}
-\title{starts the graphical user interface developed with shiny.}
+\title{Start the sdmApp graphical user interface}
 \usage{
 sdmApp(
   maxRequestSize = 50,
@@ -13,26 +13,45 @@ sdmApp(
 )
 }
 \arguments{
-\item{maxRequestSize}{(numeric) number defining the maximum allowed file size (in megabytes) for uploaded files, defaults to 50MB}
+\item{maxRequestSize}{Numeric. Maximum allowed size, in megabytes, for
+uploaded files. Defaults to 50.}
 
-\item{debug}{logical if TRUE, set shiny-debugging options}
+\item{debug}{Logical. If \code{TRUE}, enable 'shiny' debugging options
+(full stack trace and trace).}
 
-\item{theme}{select style sheet for the interface.}
+\item{theme}{Character. Style sheet for the interface. One of
+\code{"IHSN"} (default), \code{"yeti"}, \code{"journal"} or \code{"flatly"}.}
 
-\item{...}{arguments (e.g host) that are passed through \code{\link{runApp}} when starting the shiny application}
+\item{...}{Further arguments (for example \code{host} or \code{port}) passed to
+\code{\link[shiny:runApp]{shiny::runApp()}} when the application is launched.}
 
-\item{shiny.server}{Setting this parameter to TRUE will return the app in the form of an object rather than invoking it. This is useful for deploying sdmApp via shiny-server.}
+\item{shiny.server}{Logical. If \code{TRUE}, return the application as a
+\code{\link[shiny:shinyApp]{shiny::shinyApp()}} object instead of launching it. Useful for
+deploying \code{sdmApp} behind shiny-server.}
 }
 \value{
-starts the interactive graphical user interface.
+If \code{shiny.server = TRUE}, a \code{\link[shiny:shinyApp]{shiny::shinyApp()}} object.
+Otherwise the function is called for its side effect of starting the
+interactive interface and returns the value of \code{\link[shiny:runApp]{shiny::runApp()}}
+invisibly.
 }
 \description{
-starts the graphical user interface developed with shiny.
+Launches the 'shiny' application that lets non-expert R users model
+species distribution through a reproducible, point-and-click workflow.
+}
+\details{
+The interface relies on a number of modelling engines (for example
+\pkg{SSDM}, \pkg{dismo}, \pkg{randomForest}, \pkg{kernlab} and
+\pkg{CENFA}). Those packages are listed under \code{Suggests} to keep the
+installation footprint small; \code{\link[=sdmApp]{sdmApp()}} checks that they are available
+and returns an informative error listing anything missing.
 }
 \examples{
-if(interactive()){
-#load the package
-library(sdmApp)
-sdmApp()
+if (interactive()) {
+  library(sdmApp)
+  sdmApp()
 }
+}
+\author{
+Aboubacar HEMA
 }

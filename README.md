@@ -1,61 +1,138 @@
-# sdmApp <img src="inst/docs/Logo_sdmApp.png" align="right" width="120" />
- Species Distribution Models Application
- 
-# `sdmApp`: Statistical Details
+# sdmApp <img src="inst/docs/Logo_sdmApp.png" align="right" height="139" alt="sdmApp logo" />
 
-| Package                                                                                                                                                         | Status                                                                                                                                                                                       | Usage                                                                                                                                             | GitHub                                                                                                                                                         | Miscellaneous                                                                                                                                                   |
-  |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-  | [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/sdmApp)](https://CRAN.R-project.org/package=sdmApp)                                 | [![Travis Build Status](https://travis-ci.org/Abson-dev/sdmApp.svg?branch=master)](https://travis-ci.org/Abson-dev/sdmApp)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/sdmApp?color=blue)](https://CRAN.R-project.org/package=sdmApp)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.0.2-orange.svg?style=flat-square)](https://github.com/Abson-dev/sdmApp/)               | [![Website](https://img.shields.io/badge/website-sdmApp-orange.svg?colorB=E91E63)](https://Abson-dev.github.io/sdmApp/)                          |
-  | [![CRAN Checks](https://cranchecks.info/badges/summary/sdmApp)](https://cran.r-project.org/web/checks/check_results_sdmApp.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Abson-dev/sdmApp?branch=master&svg=true)](https://ci.appveyor.com/project/Abson-dev/sdmApp) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/sdmApp?color=blue)](https://CRAN.R-project.org/package=sdmApp)   | [![Forks](https://img.shields.io/badge/forks-0-blue.svg)](https://github.com/Abson-dev/sdmApp/)                                                    | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      |
-  | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                                                  | [![R build status](https://github.com/Abson-dev/sdmApp/workflows/R-CMD-check/badge.svg)](https://github.com/Abson-dev/sdmApp)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/sdmApp?color=blue)](https://CRAN.R-project.org/package=sdmApp) | [![Github Issues](https://img.shields.io/badge/issues-1-red.svg)](https://github.com/Abson-dev/sdmApp/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.0.1-orange.svg?colorB=FF5722)](https://github.com/Abson-dev/sdmApp)                   |
-  | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Abson-dev/sdmApp.svg)](https://github.com/Abson-dev/sdmApp) | [![Coverage Status](https://coveralls.io/repos/github/Abson-dev/sdmApp/badge.svg?branch=master)](https://coveralls.io/github/Abson-dev/sdmApp?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/sdmApp?color=blue)](https://CRAN.R-project.org/package=sdmApp)  | [![Github Stars](https://img.shields.io/github/stars/Abson-dev/sdmApp.svg?style=social&label=Github)](https://github.com/Abson-dev/sdmApp) | [![DOI](https://zenodo.org/badge/DOI/10.1016/zenodo.107481.svg)](https://doi.org/10.1016/j.ecolind.2021.107481)                                                       |
-  | [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/Abson-dev/sdmApp/branch/master/graph/badge.svg)](https://codecov.io/gh/Abson-dev/sdmApp?branch=master)                   | [![HitCount](https://hits.dwyl.com/Abson-dev/sdmApp.svg)](https://hits.dwyl.com/Abson-dev/sdmApp)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--02--01-yellowgreen.svg)](https://github.com/Abson-dev/sdmApp/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/Abson-dev/sdmApp.svg)](https://github.com/Abson-dev/sdmApp/commits/master) |
-  | [![status](https://tinyverse.netlify.com/badge/sdmApp)](https://CRAN.R-project.org/package=sdmApp)                                                    | [![lints](https://github.com/Abson-dev/sdmApp/workflows/lint/badge.svg)](https://github.com/Abson-dev/sdmApp)                                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://github.com/Abson-dev/sdmApp)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Abson-dev/sdmApp/issues) |
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/Abson-dev/sdmApp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Abson-dev/sdmApp/actions/workflows/R-CMD-check.yaml)
+[![test-coverage](https://github.com/Abson-dev/sdmApp/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/Abson-dev/sdmApp/actions/workflows/test-coverage.yaml)
+[![lint](https://github.com/Abson-dev/sdmApp/actions/workflows/lint.yaml/badge.svg)](https://github.com/Abson-dev/sdmApp/actions/workflows/lint.yaml)
+[![pkgdown](https://github.com/Abson-dev/sdmApp/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/Abson-dev/sdmApp/actions/workflows/pkgdown.yaml)
+[![Codecov test coverage](https://codecov.io/gh/Abson-dev/sdmApp/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Abson-dev/sdmApp?branch=master)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)
+<!-- badges: end -->
 
+`sdmApp` is an R package containing a Shiny application that lets non-expert
+R users model species distribution. It brings a reproducible workflow for
+species distribution modeling into a single, user friendly environment.
+`sdmApp` takes raster data (in any format supported by the `raster` package)
+and species occurrence data (several formats supported) as input, and
+provides an interactive graphical user interface (GUI).
 
-*sdmApp* is a *R package* containing a *Shiny* application that allows non-expert *R* users to easily model species distribution. It offers a reproducible work flow for species distribution modeling into a single and user friendly environment. *sdmApp* takes *Raster* data (in format supported by the *Raster package*) and species occurrence data (several format supported) as input argument. This *package* provides an interactive graphical user interface (GUI).
- This document will give an overview of the main functionalities of the graphical user interface. The main features of the *GUI* is:
+## CRAN status
 
-* Uploading data (*raster* and species occurrence files)
-* View correlation between *raster*
-* Use [CENFA](https://CRAN.R-project.org/package=CENFA) to select species predictors
-* Apply a spatial blocking for cross-validation based on the [blockCV](https://CRAN.R-project.org/package=blockCV) package
-* Apply species distribution models with or without a spatial blocking strategy 
+`sdmApp` is **not currently available on CRAN**. It was archived on
+2024-02-10 because check problems were not corrected in time, following an
+earlier archival on 2021-07-06 caused by its dependency on `CENFA`, which
+had itself been archived.
 
+Install from GitHub instead (see below). Work to return the package to CRAN
+is tracked in the issue queue: the main blockers were the retirement of
+`rgdal` and `rgeos` in October 2023 and the archival of `CENFA` in July 2023.
+
+## Main features
+
+* Upload data (raster predictors and species occurrence files)
+* View the correlation between raster predictors
+* Use [CENFA](https://github.com/rinnan/CENFA) to select species predictors
+* Apply spatial blocking for cross-validation based on the
+  [blockCV](https://CRAN.R-project.org/package=blockCV) package
+* Fit species distribution models with or without a spatial blocking strategy
 * Export results
-* Keep reproduce (*R* code) by being able do download the underlying code from *sdmApp*.
+* Stay reproducible by downloading the underlying R code from `sdmApp`
 
- The *GUI* is build around 5 main windows, which can be selected from the navigation bar at the top of the screen. Initially, some of these windows will be empty and their content changes once data (both *raster* and species occurrence files) have been uploaded.
- 
-## Set working environment
- 
-*sdmApp* uses Maxent model which used the Java implementation. Therefore you need :
+The GUI is built around five main windows, selectable from the navigation bar
+at the top of the screen. Some of these windows start empty and fill in once
+raster and species occurrence data have been uploaded.
 
-- the **Java JDK** software is installed;
-- the package **rJava** is installed;
-- the file **maxent.jar** is copied in the correct folder.
- 
- 
 ## Installation
- 
-To install the *package* from *github* use:
+
+### System requirements
+
+`sdmApp` exposes the MaxEnt model, which uses a Java implementation. To use
+MaxEnt you need:
+
+* the **Java JDK** (>= 8) installed;
+* the **rJava** package installed;
+* the **maxent.jar** file copied into the correct folder, that is the `java`
+  directory of the `dismo` package. You can locate it with
+  `system.file("java", package = "dismo")`.
+
+Everything else in `sdmApp` works without Java.
+
+### Install the package
 
 ```r
+# install.packages("remotes")
+
+# CENFA is not on CRAN and must be installed from GitHub first
+remotes::install_github("rinnan/CENFA")
+
+# then sdmApp itself
 remotes::install_github("Abson-dev/sdmApp", dependencies = TRUE)
-library(sdmApp)
-sdmApp()
 ```
-To install the *package* from *CRAN* use:
+
+Then launch the interface:
 
 ```r
-install.package("sdmApp", dependencies = TRUE)
 library(sdmApp)
 sdmApp()
 ```
 
+`sdmApp()` checks at launch that the modelling engines it needs are
+installed, and stops with a message naming any that are missing, so you never
+get a cryptic error halfway through a session.
+
+## Quick start without the GUI
+
+The package also exports a small set of mapping helpers that you can use
+directly in a script. They all work on the example data shipped with the
+package.
+
+```r
+library(sdmApp)
+
+# a continuous predictor: actual evapotranspiration and interception
+r <- raster::raster(system.file("extdata", "AETI.tif", package = "sdmApp"))
+sdmApp_RasterPlot(r)
+
+# a presence/absence surface
+pa <- r > 4000
+sdmApp_PA(pa)
+
+# mask a probability surface by a presence/absence surface
+prob <- r / raster::cellStats(r, "max")
+names(prob) <- "probability of occurrence"
+sdmApp_RasterPlot(sdmApp_TimesRasters(prob, pa))
+```
+
+See `vignette("sdmApp")` for a longer walkthrough.
+
+## Example data
+
+The package ships a small extract of the Niakhar study area in Senegal, in
+`inst/extdata`:
+
+* `Niakhar.csv` (and the same table as `.xlsx`, `.dta`, `.sav`, `.sas7bdat`),
+  holding 9258 georeferenced trees scored for three species
+  (*Faidherbia albida*, *Balanites aegyptiaca* and *Anogeissus leiocarpus*);
+* 34 raster predictors covering bioclimatic drivers, soil properties, water
+  productivity, vegetation phenology and productivity, and watershed
+  topography.
+
+The bundled rasters are aligned on a common grid of 93 by 91 cells in
+geographic coordinates (EPSG:4326). Note that `Niakhar.csv` is semicolon
+separated and uses a comma as decimal mark, so read it with
+`read.csv2()` rather than `read.csv()`.
+
+## The graphical interface
 
 <img src="inst/docs/sdmApp.PNG" />
 
+The five tabs are `Help/About`, `Data Upload`, `Spatial Analysis`,
+`Modeling` and `R-Code`. The screenshots below follow a typical session,
+from uploading data through to exporting results and recovering the
+generated R code.
 
 <img src="inst/docs/export1.PNG" />
 
@@ -65,21 +142,30 @@ sdmApp()
 
 <img src="inst/docs/export4.PNG" />
 
-
 <img src="inst/docs/export5.PNG" />
 
 <img src="inst/docs/export6.PNG" />
-
 
 <img src="inst/docs/export7.PNG" />
 
 <img src="inst/docs/export8.PNG" />
 
-
 <img src="inst/docs/export9.PNG" />
 
 <img src="inst/docs/export10.PNG" />
 
+## Known compatibility notes
+
+* **blockCV 3.0 and later.** `spatialBlock()` is deprecated in favour of
+  `cv_spatial()`, and the returned object is no longer of class
+  `SpatialBlock`. `sdmApp_fold_Explorer()` currently expects a
+  `SpatialBlock` object, so it works with the deprecated `spatialBlock()`
+  but not yet with `cv_spatial()`. Support for the new class is planned.
+* **rgdal and rgeos.** Both were archived from CRAN on 2023-10-16. `sdmApp`
+  no longer depends on them; recent `raster` reaches GDAL, GEOS and PROJ
+  through `terra`.
+* **raster and sp.** These still work but are in maintenance mode. A
+  migration of the mapping helpers to `terra` and `sf` is planned.
 
 ## Citation
 
@@ -87,28 +173,52 @@ sdmApp()
 citation("sdmApp")
 ```
 
-To cite package *sdmApp* in publications use:
+To cite `sdmApp` in publications, use:
 
-  HEMA A, NDAO B, LEROUX L, DIOUF A (2021). _sdmApp: A User-Friendly Application for
-  Species Distribution Modeling_. R package version 0.0.2,
-  <https://CRAN.R-project.org/package=sdmApp>.
+> HEMA A, NDAO B, LEROUX L, DIOUF A (2026). *sdmApp: A User-Friendly
+> Application for Species Distribution Modeling*. R package version 0.0.3,
+> <https://github.com/Abson-dev/sdmApp>.
 
-A BibTeX entry for LaTeX users is
+A BibTeX entry for LaTeX users is:
 
-  @Manual{,
-    title = {sdmApp: A User-Friendly Application for Species Distribution Modeling},
-    author = {Aboubacar HEMA and Babacar NDAO and Louise LEROUX and Abdoul Aziz DIOUF},
-    year = {2021},
-    note = {R package version 0.0.2},
-    url = {https://CRAN.R-project.org/package=sdmApp},
-  }
-
+```bibtex
+@Manual{,
+  title  = {sdmApp: A User-Friendly Application for Species Distribution Modeling},
+  author = {Aboubacar HEMA and Babacar NDAO and Louise LEROUX and Abdoul Aziz DIOUF},
+  year   = {2026},
+  note   = {R package version 0.0.3},
+  url    = {https://github.com/Abson-dev/sdmApp},
+}
+```
 
 ## License
 
-The *sdmApp* sticker was made through *R* art kindly shared by this [link](https://art.djnavarro.net/) and released under a [CC-BY-SA 4.0](https://www.donneesquebec.ca/licence/) license.
+`sdmApp` is released under the GPL-3 license.
+
+The `sdmApp` sticker was made through R art kindly shared at
+[art.djnavarro.net](https://art.djnavarro.net/) and released under a
+CC-BY-SA 4.0 license.
 
 ## Guidelines for contributing
 
-I welcome contributions and suggestions for improving this package. Please do not hesitate to submit any issues you may encounter.
+Contributions and suggestions for improving this package are welcome. Please
+do not hesitate to open an issue for any problem you encounter, or a pull
+request for any improvement you would like to propose.
 
+## References
+
+Ndao, B., Leroux, L., Diouf, A.A., Soti, V., Sambou, B. (2019). A remote
+sensing based approach for optimizing sampling strategies in crop monitoring
+and crop yield estimation studies. In: Wade, S. (Ed.), *Earth Observations
+and Geospatial Science in Service of Sustainable Development Goals*.
+Springer, pp. 25-36. [doi:10.1007/978-3-030-16016-6_3](https://doi.org/10.1007/978-3-030-16016-6_3)
+
+Rinnan, D.S., Lawler, J. (2019). Climate-niche factor analysis: a spatial
+approach to quantifying species vulnerability to climate change.
+*Ecography*, 42, 1494-1503. [doi:10.1111/ecog.03937](https://doi.org/10.1111/ecog.03937)
+
+Valavi, R., Elith, J., Lahoz-Monfort, J.J., Guillera-Arroita, G. (2019).
+blockCV: An R package for generating spatially or environmentally separated
+folds for k-fold cross-validation of species distribution models.
+*Methods in Ecology and Evolution*, 10, 225-232.
+[doi:10.1111/2041-210X.13107](https://doi.org/10.1111/2041-210X.13107)
