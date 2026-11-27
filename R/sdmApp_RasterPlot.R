@@ -4,7 +4,8 @@
 #' colour ramp. The layer is sampled on a regular grid so that large
 #' rasters render quickly.
 #'
-#' @param x A [raster::RasterLayer-class] object.
+#' @param x A [raster::RasterLayer-class] or [terra::SpatRaster-class]
+#'   object. Only the first layer is drawn.
 #'
 #' @return A [ggplot2::ggplot] object, or `NULL` if `x` is a base graphics
 #'   raster (`grDevices::is.raster(x)` is `TRUE`).
@@ -14,7 +15,7 @@
 #' @importFrom raster sampleRegular as.data.frame
 #' @importFrom grDevices is.raster terrain.colors
 #' @importFrom ggplot2 ggplot geom_raster aes theme_bw labs ggtitle theme
-#'   element_text scale_fill_gradientn .data
+#' @importFrom ggplot2 element_text scale_fill_gradientn .data
 #' @export
 #'
 #' @examples
@@ -24,14 +25,11 @@ sdmApp_RasterPlot <- function(x) {
   if (grDevices::is.raster(x)) {
     return(NULL)
   }
-  if (!inherits(x, "Raster")) {
-    stop("'x' must be a Raster* object.", call. = FALSE)
+  if (!.is_raster(x)) {
+    stop("'x' must be a Raster* or SpatRaster object.", call. = FALSE)
   }
 
-  samp <- raster::sampleRegular(x, 5e5, asRaster = TRUE)
-  map_df <- raster::as.data.frame(samp, xy = TRUE, centroids = TRUE,
-                                  na.rm = TRUE)
-  colnames(map_df) <- c("Easting", "Northing", "MAP")
+  map_df <- .raster_to_df(x)
 
   ggplot2::ggplot(map_df) +
     ggplot2::geom_raster(
@@ -40,12 +38,10 @@ sdmApp_RasterPlot <- function(x) {
     ) +
     ggplot2::theme_bw() +
     ggplot2::labs(x = "Longitude", y = "Latitude") +
-    ggplot2::ggtitle(label = names(x)) +
+    ggplot2::ggtitle(label = .layer_name(x)) +
     ggplot2::scale_fill_gradientn(
       name = " ",
       colours = rev(grDevices::terrain.colors(10))
     ) +
-    ggplot2::theme(
-      plot.title = ggplot2::element_text(hjust = 0.5, size = 10)
-    )
+    .title_theme()
 }

@@ -28,17 +28,17 @@ output$ui_spatial_blocks<-renderUI({
 
    spatialblock<-reactive({
      a = try(withProgress(message = 'Spatial blocking',
-                          blockCV::spatialBlock(speciesData = sp_pa_data(),
-                                                species = load.occ$spec_select,
-                                                rasterLayer = data$var_auto,
-                                                theRange = range(), #load.occ$range, # size of the blocks
-                                                k = load.occ$k,
-                                                showBlocks = TRUE,
-                                                selection = load.occ$allocation_fold,
-                                                iteration = 100, # find evenly dispersed folds
-                                                biomod2Format = FALSE,
-                                                xOffset = 0, # shift the blocks horizontally
-                                                yOffset = 0)))
+                          blockCV::cv_spatial(x = sp_pa_data(),
+                                              column = load.occ$spec_select,
+                                              r = data$var_auto,
+                                              size = block_range(), # size of the blocks (m)
+                                              k = load.occ$k,
+                                              selection = load.occ$allocation_fold,
+                                              iteration = 100, # find evenly dispersed folds
+                                              biomod2 = FALSE,
+                                              plot = FALSE,
+                                              progress = FALSE,
+                                              report = FALSE)))
      if(inherits(a, 'try-error'))
      {
        output$Envbug_sp <- renderUI(p('Spatial blocking failed, please check your inputs and try again!'))
@@ -51,7 +51,7 @@ output$ui_spatial_blocks<-renderUI({
 
   output$sp_block<-renderPlot({
     spatialblock<-spatialblock()
-    spatialblock$plots + geom_sf(data = sp_pa_data(), alpha = 0.5)
+    blockCV::cv_plot(cv = spatialblock, x = sp_pa_data(), r = data$var_auto)
   })
 
 
@@ -59,7 +59,14 @@ output$ui_spatial_blocks<-renderUI({
     spatialblock<-spatialblock()
     sumfold<-reactive({
       a = try(withProgress(message = 'Summary fold...',
-             summarise_fold(spatialblock)))
+             {
+               rec <- spatialblock$records
+               n_test <- rowSums(rec[, grepl("^test", names(rec)), drop = FALSE])
+               n_all <- n_test + rowSums(rec[, grepl("^train", names(rec)), drop = FALSE])
+               data.frame(fold = seq_len(nrow(rec)), rec,
+                          test_percent = round(100 * n_test / n_all, 1),
+                          check.names = FALSE)
+             }))
       if(inherits(a, 'try-error'))
       {
         output$Envbug_fold <- renderUI(p('Spatial blocking failed, please check your inputs and try again!'))
@@ -87,7 +94,7 @@ output$ui_spatial_blocks<-renderUI({
            mainPanel(width = 8, tabsetPanel(type = "tabs",
                                             tabPanel("Spatial blocking",
                                                      p('Set spatial bloking parameters'),
-                                                     sliderInput("number_fold", "folds", min=1, max=100, value=5),
+                                                     sliderInput("number_fold", "folds", min=2, max=100, value=5),
                                                      selectInput("allocation_fold","allocation of blocks to folds",choices = c("random","systematic"),selected="random"),
                                                      sliderInput("test_fold","Select the number of fold to assign as test dataset",min = 1,max=100,value = 1),
                                                      myActionButton("block_button",label=("Apply"), "primary"),

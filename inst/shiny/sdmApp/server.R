@@ -417,10 +417,9 @@ shinyServer(function(session, input, output) {
 
   sac<-reactive({
     a = try(withProgress(message = 'Spatial Autorange',
-                         blockCV::spatialAutoRange(rasterLayer = data$var_auto,
-                                                   doParallel = T,
-                                                   plotVariograms = TRUE,
-                                                   showPlots = FALSE)))
+                         blockCV::cv_spatial_autocor(r = data$var_auto,
+                                                     plot = FALSE,
+                                                     progress = FALSE)))
     load.occ$sac<-a
     load.occ$sac
     })

@@ -8,7 +8,8 @@
 #' @param x Probability-of-occurrence map, a [raster::RasterLayer-class]
 #'   object.
 #' @param y Presence/absence map, a [raster::RasterLayer-class] object with
-#'   the same extent and resolution as `x`.
+#'   the same extent, resolution and coordinate reference system as `x`.
+#'   Two [terra::SpatRaster-class] objects are also accepted.
 #'
 #' @return A [raster::RasterLayer-class] object giving the
 #'   probability of occurrence restricted to presence cells.
@@ -25,8 +26,17 @@
 #' z <- sdmApp_TimesRasters(r, r2)
 #' sdmApp_RasterPlot(z)
 sdmApp_TimesRasters <- function(x, y) {
-  if (!inherits(x, "Raster") || !inherits(y, "Raster")) {
-    stop("'x' and 'y' must both be Raster* objects.", call. = FALSE)
+  both_raster <- inherits(x, "Raster") && inherits(y, "Raster")
+  both_terra  <- inherits(x, "SpatRaster") && inherits(y, "SpatRaster")
+  if (!both_raster && !both_terra) {
+    stop("'x' and 'y' must both be Raster* objects (or both SpatRaster ",
+         "objects).", call. = FALSE)
+  }
+  same_geometry <- !both_raster ||
+    isTRUE(raster::compareRaster(x, y, stopiffalse = FALSE))
+  if (!same_geometry) {
+    stop("'x' and 'y' must have the same extent, resolution and ",
+         "coordinate reference system.", call. = FALSE)
   }
   z <- x * y
   names(z) <- names(x)

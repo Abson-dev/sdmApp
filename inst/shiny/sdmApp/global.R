@@ -38,7 +38,7 @@ if (!getShinyOption("sdmAppInvoked", FALSE)) {### Beginning required code for de
 
   theme="IHSN"
   shinyOptions(.guitheme = "ihsn-root.css")
-  shinyOptions(.guijsfile = "js/ihsn-style.js")
+  shinyOptions(.guijsfile = NULL)
 }## End of deployment code
 # required that 'dQuote()' works nicely when
 # outputting R-Code
@@ -130,7 +130,9 @@ marg_spec<-reactive({
 #   a
 # })
 
-range<-reactive({
+# Block size (in metres) suggested by the spatial autocorrelation analysis.
+# Named block_range so that it does not mask base::range().
+block_range<-reactive({
   sac<-load.occ$sac
   round(sac$range,0)
 })
@@ -138,7 +140,7 @@ range<-reactive({
 
 tableRange<-reactive({
   sac<-load.occ$sac
-  sac$rangeTable
+  sac$range_table
 })
 
 data <- reactiveValues(Env = stack(), Occ = data.frame(), dir = getwd(), ESDM = NULL, esdms = list(), Stack = NULL)

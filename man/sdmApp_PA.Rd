@@ -7,8 +7,9 @@
 sdmApp_PA(x)
 }
 \arguments{
-\item{x}{A \link[raster:RasterLayer-class]{raster::RasterLayer} object holding presence (\code{TRUE},
-\code{1}) and absence (\code{FALSE}, \code{0}) values.}
+\item{x}{A \link[raster:RasterLayer-class]{raster::RasterLayer} or \link[terra:SpatRaster-class]{terra::SpatRaster}
+object holding presence (\code{TRUE}, \code{1}) and absence (\code{FALSE}, \code{0})
+values. Only the first layer is drawn.}
 }
 \value{
 A \link[ggplot2:ggplot]{ggplot2::ggplot} object.

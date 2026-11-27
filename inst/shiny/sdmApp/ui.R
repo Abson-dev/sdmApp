@@ -11,7 +11,9 @@ shinyUI(
            tabPanel("Spatial Analysis",uiOutput("ui_preparation")),
            tabPanel("Modeling",uiOutput("ui_Models")),
            tabPanel("R-Code",uiOutput("ui_code")),
-           tags$head(tags$script(
-             src = paste0("sdmwww/", getShinyOption(".guijsfile"))
-           )))
+           if (!is.null(getShinyOption(".guijsfile"))) {
+             tags$head(tags$script(
+               src = paste0("sdmwww/", getShinyOption(".guijsfile"))
+             ))
+           })
 )

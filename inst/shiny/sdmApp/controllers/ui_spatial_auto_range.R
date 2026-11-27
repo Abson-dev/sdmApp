@@ -44,8 +44,8 @@ output$ui_spatial_auto_range<-renderUI({
 
                 output$mapplot <- renderPlot({
                   sac<-sac()
-                  data$mapplot<-sac$plots$mapplot
-                  sac$plots$mapplot
+                  data$mapplot<-sac$plots$map_plot
+                  sac$plots$map_plot
                 })
         })
   fluidRow(column(12, h4("Spatial autocorrelation "), align="center"),
