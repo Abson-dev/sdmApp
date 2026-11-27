@@ -10,6 +10,8 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)
+[![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/sdmApp?color=blue)](https://CRAN.R-project.org/package=sdmApp)
+[![Monthly downloads](https://cranlogs.r-pkg.org/badges/last-month/sdmApp?color=blue)](https://CRAN.R-project.org/package=sdmApp)
 <!-- badges: end -->
 
 `sdmApp` is an R package containing a Shiny application that lets non-expert
