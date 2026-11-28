@@ -16,7 +16,9 @@ sdmApp_RasterPlot(x)
 
   A
   [raster::RasterLayer](https://rdrr.io/pkg/raster/man/Raster-classes.html)
-  object.
+  or
+  [terra::SpatRaster](https://rspatial.github.io/terra/reference/SpatRaster-class.html)
+  object. Only the first layer is drawn.
 
 ## Value
 

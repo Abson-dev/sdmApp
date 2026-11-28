@@ -16,8 +16,10 @@ sdmApp_PA(x)
 
   A
   [raster::RasterLayer](https://rdrr.io/pkg/raster/man/Raster-classes.html)
+  or
+  [terra::SpatRaster](https://rspatial.github.io/terra/reference/SpatRaster-class.html)
   object holding presence (`TRUE`, `1`) and absence (`FALSE`, `0`)
-  values.
+  values. Only the first layer is drawn.
 
 ## Value
 

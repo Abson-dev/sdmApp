@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   sdmApp: sdmApp.html
-last_built: 2026-07-09T22:39Z
+last_built: 2026-11-28T10:17Z
 urls:
   reference: https://abson-dev.github.io/sdmApp/reference
   article: https://abson-dev.github.io/sdmApp/articles

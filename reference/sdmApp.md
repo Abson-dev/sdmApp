@@ -19,8 +19,8 @@ sdmApp(
 
 - maxRequestSize:
 
-  Numeric. Maximum allowed size, in megabytes, for uploaded files.
-  Defaults to 50.
+  Numeric. Maximum allowed size, in megabytes, for uploaded files. Must
+  be a single positive number. Defaults to 50.
 
 - debug:
 
@@ -34,9 +34,10 @@ sdmApp(
 
 - ...:
 
-  Further arguments (for example `host` or `port`) passed to
-  [`shiny::runApp()`](https://rdrr.io/pkg/shiny/man/runApp.html) when
-  the application is launched.
+  Further options (for example `host`, `port` or `launch.browser`)
+  passed to the `options` argument of
+  [`shiny::shinyApp()`](https://rdrr.io/pkg/shiny/man/shinyApp.html). By
+  default the app opens in a web browser.
 
 - shiny.server:
 
@@ -52,7 +53,9 @@ If `shiny.server = TRUE`, a
 object. Otherwise the function is called for its side effect of starting
 the interactive interface and returns the value of
 [`shiny::runApp()`](https://rdrr.io/pkg/shiny/man/runApp.html)
-invisibly.
+invisibly. The global [`options()`](https://rdrr.io/r/base/options.html)
+that `sdmApp()` sets (`shiny.maxRequestSize`, `shiny.fullstacktrace`,
+`shiny.trace`) are restored when the app stops.
 
 ## Details
 

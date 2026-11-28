@@ -320,7 +320,7 @@ and with a readable message rather than deep inside `ggplot2`:
 
 sdmApp_TimesRasters(1, 2)
 #> Error:
-#> ! 'x' and 'y' must both be Raster* objects.
+#> ! 'x' and 'y' must both be Raster* objects (or both SpatRaster objects).
 ```
 
 ### Exploring spatial cross-validation folds
@@ -334,34 +334,29 @@ background raster.
 
 ``` r
 
-library(blockCV)
-
-sb <- spatialBlock(
-  speciesData = pa_data["Faidherbia.albida"],
-  species = "Faidherbia.albida",
-  rasterLayer = r,
-  theRange = 2000,
+cv <- blockCV::cv_spatial(
+  x = pa_data["Faidherbia.albida"],
+  column = "Faidherbia.albida",
+  r = r,
+  size = 2000,          # block size in metres
   k = 5,
   selection = "random",
-  iteration = 100
+  iteration = 100,
+  plot = FALSE,
+  progress = FALSE,
+  report = FALSE
 )
 
-sdmApp_fold_Explorer(sb, r, pa_data["Faidherbia.albida"], num = 1)
+sdmApp_fold_Explorer(cv, r, pa_data["Faidherbia.albida"], num = 1)
 ```
 
-Note a compatibility caveat. From `blockCV` version 3.0,
-[`spatialBlock()`](https://rdrr.io/pkg/blockCV/man/spatialBlock.html) is
-deprecated in favour of
-[`cv_spatial()`](https://rdrr.io/pkg/blockCV/man/cv_spatial.html), and
-the object returned by
-[`cv_spatial()`](https://rdrr.io/pkg/blockCV/man/cv_spatial.html) is no
-longer of class `SpatialBlock`.
+![](sdmApp_files/figure-html/fold-explorer-1.png)
+
 [`sdmApp_fold_Explorer()`](https://abson-dev.github.io/sdmApp/reference/sdmApp_fold_Explorer.md)
-currently tests for that class, so it works with the deprecated
-[`spatialBlock()`](https://rdrr.io/pkg/blockCV/man/spatialBlock.html)
-but not yet with
-[`cv_spatial()`](https://rdrr.io/pkg/blockCV/man/cv_spatial.html).
-Support for the new class is planned.
+accepts the objects returned by `cv_spatial()` and the other `cv_*()`
+functions of `blockCV` 3.0 and later, as well as the legacy
+`SpatialBlock` objects returned by `spatialBlock()` in older `blockCV`
+versions. The blocks of the selected fold are outlined in red.
 
 ## A typical session in the GUI
 
@@ -397,13 +392,13 @@ models, compare them, then export both the maps and the R code.
 ``` r
 
 sessionInfo()
-#> R version 4.6.1 (2026-06-24)
+#> R version 4.6.2 (2026-10-29)
 #> Platform: x86_64-pc-linux-gnu
-#> Running under: Ubuntu 24.04.4 LTS
+#> Running under: Ubuntu 26.04.1 LTS
 #> 
 #> Matrix products: default
 #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.32.so;  LAPACK version 3.12.0
 #> 
 #> locale:
 #>  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
@@ -421,23 +416,24 @@ sessionInfo()
 #> [1] sdmApp_0.0.3
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] sass_0.4.10        generics_0.1.4     class_7.3-23       KernSmooth_2.23-26
-#>  [5] lattice_0.22-9     digest_0.6.39      magrittr_2.0.5     evaluate_1.0.5    
-#>  [9] grid_4.6.1         RColorBrewer_1.1-3 fastmap_1.2.0      jsonlite_2.0.0    
-#> [13] e1071_1.7-17       DBI_1.3.0          promises_1.5.0     scales_1.4.0      
-#> [17] codetools_0.2-20   textshaping_1.0.5  jquerylib_0.1.4    shiny_1.14.0      
-#> [21] cli_3.6.6          rlang_1.3.0        units_1.0-1        cowplot_1.2.0     
-#> [25] withr_3.0.3        cachem_1.1.0       yaml_2.3.12        otel_0.2.0        
-#> [29] tools_4.6.1        raster_3.6-32      dplyr_1.2.1        ggplot2_4.0.3     
-#> [33] httpuv_1.6.17      mime_0.13          vctrs_0.7.3        R6_2.6.1          
-#> [37] proxy_0.4-29       lifecycle_1.0.5    classInt_0.4-11    fs_2.1.0          
-#> [41] htmlwidgets_1.6.4  ragg_1.5.2         pkgconfig_2.0.3    desc_1.4.3        
-#> [45] later_1.4.8        pkgdown_2.2.1      terra_1.9-34       pillar_1.11.1     
-#> [49] bslib_0.11.0       gtable_0.3.6       glue_1.8.1         Rcpp_1.1.2        
-#> [53] sf_1.1-1           systemfonts_1.3.2  xfun_0.60          tibble_3.3.1      
-#> [57] tidyselect_1.2.1   knitr_1.51         xtable_1.8-8       farver_2.1.2      
-#> [61] htmltools_0.5.9    labeling_0.4.3     rmarkdown_2.31     compiler_4.6.1    
-#> [65] S7_0.2.2           sp_2.2-1
+#>  [1] gtable_0.3.6       xfun_0.62          bslib_0.12.0       ggplot2_4.0.4     
+#>  [5] raster_3.6-32      htmlwidgets_1.6.4  lattice_0.23-1     vctrs_0.7.3       
+#>  [9] tools_4.6.2        generics_0.1.4     tibble_3.3.1       proxy_0.4-29      
+#> [13] pkgconfig_2.0.3    KernSmooth_2.23-27 RColorBrewer_1.1-3 S7_1.0.0          
+#> [17] desc_1.4.3         lifecycle_1.0.5    compiler_4.6.2     farver_2.1.2      
+#> [21] textshaping_1.1.0  terra_1.9-60       codetools_0.2-20   httpuv_1.6.17     
+#> [25] htmltools_0.5.9    class_7.3-24       sass_0.5.0         yaml_2.3.12       
+#> [29] pillar_1.11.1      pkgdown_2.2.1      later_1.4.8        jquerylib_0.1.4   
+#> [33] classInt_0.4-11    cachem_1.1.0       wk_0.9.5           mime_0.13         
+#> [37] tidyselect_1.2.1   digest_0.6.39      sf_1.1-3           dplyr_1.2.1       
+#> [41] labeling_0.4.3     cowplot_1.2.0      fastmap_1.2.0      grid_4.6.2        
+#> [45] cli_3.6.6          magrittr_2.0.5     e1071_1.7-17       withr_3.0.3       
+#> [49] scales_1.4.0       promises_1.5.0     sp_2.2-4           rmarkdown_2.32    
+#> [53] otel_0.3.0         ragg_1.5.2         shiny_1.15.0       evaluate_1.0.5    
+#> [57] knitr_1.52         s2_1.1.13          rlang_1.3.0        Rcpp_1.1.2        
+#> [61] xtable_1.8-8       glue_1.8.1         DBI_1.3.0          blockCV_4.0-1     
+#> [65] jsonlite_2.0.0     R6_2.6.1           systemfonts_1.3.4  fs_2.1.0          
+#> [69] units_1.0-1
 ```
 
 ## References

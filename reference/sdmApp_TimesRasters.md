@@ -23,7 +23,10 @@ sdmApp_TimesRasters(x, y)
 
   Presence/absence map, a
   [raster::RasterLayer](https://rdrr.io/pkg/raster/man/Raster-classes.html)
-  object with the same extent and resolution as `x`.
+  object with the same extent, resolution and coordinate reference
+  system as `x`. Two
+  [terra::SpatRaster](https://rspatial.github.io/terra/reference/SpatRaster-class.html)
+  objects are also accepted.
 
 ## Value
 
