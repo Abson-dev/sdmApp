@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 `sdmApp` is an R package containing a Shiny application that lets non-expert
 R users model species distribution. It brings a reproducible workflow for
 species distribution modeling into a single, user friendly environment.
-`sdmApp` takes raster data (in any format supported by the `raster` package)
+`sdmApp` takes raster data (in any format supported by the `terra` package)
 and species occurrence data (several formats supported) as input, and
 provides an interactive graphical user interface (GUI).
 
@@ -67,13 +67,9 @@ remotes::install_github("rinnan/CENFA")
 remotes::install_github("Abson-dev/sdmApp", dependencies = TRUE)
 ```
 
-To use the MaxEnt model you additionally need a Java JDK (>= 8), the `rJava`
-package, and the `maxent.jar` file placed in the `java` directory of the
-`dismo` package, which you can locate with:
-
-```{r maxent-path, eval = FALSE}
-system.file("java", package = "dismo")
-```
+To use the MaxEnt model you additionally need a Java JDK (>= 8) and the
+`rJava` package. Recent versions of `dismo` ship the `maxent.jar` file
+themselves.
 
 Everything shown in this vignette works without Java.
 
