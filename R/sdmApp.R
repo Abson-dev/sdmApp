@@ -3,11 +3,13 @@
 #' Launches the 'shiny' application that lets non-expert R users model
 #' species distribution through a reproducible, point-and-click workflow.
 #'
-#' The interface relies on a number of modelling engines (for example
-#' \pkg{SSDM}, \pkg{dismo}, \pkg{randomForest}, \pkg{kernlab} and
-#' \pkg{CENFA}). Those packages are listed under `Suggests` to keep the
-#' installation footprint small; [sdmApp()] checks that they are available
-#' and returns an informative error listing anything missing.
+#' The interface works on \pkg{terra} rasters and \pkg{sf} points and
+#' relies on a number of modelling engines (\pkg{dismo},
+#' \pkg{randomForest}, \pkg{kernlab}, \pkg{blockCV} and \pkg{CENFA}).
+#' Those packages are listed under `Suggests` to keep the installation
+#' footprint small; [sdmApp()] checks that they are available and returns an
+#' informative error listing anything missing. \pkg{rJava} (and Java) is
+#' only needed for the MaxEnt model.
 #'
 #' @param maxRequestSize Numeric. Maximum allowed size, in megabytes, for
 #'   uploaded files. Must be a single positive number. Defaults to 50.
@@ -118,11 +120,11 @@ sdmApp <- function(maxRequestSize = 50, debug = FALSE, theme = "IHSN",
 # Internal: verify that the suggested packages needed by the interface are
 # installed, and stop with an actionable message otherwise.
 .sdmApp_check_deps <- function() {
+  # rJava is deliberately not listed: it is only needed by MaxEnt, which
+  # reports a clear error in the interface when Java is unavailable.
   needed <- c(
-    "shinydashboard", "shinyBS", "shinyFiles", "rhandsontable", "DT",
-    "ggcorrplot", "data.table", "dplyr", "tidyr", "haven", "readxl",
-    "blockCV", "CENFA", "dismo", "SSDM", "randomForest", "kernlab",
-    "automap", "rJava", "stringr", "sp"
+    "shinyFiles", "DT", "ggcorrplot", "haven", "readxl", "highr", "terra",
+    "sp", "blockCV", "automap", "CENFA", "dismo", "randomForest", "kernlab"
   )
   installed <- vapply(needed, requireNamespace, logical(1), quietly = TRUE)
   missing <- needed[!installed]

@@ -43,11 +43,13 @@ Launches the 'shiny' application that lets non-expert R users model
 species distribution through a reproducible, point-and-click workflow.
 }
 \details{
-The interface relies on a number of modelling engines (for example
-\pkg{SSDM}, \pkg{dismo}, \pkg{randomForest}, \pkg{kernlab} and
-\pkg{CENFA}). Those packages are listed under \code{Suggests} to keep the
-installation footprint small; \code{\link[=sdmApp]{sdmApp()}} checks that they are available
-and returns an informative error listing anything missing.
+The interface works on \pkg{terra} rasters and \pkg{sf} points and
+relies on a number of modelling engines (\pkg{dismo},
+\pkg{randomForest}, \pkg{kernlab}, \pkg{blockCV} and \pkg{CENFA}).
+Those packages are listed under \code{Suggests} to keep the installation
+footprint small; \code{\link[=sdmApp]{sdmApp()}} checks that they are available and returns an
+informative error listing anything missing. \pkg{rJava} (and Java) is
+only needed for the MaxEnt model.
 }
 \examples{
 if (interactive()) {

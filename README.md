@@ -17,7 +17,7 @@
 `sdmApp` is an R package containing a Shiny application that lets non-expert
 R users model species distribution. It brings a reproducible workflow for
 species distribution modeling into a single, user friendly environment.
-`sdmApp` takes raster data (in any format supported by the `raster` package)
+`sdmApp` takes raster data (in any format supported by the `terra` package)
 and species occurrence data (several formats supported) as input, and
 provides an interactive graphical user interface (GUI).
 
@@ -52,13 +52,9 @@ raster and species occurrence data have been uploaded.
 ### System requirements
 
 `sdmApp` exposes the MaxEnt model, which uses a Java implementation. To use
-MaxEnt you need:
-
-* the **Java JDK** (>= 8) installed;
-* the **rJava** package installed;
-* the **maxent.jar** file copied into the correct folder, that is the `java`
-  directory of the `dismo` package. You can locate it with
-  `system.file("java", package = "dismo")`.
+MaxEnt you need a **Java JDK** (>= 8) and the **rJava** package. Recent
+versions of `dismo` ship the `maxent.jar` file, so it no longer needs to be
+copied by hand.
 
 Everything else in `sdmApp` works without Java.
 
@@ -166,9 +162,10 @@ generated R code.
 * **rgdal and rgeos.** Both were archived from CRAN on 2023-10-16. `sdmApp`
   no longer depends on them; recent `raster` reaches GDAL, GEOS and PROJ
   through `terra`.
-* **raster, terra and sp.** The mapping helpers accept both `raster`
-  objects and `terra` `SpatRaster` objects. A full migration of the shiny
-  interface from `raster`/`sp` to `terra`/`sf` is planned.
+* **raster, terra and sp.** The shiny interface works on `terra` rasters and
+  `sf` points; it only converts to `raster`/`sp` when calling `CENFA`, which
+  does not support the newer classes. The exported mapping helpers accept
+  both `raster` and `terra` objects.
 
 ## Citation
 

@@ -34,28 +34,21 @@ Suggests:
     automap (>= 1.0-14),
     blockCV (>= 3.0.0),
     covr,
-    data.table,
     dismo (>= 1.0.12),
-    dplyr (>= 1.0.3),
     DT,
     ggcorrplot (>= 0.1.3),
     haven (>= 2.3.1),
+    highr,
     kernlab (>= 0.9-29),
     knitr,
     randomForest (>= 4.6.10),
     readxl (>= 1.3.1),
-    rhandsontable (>= 0.3.7),
     rJava (>= 0.9-13),
     rmarkdown,
-    shinyBS (>= 0.61),
-    shinydashboard,
     shinyFiles (>= 0.7.0),
     sp (>= 1.6.0),
-    SSDM (>= 0.2.8),
-    stringr,
-    terra,
-    testthat (>= 3.0.0),
-    tidyr (>= 1.1.2)
+    terra (>= 1.7-0),
+    testthat (>= 3.0.0)
 Remotes:
     rinnan/CENFA
 VignetteBuilder: knitr
@@ -64,5 +57,5 @@ Encoding: UTF-8
 Language: en-US
 LazyData: no
 Roxygen: list(markdown = TRUE)
-SystemRequirements: Java (>= 8)
+SystemRequirements: Java (>= 8), optional, for the MaxEnt model
 Config/roxygen2/version: 8.0.0
