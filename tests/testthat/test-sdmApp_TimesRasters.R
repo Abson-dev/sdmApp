@@ -18,3 +18,15 @@ test_that("sdmApp_TimesRasters masks probabilities by presence", {
 test_that("sdmApp_TimesRasters rejects non-raster input", {
   expect_error(sdmApp_TimesRasters(1, 2), "Raster")
 })
+
+test_that("sdmApp_TimesRasters rejects rasters with different geometry", {
+  r <- raster::raster(system.file("extdata", "AETI.tif", package = "sdmApp"))
+  smaller <- raster::crop(r, raster::extent(r, 1, 10, 1, 10))
+  expect_error(sdmApp_TimesRasters(r, smaller > 0), "same extent")
+})
+
+test_that("sdmApp_TimesRasters rejects mixing raster and terra objects", {
+  skip_if_not_installed("terra")
+  r <- raster::raster(system.file("extdata", "AETI.tif", package = "sdmApp"))
+  expect_error(sdmApp_TimesRasters(r, terra::rast(r)), "both")
+})

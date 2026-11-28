@@ -283,28 +283,27 @@ on `blockCV` to build spatially separated folds, and
 `sdmApp_fold_Explorer()` draws the training and testing points of a chosen
 fold on top of a background raster.
 
-```{r fold-explorer, eval = FALSE}
-library(blockCV)
-
-sb <- spatialBlock(
-  speciesData = pa_data["Faidherbia.albida"],
-  species = "Faidherbia.albida",
-  rasterLayer = r,
-  theRange = 2000,
+```{r fold-explorer, eval = requireNamespace("blockCV", quietly = TRUE) && utils::packageVersion("blockCV") >= "3.0.0", fig.width = 8, fig.height = 4}
+cv <- blockCV::cv_spatial(
+  x = pa_data["Faidherbia.albida"],
+  column = "Faidherbia.albida",
+  r = r,
+  size = 2000,          # block size in metres
   k = 5,
   selection = "random",
-  iteration = 100
+  iteration = 100,
+  plot = FALSE,
+  progress = FALSE,
+  report = FALSE
 )
 
-sdmApp_fold_Explorer(sb, r, pa_data["Faidherbia.albida"], num = 1)
+sdmApp_fold_Explorer(cv, r, pa_data["Faidherbia.albida"], num = 1)
 ```
 
-Note a compatibility caveat. From `blockCV` version 3.0, `spatialBlock()` is
-deprecated in favour of `cv_spatial()`, and the object returned by
-`cv_spatial()` is no longer of class `SpatialBlock`.
-`sdmApp_fold_Explorer()` currently tests for that class, so it works with the
-deprecated `spatialBlock()` but not yet with `cv_spatial()`. Support for the
-new class is planned.
+`sdmApp_fold_Explorer()` accepts the objects returned by `cv_spatial()` and
+the other `cv_*()` functions of `blockCV` 3.0 and later, as well as the
+legacy `SpatialBlock` objects returned by `spatialBlock()` in older
+`blockCV` versions. The blocks of the selected fold are outlined in red.
 
 # A typical session in the GUI
 

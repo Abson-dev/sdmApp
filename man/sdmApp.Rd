@@ -14,7 +14,7 @@ sdmApp(
 }
 \arguments{
 \item{maxRequestSize}{Numeric. Maximum allowed size, in megabytes, for
-uploaded files. Defaults to 50.}
+uploaded files. Must be a single positive number. Defaults to 50.}
 
 \item{debug}{Logical. If \code{TRUE}, enable 'shiny' debugging options
 (full stack trace and trace).}
@@ -22,8 +22,9 @@ uploaded files. Defaults to 50.}
 \item{theme}{Character. Style sheet for the interface. One of
 \code{"IHSN"} (default), \code{"yeti"}, \code{"journal"} or \code{"flatly"}.}
 
-\item{...}{Further arguments (for example \code{host} or \code{port}) passed to
-\code{\link[shiny:runApp]{shiny::runApp()}} when the application is launched.}
+\item{...}{Further options (for example \code{host}, \code{port} or
+\code{launch.browser}) passed to the \code{options} argument of
+\code{\link[shiny:shinyApp]{shiny::shinyApp()}}. By default the app opens in a web browser.}
 
 \item{shiny.server}{Logical. If \code{TRUE}, return the application as a
 \code{\link[shiny:shinyApp]{shiny::shinyApp()}} object instead of launching it. Useful for
@@ -33,7 +34,9 @@ deploying \code{sdmApp} behind shiny-server.}
 If \code{shiny.server = TRUE}, a \code{\link[shiny:shinyApp]{shiny::shinyApp()}} object.
 Otherwise the function is called for its side effect of starting the
 interactive interface and returns the value of \code{\link[shiny:runApp]{shiny::runApp()}}
-invisibly.
+invisibly. The global \code{\link[=options]{options()}} that \code{sdmApp()} sets
+(\code{shiny.maxRequestSize}, \code{shiny.fullstacktrace}, \code{shiny.trace}) are
+restored when the app stops.
 }
 \description{
 Launches the 'shiny' application that lets non-expert R users model

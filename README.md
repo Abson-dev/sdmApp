@@ -10,6 +10,8 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)
+[![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/sdmApp?color=blue)](https://CRAN.R-project.org/package=sdmApp)
+[![Monthly downloads](https://cranlogs.r-pkg.org/badges/last-month/sdmApp?color=blue)](https://CRAN.R-project.org/package=sdmApp)
 <!-- badges: end -->
 
 `sdmApp` is an R package containing a Shiny application that lets non-expert
@@ -156,16 +158,17 @@ generated R code.
 
 ## Known compatibility notes
 
-* **blockCV 3.0 and later.** `spatialBlock()` is deprecated in favour of
-  `cv_spatial()`, and the returned object is no longer of class
-  `SpatialBlock`. `sdmApp_fold_Explorer()` currently expects a
-  `SpatialBlock` object, so it works with the deprecated `spatialBlock()`
-  but not yet with `cv_spatial()`. Support for the new class is planned.
+* **blockCV 3.0 and later.** `spatialBlock()` and `spatialAutoRange()` were
+  replaced by `cv_spatial()` and `cv_spatial_autocor()`. Both the shiny
+  interface and `sdmApp_fold_Explorer()` use the new interface, so
+  `blockCV` (>= 3.0.0) is required; `sdmApp_fold_Explorer()` still accepts
+  legacy `SpatialBlock` objects.
 * **rgdal and rgeos.** Both were archived from CRAN on 2023-10-16. `sdmApp`
   no longer depends on them; recent `raster` reaches GDAL, GEOS and PROJ
   through `terra`.
-* **raster and sp.** These still work but are in maintenance mode. A
-  migration of the mapping helpers to `terra` and `sf` is planned.
+* **raster, terra and sp.** The mapping helpers accept both `raster`
+  objects and `terra` `SpatRaster` objects. A full migration of the shiny
+  interface from `raster`/`sp` to `terra`/`sf` is planned.
 
 ## Citation
 

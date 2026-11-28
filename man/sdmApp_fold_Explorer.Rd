@@ -7,14 +7,19 @@
 sdmApp_fold_Explorer(blocks, rasterLayer, speciesData, num)
 }
 \arguments{
-\item{blocks}{A \code{SpatialBlock} object (from \pkg{blockCV}).}
+\item{blocks}{A cross-validation object from \pkg{blockCV}: either a
+\code{cv_spatial} (or other \verb{cv_*}) object, or a legacy \code{SpatialBlock}
+object.}
 
-\item{rasterLayer}{A raster object used as the background map.}
+\item{rasterLayer}{A \link[raster:Raster-class]{raster::Raster} or \link[terra:SpatRaster-class]{terra::SpatRaster}
+object used as the background map (only the first layer is drawn).}
 
-\item{speciesData}{A simple features (\code{sf}) or \code{SpatialPoints} object
-holding the species data (the response variable).}
+\item{speciesData}{A simple features (\code{sf}) or \verb{Spatial*} object holding
+the species data, in the same order as the data used to build
+\code{blocks}.}
 
-\item{num}{Integer. Index of the fold to display as the test set.}
+\item{num}{Integer. Index of the fold to display as the test set, between
+1 and the number of folds.}
 }
 \value{
 A combined plot (via \code{\link[cowplot:plot_grid]{cowplot::plot_grid()}}) showing the
@@ -25,16 +30,31 @@ Visualises the placement of a chosen fold and the distribution of the
 species data across training and testing sets, on top of a background
 raster. Useful for inspecting the folds produced by \pkg{blockCV}.
 }
+\details{
+Both the current \pkg{blockCV} interface (version 3.0 and later: objects
+returned by \code{cv_spatial()}, \code{cv_cluster()}, \code{cv_buffer()}, \code{cv_nndm()},
+...) and the legacy \code{SpatialBlock} objects returned by \code{spatialBlock()}
+in \pkg{blockCV} < 3.0 are supported. When the object carries spatial
+blocks (as \code{cv_spatial()} and \code{spatialBlock()} do), the blocks of the
+selected fold are outlined in red.
+}
 \examples{
-\dontrun{
-library(blockCV)
-awt <- raster::brick(system.file("extdata", "awt.grd", package = "blockCV"))
-PA <- read.csv(system.file("extdata", "PA.csv", package = "blockCV"))
-pa_data <- sf::st_as_sf(PA, coords = c("x", "y"), crs = raster::crs(awt))
-sb <- spatialBlock(speciesData = pa_data, species = "Species",
-                   rasterLayer = awt, theRange = 70000, k = 5,
-                   selection = "random", iteration = 100)
-sdmApp_fold_Explorer(sb, awt, pa_data, 1)
+\donttest{
+if (requireNamespace("blockCV", quietly = TRUE) &&
+    utils::packageVersion("blockCV") >= "3.0.0") {
+  r <- raster::raster(system.file("extdata", "bio1.tif", package = "sdmApp"))
+  occ <- utils::read.csv2(system.file("extdata", "Niakhar.csv",
+                                      package = "sdmApp"))
+  pa_data <- sf::st_as_sf(occ, coords = c("X_WGS84", "Y_WGS84"),
+                          crs = 4326)
+  pa_data <- pa_data["Faidherbia.albida"]
+
+  cv <- blockCV::cv_spatial(x = pa_data, column = "Faidherbia.albida",
+                            r = r, size = 2000, k = 3, iteration = 20,
+                            plot = FALSE, progress = FALSE,
+                            report = FALSE)
+  sdmApp_fold_Explorer(cv, r, pa_data, num = 1)
+}
 }
 }
 \author{

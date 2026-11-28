@@ -7,7 +7,8 @@
 sdmApp_RasterPlot(x)
 }
 \arguments{
-\item{x}{A \link[raster:RasterLayer-class]{raster::RasterLayer} object.}
+\item{x}{A \link[raster:RasterLayer-class]{raster::RasterLayer} or \link[terra:SpatRaster-class]{terra::SpatRaster}
+object. Only the first layer is drawn.}
 }
 \value{
 A \link[ggplot2:ggplot]{ggplot2::ggplot} object, or \code{NULL} if \code{x} is a base graphics

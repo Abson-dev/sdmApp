@@ -11,7 +11,8 @@ sdmApp_TimesRasters(x, y)
 object.}
 
 \item{y}{Presence/absence map, a \link[raster:RasterLayer-class]{raster::RasterLayer} object with
-the same extent and resolution as \code{x}.}
+the same extent, resolution and coordinate reference system as \code{x}.
+Two \link[terra:SpatRaster-class]{terra::SpatRaster} objects are also accepted.}
 }
 \value{
 A \link[raster:RasterLayer-class]{raster::RasterLayer} object giving the

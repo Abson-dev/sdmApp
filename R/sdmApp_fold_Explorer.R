@@ -4,11 +4,23 @@
 #' species data across training and testing sets, on top of a background
 #' raster. Useful for inspecting the folds produced by \pkg{blockCV}.
 #'
-#' @param blocks A `SpatialBlock` object (from \pkg{blockCV}).
-#' @param rasterLayer A raster object used as the background map.
-#' @param speciesData A simple features (`sf`) or `SpatialPoints` object
-#'   holding the species data (the response variable).
-#' @param num Integer. Index of the fold to display as the test set.
+#' Both the current \pkg{blockCV} interface (version 3.0 and later: objects
+#' returned by `cv_spatial()`, `cv_cluster()`, `cv_buffer()`, `cv_nndm()`,
+#' ...) and the legacy `SpatialBlock` objects returned by `spatialBlock()`
+#' in \pkg{blockCV} < 3.0 are supported. When the object carries spatial
+#' blocks (as `cv_spatial()` and `spatialBlock()` do), the blocks of the
+#' selected fold are outlined in red.
+#'
+#' @param blocks A cross-validation object from \pkg{blockCV}: either a
+#'   `cv_spatial` (or other `cv_*`) object, or a legacy `SpatialBlock`
+#'   object.
+#' @param rasterLayer A [raster::Raster-class] or [terra::SpatRaster-class]
+#'   object used as the background map (only the first layer is drawn).
+#' @param speciesData A simple features (`sf`) or `Spatial*` object holding
+#'   the species data, in the same order as the data used to build
+#'   `blocks`.
+#' @param num Integer. Index of the fold to display as the test set, between
+#'   1 and the number of folds.
 #'
 #' @return A combined plot (via [cowplot::plot_grid()]) showing the
 #'   training and testing sets for the selected fold.
@@ -20,48 +32,63 @@
 #' @importFrom stats median
 #' @importFrom cowplot plot_grid
 #' @importFrom ggplot2 ggplot geom_raster geom_sf aes scale_fill_gradient2
-#'   guides theme_bw labs ggtitle theme element_text .data
+#' @importFrom ggplot2 guides theme_bw labs ggtitle theme element_text .data
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' library(blockCV)
-#' awt <- raster::brick(system.file("extdata", "awt.grd", package = "blockCV"))
-#' PA <- read.csv(system.file("extdata", "PA.csv", package = "blockCV"))
-#' pa_data <- sf::st_as_sf(PA, coords = c("x", "y"), crs = raster::crs(awt))
-#' sb <- spatialBlock(speciesData = pa_data, species = "Species",
-#'                    rasterLayer = awt, theRange = 70000, k = 5,
-#'                    selection = "random", iteration = 100)
-#' sdmApp_fold_Explorer(sb, awt, pa_data, 1)
+#' \donttest{
+#' if (requireNamespace("blockCV", quietly = TRUE) &&
+#'     utils::packageVersion("blockCV") >= "3.0.0") {
+#'   r <- raster::raster(system.file("extdata", "bio1.tif", package = "sdmApp"))
+#'   occ <- utils::read.csv2(system.file("extdata", "Niakhar.csv",
+#'                                       package = "sdmApp"))
+#'   pa_data <- sf::st_as_sf(occ, coords = c("X_WGS84", "Y_WGS84"),
+#'                           crs = 4326)
+#'   pa_data <- pa_data["Faidherbia.albida"]
+#'
+#'   cv <- blockCV::cv_spatial(x = pa_data, column = "Faidherbia.albida",
+#'                             r = r, size = 2000, k = 3, iteration = 20,
+#'                             plot = FALSE, progress = FALSE,
+#'                             report = FALSE)
+#'   sdmApp_fold_Explorer(cv, r, pa_data, num = 1)
+#' }
 #' }
 sdmApp_fold_Explorer <- function(blocks, rasterLayer, speciesData, num) {
   if (is.null(rasterLayer)) {
     stop("A raster layer should be provided.", call. = FALSE)
   }
+  if (!.is_raster(rasterLayer)) {
+    stop("'rasterLayer' must be a Raster* or SpatRaster object.",
+         call. = FALSE)
+  }
   if (is.null(speciesData)) {
     stop("Species data should be provided.", call. = FALSE)
   }
   if (is.null(blocks)) {
-    stop("An object of class 'SpatialBlock' is needed.", call. = FALSE)
+    stop("A blockCV cross-validation object is needed.", call. = FALSE)
   }
 
-  is_spatial_block <- inherits(blocks, "SpatialBlock")
-  polyObj <- if (is_spatial_block) blocks$blocks else NULL
+  cv <- .cv_parts(blocks)
+  k <- length(cv$folds)
 
-  if (num < 0 || num > length(blocks$folds)) {
-    stop("The 'num' parameter is out of range.", call. = FALSE)
+  num_ok <- is.numeric(num) && length(num) == 1L && !is.na(num) &&
+    num == round(num) && num >= 1 && num <= k
+  if (!num_ok) {
+    stop("'num' must be a single whole number between 1 and ", k,
+         " (the number of folds).", call. = FALSE)
   }
-
-  folds   <- blocks$folds
-  species <- blocks$species
 
   speciesData <- sf::st_as_sf(speciesData)
-  speciesData[[1]] <- as.factor(speciesData[[1]])
+  species <- cv$species
+  if (!is.null(species)) {
+    if (!species %in% names(speciesData)) {
+      stop("Column '", species, "' used to build the folds was not found ",
+           "in 'speciesData'.", call. = FALSE)
+    }
+    speciesData[[species]] <- as.factor(speciesData[[species]])
+  }
 
-  samp <- raster::sampleRegular(rasterLayer[[1]], 5e5, asRaster = TRUE)
-  map_df <- raster::as.data.frame(samp, xy = TRUE, centroids = TRUE,
-                                  na.rm = TRUE)
-  colnames(map_df) <- c("Easting", "Northing", "MAP")
+  map_df <- .raster_to_df(rasterLayer)
   mid <- stats::median(map_df$MAP)
 
   basePlot <- ggplot2::ggplot() +
@@ -76,47 +103,67 @@ sdmApp_fold_Explorer <- function(blocks, rasterLayer, speciesData, num) {
     ggplot2::theme_bw() +
     ggplot2::labs(x = "", y = "")
 
-  trainSet <- unlist(folds[[num]][1])
-  testSet  <- unlist(folds[[num]][2])
-  training <- speciesData[trainSet, ]
-  testing  <- speciesData[testSet, ]
+  if (!is.null(cv$polygons)) {
+    fold_poly <- cv$polygons[cv$polygons$folds == num, ]
+    basePlot <- basePlot +
+      ggplot2::geom_sf(data = fold_poly, color = "red",
+                       fill = "orangered4", alpha = 0.04, linewidth = 0.2)
+  }
 
-  add_poly <- function(p) {
-    if (!is_spatial_block) {
-      return(p)
+  draw_points <- function(points, title) {
+    if (is.null(species)) {
+      layer <- ggplot2::geom_sf(data = points, alpha = 0.7, color = "blue",
+                                size = 2)
+    } else {
+      layer <- list(
+        ggplot2::geom_sf(data = points,
+                         ggplot2::aes(color = .data[[species]]),
+                         show.legend = "point", alpha = 0.7, size = 2),
+        ggplot2::labs(color = species)
+      )
     }
-    plotPoly <- sf::st_as_sf(polyObj[polyObj$folds == num, ])
-    p + ggplot2::geom_sf(data = plotPoly, color = "red",
-                         fill = "orangered4", alpha = 0.04, size = 0.2)
+    basePlot + layer + ggplot2::ggtitle(title) + .title_theme()
   }
 
-  title_theme <- ggplot2::theme(
-    plot.title = ggplot2::element_text(hjust = 0.5, size = 10)
-  )
-
-  if (is.null(species)) {
-    ptr <- add_poly(basePlot) +
-      ggplot2::geom_sf(data = training, alpha = 0.7, color = "blue",
-                       size = 2) +
-      ggplot2::ggtitle("Training set") + title_theme
-    pts <- add_poly(basePlot) +
-      ggplot2::geom_sf(data = testing, alpha = 0.7, color = "blue",
-                       size = 2) +
-      ggplot2::ggtitle("Testing set") + title_theme
-  } else {
-    ptr <- add_poly(basePlot) +
-      ggplot2::geom_sf(data = training,
-                       ggplot2::aes(color = .data[[species]]),
-                       show.legend = "point", alpha = 0.7, size = 2) +
-      ggplot2::labs(color = species) +
-      ggplot2::ggtitle("Training set") + title_theme
-    pts <- add_poly(basePlot) +
-      ggplot2::geom_sf(data = testing,
-                       ggplot2::aes(color = .data[[species]]),
-                       show.legend = "point", alpha = 0.7, size = 2) +
-      ggplot2::labs(color = species) +
-      ggplot2::ggtitle("Testing set") + title_theme
-  }
+  fold <- cv$folds[[num]]
+  ptr <- draw_points(speciesData[unlist(fold[1]), ], "Training set")
+  pts <- draw_points(speciesData[unlist(fold[2]), ], "Testing set")
 
   cowplot::plot_grid(ptr, pts)
+}
+
+# Internal: pull folds, species column and (optional) block polygons out of
+# a blockCV object, hiding the differences between blockCV versions.
+#
+# * blockCV >= 3.0 (`cv_spatial`, `cv_cluster`, `cv_buffer`, ...):
+#   `$folds_list`, `$column`, and for `cv_spatial` an sf `$blocks`.
+# * blockCV < 3.0 (`SpatialBlock`, `EnvironmentalBlock`, `BufferedBlock`):
+#   `$folds`, `$species`, and for `SpatialBlock` an sp `$blocks`.
+.cv_parts <- function(blocks) {
+  if (!is.list(blocks)) {
+    stop("'blocks' must be a cross-validation object from blockCV ",
+         "(for example the output of blockCV::cv_spatial()).",
+         call. = FALSE)
+  }
+  if (!is.null(blocks$folds_list)) {
+    folds   <- blocks$folds_list
+    species <- blocks$column
+  } else if (!is.null(blocks$folds)) {
+    folds   <- blocks$folds
+    species <- blocks$species
+  } else {
+    stop("'blocks' does not contain any folds. Supply the output of ",
+         "blockCV::cv_spatial() (or another blockCV cv_* function).",
+         call. = FALSE)
+  }
+
+  polygons <- blocks$blocks
+  if (!is.null(polygons)) {
+    polygons <- sf::st_as_sf(polygons)
+    if (!"folds" %in% names(polygons)) {
+      polygons <- NULL
+    }
+  }
+
+  list(folds = folds, species = species, polygons = polygons)
 }

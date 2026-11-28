@@ -4,8 +4,9 @@
 #' the layer on a regular grid so that large rasters can be displayed
 #' quickly.
 #'
-#' @param x A [raster::RasterLayer-class] object holding presence (`TRUE`,
-#'   `1`) and absence (`FALSE`, `0`) values.
+#' @param x A [raster::RasterLayer-class] or [terra::SpatRaster-class]
+#'   object holding presence (`TRUE`, `1`) and absence (`FALSE`, `0`)
+#'   values. Only the first layer is drawn.
 #'
 #' @return A [ggplot2::ggplot] object.
 #'
@@ -13,7 +14,7 @@
 #'
 #' @importFrom raster sampleRegular as.data.frame
 #' @importFrom ggplot2 ggplot geom_raster aes theme_bw labs ggtitle theme
-#'   element_text scale_fill_manual .data
+#' @importFrom ggplot2 element_text scale_fill_manual .data
 #' @export
 #'
 #' @examples
@@ -21,15 +22,20 @@
 #' r <- r > 4000
 #' sdmApp_PA(r)
 sdmApp_PA <- function(x) {
-  if (!inherits(x, "Raster")) {
-    stop("'x' must be a Raster* object.", call. = FALSE)
+  if (!.is_raster(x)) {
+    stop("'x' must be a Raster* or SpatRaster object.", call. = FALSE)
   }
 
-  samp <- raster::sampleRegular(x, 5e5, asRaster = TRUE)
-  map_df <- raster::as.data.frame(samp, xy = TRUE, centroids = TRUE,
-                                  na.rm = TRUE)
-  colnames(map_df) <- c("Easting", "Northing", "MAP")
-  map_df$MAP <- factor(map_df$MAP)
+  map_df <- .raster_to_df(x)
+  values <- as.numeric(map_df$MAP)
+  if (!all(values %in% c(0, 1))) {
+    stop("'x' must only contain presence (1/TRUE) and absence (0/FALSE) ",
+         "values.", call. = FALSE)
+  }
+  # Map values to labelled levels explicitly so that a raster holding only
+  # presences (or only absences) still gets the right colour and label.
+  map_df$MAP <- factor(values, levels = c(0, 1),
+                       labels = c("Absence", "Presence"))
 
   ggplot2::ggplot(map_df) +
     ggplot2::geom_raster(
@@ -38,13 +44,11 @@ sdmApp_PA <- function(x) {
     ) +
     ggplot2::theme_bw() +
     ggplot2::labs(x = "Longitude", y = "Latitude") +
-    ggplot2::ggtitle(label = names(x)) +
-    ggplot2::theme(
-      plot.title = ggplot2::element_text(hjust = 0.5, size = 10)
-    ) +
+    ggplot2::ggtitle(label = .layer_name(x)) +
+    .title_theme() +
     ggplot2::scale_fill_manual(
-      values = c("red", "green"),
-      name = "Specie",
-      labels = c("Absence", "Presence")
+      values = c(Absence = "red", Presence = "green"),
+      name = "Species",
+      drop = FALSE
     )
 }

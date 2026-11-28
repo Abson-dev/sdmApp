@@ -3,8 +3,7 @@ Title: A User-Friendly Application for Species Distribution Modeling
 Version: 0.0.3
 Authors@R: c(
     person("Aboubacar", "HEMA", , "aboubacarhema94@gmail.com",
-           role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0000-0000-0000")),
+           role = c("aut", "cre")),
     person("Babacar", "NDAO", , "babacar.ndao@cse.sn", role = "aut"),
     person("Louise", "LEROUX", , "louise.leroux@cirad.fr", role = "aut"),
     person("Abdoul Aziz", "DIOUF", , "aziz.diouf@cse.sn", role = "aut")
@@ -13,7 +12,7 @@ Description: A 'shiny' application that allows non-expert 'R' users to
     easily model species distribution. It offers a reproducible work flow
     for species distribution modeling into a single and user friendly
     environment.  'sdmApp' takes 'raster' data (in format supported by the
-    'raster' package) and species occurrence data (several format
+    'raster' or 'terra' packages) and species occurrence data (several format
     supported) as input argument.  It provides an interactive graphical
     user interface (GUI).
 License: GPL-3
@@ -25,16 +24,15 @@ Depends:
 Imports:
     cowplot (>= 1.1.1),
     ggplot2 (>= 3.4.0),
-    graphics,
     grDevices,
     raster (>= 3.6.3),
     sf (>= 1.0.0),
     shiny (>= 0.12.2),
-    sp (>= 1.6.0),
-    stats
+    stats,
+    utils
 Suggests:
     automap (>= 1.0-14),
-    blockCV (>= 2.1.1),
+    blockCV (>= 3.0.0),
     covr,
     data.table,
     dismo (>= 1.0.12),
@@ -52,15 +50,15 @@ Suggests:
     shinyBS (>= 0.61),
     shinydashboard,
     shinyFiles (>= 0.7.0),
+    sp (>= 1.6.0),
     SSDM (>= 0.2.8),
+    stringr,
     terra,
     testthat (>= 3.0.0),
     tidyr (>= 1.1.2)
 Remotes:
     rinnan/CENFA
-VignetteBuilder:
-    knitr,
-    rmarkdown
+VignetteBuilder: knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
